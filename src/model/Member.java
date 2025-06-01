@@ -13,5 +13,19 @@ public class Member extends User{
 		super(firstName, lastName, userName, email, passwordHash, joinedClubs);
 		this.role = role;
 	}
+
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	
+//	TO STRING -----------------------------------------------------------------------------------------------------
+	@Override
+	public String toString() {
+		return "Member [role=" + role + "]";
+	}
 }
