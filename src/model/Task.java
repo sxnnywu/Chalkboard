@@ -9,14 +9,14 @@ public class Task {
 //	FIELDS --------------------------------------------------------------------------------------------------------
 	private String title;
 	private LocalDate deadline;
-	private List<User> assignees;
+	private List<Member> assignees;
 	private String status;
 	private String notes;
 	private String taskID;
 	private String clubID;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
-	public Task(String title, LocalDate deadline, List<User> assignees, String status, String notes, String clubID) {
+	public Task(String title, LocalDate deadline, List<Member> assignees, String status, String notes, String clubID) {
 		super();
 		this.title = title;
 		setDeadline(deadline);
@@ -44,10 +44,10 @@ public class Task {
 	        throw new IllegalArgumentException("Deadline cannot be in the past.");
 	    this.deadline = deadline;
 	}
-	public List<User> getAssignees() {
+	public List<Member> getAssignees() {
 		return assignees;
 	}
-	public void setAssignees(List<User> assignees) {
+	public void setAssignees(List<Member> assignees) {
 		this.assignees = assignees;
 	}
 	public String getStatus() {
@@ -82,23 +82,21 @@ public class Task {
 				+ ", notes=" + notes + ", taskID=" + taskID + ", clubID=" + clubID + "]";
 	}
 	
-	
-//	NOTE!! SHOULD ARGUMENTS BE USERS OR MEMBERS
 //	ADD ASSIGNEE --------------------------------------------------------------------------------------------------
-	public void addAssignee(User user) {
+	public void addAssignee(Member member) {
 		
 //		Check if user is already an assignee
-		if (assignees.contains(user))
+		if (assignees.contains(member))
 			throw new IllegalArgumentException("User is already an assignee");
-		assignees.add(user);
+		assignees.add(member);
 	}
 	
 //	REMOVE ASSIGNEE -----------------------------------------------------------------------------------------------
-	public void removeAssignee(User user) {
+	public void removeAssignee(Member member) {
 		
 //		Check if member is an assignee
-		if (!assignees.contains(user))
+		if (!assignees.contains(member))
 			throw new IllegalArgumentException("User is not an assignee");
-		assignees.remove(user);
+		assignees.remove(member);
 	}
 }

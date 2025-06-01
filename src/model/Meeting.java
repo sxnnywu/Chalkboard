@@ -19,8 +19,6 @@ public class Meeting extends ScheduleItem{
 		meetingID = UUID.randomUUID().toString();
 		this.clubID = clubID;
 	}
-
-//	NOTE!!!! FIGURE OUT FLOW BETWEEN ISRECURRING AND FREQUENCY + DATA TYPE FOR FREQUENCY
 	
 //	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
 	public RecurrenceFrequency getFrequency() {
