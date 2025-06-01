@@ -1,7 +1,6 @@
 package model;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class User {
 	
@@ -24,7 +23,7 @@ public class User {
 		this.userName = userName;
 		this.email = email;
 		this.passwordHash = passwordHash;
-		this.joinedClubs = joinedClubs;
+		this.joinedClubs = (joinedClubs != null) ? joinedClubs : new ArrayList<>(); // Initialize if null
 	}
 
 //	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
@@ -88,18 +87,20 @@ public class User {
 	
 //	ADD CLUB
 	public void addClub(Club club) {
-		
-//		Add the club if it isn't already in the list
-		if(!joinedClubs.contains(club))
-			joinedClubs.add(club);
+	
+//		Check if user is already in the club
+		if(joinedClubs.contains(club))
+			throw new IllegalArgumentException("User already joined this club.");
+		joinedClubs.add(club);
 	}
 	
 //	REMOVE CLUB
 	public void removeClub(Club club) {
 		
-//		If the club is in the list, remove it
-		if(joinedClubs.contains(club))
-			joinedClubs.remove(club);
+//		Check if user is in club
+		if(!joinedClubs.contains(club))
+			throw new IllegalArgumentException("User is not a member of this club.");
+		joinedClubs.remove(club);
 	}
 	
 //	IS MEMBER
