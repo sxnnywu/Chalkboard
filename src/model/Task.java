@@ -27,6 +27,24 @@ public class Task {
 		this.clubID = clubID;
 	}
 	
+//	ADD ASSIGNEE --------------------------------------------------------------------------------------------------
+	public void addAssignee(Member member) {
+		
+//		Check if user is already an assignee
+		if (assignees.contains(member))
+			throw new IllegalArgumentException("User is already an assignee");
+		assignees.add(member);
+	}
+	
+//	REMOVE ASSIGNEE -----------------------------------------------------------------------------------------------
+	public void removeAssignee(Member member) {
+		
+//		Check if member is an assignee
+		if (!assignees.contains(member))
+			throw new IllegalArgumentException("User is not an assignee");
+		assignees.remove(member);
+	}
+	
 //	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
 	public String getTitle() {
 		return title;
@@ -80,23 +98,5 @@ public class Task {
 	public String toString() {
 		return "Task [title=" + title + ", deadline=" + deadline + ", assignees=" + assignees + ", status=" + status
 				+ ", notes=" + notes + ", taskID=" + taskID + ", clubID=" + clubID + "]";
-	}
-	
-//	ADD ASSIGNEE --------------------------------------------------------------------------------------------------
-	public void addAssignee(Member member) {
-		
-//		Check if user is already an assignee
-		if (assignees.contains(member))
-			throw new IllegalArgumentException("User is already an assignee");
-		assignees.add(member);
-	}
-	
-//	REMOVE ASSIGNEE -----------------------------------------------------------------------------------------------
-	public void removeAssignee(Member member) {
-		
-//		Check if member is an assignee
-		if (!assignees.contains(member))
-			throw new IllegalArgumentException("User is not an assignee");
-		assignees.remove(member);
 	}
 }

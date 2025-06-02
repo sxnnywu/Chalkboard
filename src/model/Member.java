@@ -14,6 +14,13 @@ public class Member extends User{
 		this.role = role;
 	}
 
+//	CONSTRUCTOR 2 -------------------------------------------------------------------------------------------------
+	public Member(User user, String role) {
+		super(user.getFirstName(), user.getLastName(), user.getUserName(), user.getEmail(), user.getPasswordHash(), 
+				user.getJoinedClubs());
+		this.role = role;
+	}
+	
 //	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
 	public String getRole() {
 		return role;

@@ -25,7 +25,46 @@ public class User {
 		this.passwordHash = passwordHash;
 		this.joinedClubs = (joinedClubs != null) ? joinedClubs : new ArrayList<>(); // Initialize if null
 	}
+	
+//	GET FULL NAME -------------------------------------------------------------------------------------------------
+	public String getFullName() {
+		
+//		Concatenate first and last name 
+		return firstName + " " + lastName;
+	}
+	
+//	ADD CLUB ------------------------------------------------------------------------------------------------------
+	public void addClub(Club club) {
+	
+//		Check if user is already in the club
+		if(joinedClubs.contains(club))
+			throw new IllegalArgumentException("User already joined this club.");
+		joinedClubs.add(club);
+	}
+	
+//	REMOVE CLUB ---------------------------------------------------------------------------------------------------
+	public void removeClub(Club club) {
+		
+//		Check if user is in club
+		if(!joinedClubs.contains(club))
+			throw new IllegalArgumentException("User is not a member of this club.");
+		joinedClubs.remove(club);
+	}
+	
+//	IS MEMBER -----------------------------------------------------------------------------------------------------
+	public boolean isMember(Club club) {
+		
+//		Check if the club is in the list of joined clubs
+		if(joinedClubs.contains(club))
+			return true;
+		return false;
+	}
 
+//	TO MEMBER -----------------------------------------------------------------------------------------------------s
+	public Member toMember(String role) {
+		return new Member(this, role);
+	}
+	
 //	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
 	public String getUserID() {
 		return userID;
@@ -76,39 +115,5 @@ public class User {
 		return "User [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
 				+ userName + ", email=" + email + ", passwordHash=" + passwordHash + ", joinedClubs=" + joinedClubs
 				+ "]";
-	}
-	
-//	GET FULL NAME -------------------------------------------------------------------------------------------------
-	public String getFullName() {
-		
-//		Concatenate first and last name 
-		return firstName + " " + lastName;
-	}
-	
-//	ADD CLUB
-	public void addClub(Club club) {
-	
-//		Check if user is already in the club
-		if(joinedClubs.contains(club))
-			throw new IllegalArgumentException("User already joined this club.");
-		joinedClubs.add(club);
-	}
-	
-//	REMOVE CLUB
-	public void removeClub(Club club) {
-		
-//		Check if user is in club
-		if(!joinedClubs.contains(club))
-			throw new IllegalArgumentException("User is not a member of this club.");
-		joinedClubs.remove(club);
-	}
-	
-//	IS MEMBER
-	public boolean isMember(Club club) {
-		
-//		Check if the club is in the list of joined clubs
-		if(joinedClubs.contains(club))
-			return true;
-		return false;
 	}
 }

@@ -20,6 +20,11 @@ public class Meeting extends ScheduleItem{
 		this.clubID = clubID;
 	}
 	
+//	IS RECURRING --------------------------------------------------------------------------------------------------
+	public boolean isRecurring() {
+		return frequency != RecurrenceFrequency.NONE;
+	}
+	
 //	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
 	public RecurrenceFrequency getFrequency() {
 		return frequency;
@@ -40,15 +45,9 @@ public class Meeting extends ScheduleItem{
 		this.clubID = clubID;
 	}
 
-	
 //	TO STRING -----------------------------------------------------------------------------------------------------
 	@Override
 	public String toString() {
 		return "Meeting [frequency=" + frequency + ", meetingID=" + meetingID + ", clubID=" + clubID + "]";
 	}	
-	
-//	IS RECURRING --------------------------------------------------------------------------------------------------
-	public boolean isRecurring() {
-		return frequency != RecurrenceFrequency.NONE;
-	}
 }
