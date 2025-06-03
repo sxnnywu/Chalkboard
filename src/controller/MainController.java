@@ -23,6 +23,7 @@ public class MainController implements ActionListener {
 		frame.getStartPanel().getLoginButton().addActionListener(this);
 		frame.getStartPanel().getSignupButton().addActionListener(this);
 		frame.getSignupPanel().getLoginButton().addActionListener(this);
+		frame.getSignupPanel().getSignupButton().addActionListener(this);
 	}
 	
 	@Override
@@ -53,6 +54,11 @@ public class MainController implements ActionListener {
 		}
 		
 //		Sign up validation
+		if(e.getSource() == frame.getSignupPanel().getSignupButton()) {
+			
+//			CALL BOOLEAN METHOD TO VALIDATE INPUT
+			frame.remove(frame.getSignupPanel());
+		}
 	}
 
 }

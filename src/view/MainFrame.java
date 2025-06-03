@@ -22,8 +22,8 @@ public class MainFrame extends JFrame{
 	
 //		Starting panel
 //		add(startPanel);
-		add(signupPanel);
-//		add(loginPanel);
+//		add(signupPanel);
+		add(loginPanel);
 		
 //		Make the frame appear
 		setVisible(true);

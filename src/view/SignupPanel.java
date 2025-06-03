@@ -61,7 +61,7 @@ public class SignupPanel extends JPanel{
 		add(logoLabel);
 		
 //		Input panel
-		inputPanel.setBounds(110, 215, 1300, 420);
+		inputPanel.setBounds(110, 215, inputPanel.getPanelWidth(), inputPanel.getPanelHeight());
 		add(inputPanel);
 
 //		Set up all elements
