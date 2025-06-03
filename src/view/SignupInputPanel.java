@@ -14,10 +14,21 @@ public class SignupInputPanel extends RoundedPanel {
 //	Colors
 	private final Color offWhite = Color.decode("#f3f3f3");
 	
+//	Input fields
+	InputField firstNameField = new InputField("First name", 55, false);
+	InputField lastNameField = new InputField("Last name", 55, false);
+	InputField userField = new InputField("Choose a username", 55, false);
+	InputField emailField = new InputField("Enter your email", 55, false);
+	InputField passwordField = new InputField("Choose a secure password", 115, false);
+	InputField confirmField = new InputField("Confirm password", 115, false);
+	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public SignupInputPanel() {
+		
+//		Set up the panel
 		super(60);
 		initializePanel();
+		setUpInputFields();
 	}
 
 //	INITIALIZE PANEL ----------------------------------------------------------------------------------------------
@@ -28,5 +39,78 @@ public class SignupInputPanel extends RoundedPanel {
 //  	setOpaque(true);
 	}
 	
+//	SET UP INPUT FIELDS -------------------------------------------------------------------------------------------
+	private void setUpInputFields() {
+		
+//		First name
+		firstNameField.setBounds(70, 35, 550, 70);
+		add(firstNameField);
+		
+//		Last name
+		lastNameField.setBounds(670, 35, 550, 70);
+		add(lastNameField);
+		
+//		Username
+		userField.setBounds(70, 125, 550, 70);
+		add(userField);
+		
+//		Email
+		emailField.setBounds(670, 125, 550, 70);
+		add(emailField);
+		
+//		Password
+		passwordField.setBounds(70, 215, 1150, 70);
+		add(passwordField);
+		
+//		Confirm password
+		confirmField.setBounds(70, 305, 1150, 70);
+		add(confirmField);
+	}
 	
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public InputField getFirstNameField() {
+		return firstNameField;
+	}
+	public void setFirstNameField(InputField firstNameField) {
+		this.firstNameField = firstNameField;
+	}
+	public InputField getLastNameField() {
+		return lastNameField;
+	}
+	public void setLastNameField(InputField lastNameField) {
+		this.lastNameField = lastNameField;
+	}
+	public InputField getUserField() {
+		return userField;
+	}
+	public void setUserField(InputField userField) {
+		this.userField = userField;
+	}
+	public InputField getEmailField() {
+		return emailField;
+	}
+	public void setEmailField(InputField emailField) {
+		this.emailField = emailField;
+	}
+	public InputField getPasswordField() {
+		return passwordField;
+	}
+	public void setPasswordField(InputField passwordField) {
+		this.passwordField = passwordField;
+	}
+	public InputField getConfirmField() {
+		return confirmField;
+	}
+	public void setConfirmField(InputField confirmField) {
+		this.confirmField = confirmField;
+	}
+	public static int getPanelWidth() {
+		return PANEL_WIDTH;
+	}
+	public static int getPanelHeight() {
+		return PANEL_HEIGHT;
+	}
+	public Color getOffWhite() {
+		return offWhite;
+	}
 }

@@ -22,6 +22,7 @@ public class MainController implements ActionListener {
 //		Start panel
 		frame.getStartPanel().getLoginButton().addActionListener(this);
 		frame.getStartPanel().getSignupButton().addActionListener(this);
+		frame.getSignupPanel().getLoginButton().addActionListener(this);
 	}
 	
 	@Override
@@ -35,7 +36,7 @@ public class MainController implements ActionListener {
 			frame.repaint();
 		}
 		
-//		Start --> Signup
+//		Start --> Sign up
 		if(e.getSource() == frame.getStartPanel().getSignupButton()) {
 			frame.remove(frame.getStartPanel());
 			frame.add(frame.getSignupPanel());
@@ -43,6 +44,15 @@ public class MainController implements ActionListener {
 			frame.repaint();
 		}
 		
+//		Sign up --> Login
+		if(e.getSource() == frame.getSignupPanel().getLoginButton()) {
+			frame.remove(frame.getSignupPanel());
+			frame.add(frame.getLoginPanel());
+			frame.revalidate();
+			frame.repaint();
+		}
+		
+//		Sign up validation
 	}
 
 }
