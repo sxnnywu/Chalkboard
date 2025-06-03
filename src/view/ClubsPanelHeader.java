@@ -30,6 +30,7 @@ public class ClubsPanelHeader extends JPanel {
 		initializePanel();
 		setUpLabel();
 		setUpCreateButton();
+		setUpJoinButton();
 	}
 	
 //	INITIALIZE PANEL
@@ -43,7 +44,7 @@ public class ClubsPanelHeader extends JPanel {
 	private void setUpLabel() {
 		label.setForeground(darkGrey);
 		label.setFont(new Font("Gill Sans MT", Font.BOLD, 36));
-		label.setBounds(25, 15, 400, 50);
+		label.setBounds(45, 15, 400, 50);
 		add(label);
 	}
 
@@ -52,9 +53,18 @@ public class ClubsPanelHeader extends JPanel {
 		
 //		ADD ICON!!!!!!!!!
 		createButton.setForeground(darkGrey);
-		createButton.setFont(new Font("Gill Sans MT", Font.BOLD, 20));
-		createButton.setBounds(1000, 15, 150, 40);
+		createButton.setFont(new Font("Gill Sans MT", Font.BOLD, 18));
+		createButton.setBounds(1100, 15, 180, 50);
 		add(createButton);
+	}
+	
+	private void setUpJoinButton() {
+		
+//		ADD ICON!
+		joinButton.setForeground(darkGrey);
+		joinButton.setFont(new Font("Gill Sans MT", Font.BOLD, 18));
+		joinButton.setBounds(1300, 15, 180, 50);
+		add(joinButton);
 	}
 	
 //	GETTERS
