@@ -5,29 +5,37 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class RoundedButton extends JButton {
-	
-//	FIELDS --------------------------------------------------------------------------------------------------------
+    
+//	FIELDS  --------------------------------------------------------------------------------------------------------
     private Color backgroundColor;
     private Color hoverColor;
+    private Color borderColor = null; // Optional border color
     private boolean hovered = false;
 
-// 	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
+// 	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
     public RoundedButton(String text, Color backgroundColor, Color hoverColor) {
-        super(text);
+        
+//    	Fields
+    	super(text);
         this.backgroundColor = backgroundColor;
         this.hoverColor = hoverColor;
+        
+//    	Set up button
         setContentAreaFilled(false);
         setFocusPainted(false);
         setBorderPainted(false);
         setForeground(Color.WHITE);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-//    	Mouse listener to add hover effect 
+//    	Mouse listener
         addMouseListener(new MouseAdapter() {
+        	
+//        	Mouse entered
             public void mouseEntered(MouseEvent e) {
                 hovered = true;
                 repaint();
             }
+//     		Mouse exited
             public void mouseExited(MouseEvent e) {
                 hovered = false;
                 repaint();
@@ -35,29 +43,38 @@ public class RoundedButton extends JButton {
         });
     }
 
-// 	PAINT COMPONENT -----------------------------------------------------------------------------------------------
+// 	SET BORDER COLOUR ----------------------------------------------------------------------------------------------
+    public void setBorderColor(Color borderColor) {
+        this.borderColor = borderColor;
+    }
+
+//	PAINT COMPONENT ------------------------------------------------------------------------------------------------
     @Override
     protected void paintComponent(Graphics g) {
     	
-//    	Cast graphics component as @D
         Graphics2D g2 = (Graphics2D) g.create();
         int arc = 30;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-//     	Fill colour
+//     	Fill background
         Color fill = hovered ? hoverColor : backgroundColor;
         g2.setColor(fill);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), arc, arc);
 
+//      Optional border
+        if (borderColor != null) {
+            g2.setColor(borderColor);
+            g2.setStroke(new BasicStroke(2));
+            g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, arc, arc);
+        }
+
         super.paintComponent(g2);
         g2.dispose();
     }
+
+// 	Unused
     @Override
-    protected void paintBorder(Graphics g) {
-        // No border
-    }
+    protected void paintBorder(Graphics g) { }
     @Override
-    public boolean isOpaque() {
-        return false;
-    }
+    public boolean isOpaque() { return false; }
 }
