@@ -6,14 +6,14 @@ import java.awt.event.*;
 
 public class RoundedButton extends JButton {
     
-//	FIELDS  --------------------------------------------------------------------------------------------------------
+//	FIELDS --------------------------------------------------------------------------------------------------------
     private Color backgroundColor;
     private Color hoverColor;
     private Color borderColor = null; // Optional border color
     private boolean hovered = false;
     private Color shadowColor;
 
-// 	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
+// 	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
     public RoundedButton(String text, Color backgroundColor, Color hoverColor, Color shadowColor) {
         
 //    	Fields
@@ -44,12 +44,12 @@ public class RoundedButton extends JButton {
         });
     }
 
-// 	SET BORDER COLOUR ----------------------------------------------------------------------------------------------
+// 	SET BORDER COLOUR ---------------------------------------------------------------------------------------------
     public void setBorderColor(Color borderColor) {
         this.borderColor = borderColor;
     }
 
-//	PAINT COMPONENT ------------------------------------------------------------------------------------------------
+//	PAINT COMPONENT -----------------------------------------------------------------------------------------------
     @Override
     protected void paintComponent(Graphics g) {
 
