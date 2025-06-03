@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class LoginPanel extends JPanel {
 
@@ -24,7 +25,7 @@ public class LoginPanel extends JPanel {
 	
 //	Labels
 	private JLabel titleLabel = new JLabel("Log In");
-	private JLabel loginLabel = new JLabel("New to Chalkboard?");
+	private JLabel signupLabel = new JLabel("New to Chalkboard?");
 	
 //	Buttons
 	private RoundedButton loginButton = new RoundedButton("Log In", darkGrey, grey,  new Color(255, 255, 255, 50));
@@ -95,31 +96,30 @@ public class LoginPanel extends JPanel {
 		add(titleLabel);
 	}
 	
-//	SET UP LOGIN BUTTON -------------------------------------------------------------------------------------------
+//	SET UP SIGN UP BUTTON -----------------------------------------------------------------------------------------
 	private void setUpLoginButton() {
-		
-//		Label
-		loginLabel.setForeground(offWhite);
-		loginLabel.setFont(new Font("Gill Sans MT", Font.PLAIN, 22));
-		loginLabel.setBounds(logoLabel.getX() - 50, 640, 230, 60);
-		add(loginLabel);
-		
-//		Button
 		loginButton.setForeground(offWhite);
-		loginButton.setFont(new Font("Gill Sans MT", Font.BOLD, 20));
+		loginButton.setFont(new Font("Gill Sans MT", Font.BOLD, 25));
 		loginButton.setBorderColor(Color.WHITE);
-		loginButton.setBounds(loginLabel.getX(), loginLabel.getY() + 60, loginLabel.getWidth(), 50);
+		loginButton.setBounds(650, 510, 230, 70);
 		add(loginButton);
 	}
-	
-//	SET UP SIGN UP BUTTON -----------------------------------------------------------------------------------------
+
+//	SET UP LOGIN BUTTON -------------------------------------------------------------------------------------------
 	private void setUpSignupButton() {
+		
+//		Label
+		signupLabel.setForeground(offWhite);
+		signupLabel.setFont(new Font("Gill Sans MT", Font.PLAIN, 22));
+		signupLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		signupLabel.setBounds(loginButton.getX(), loginButton.getY() + 100, loginButton.getWidth(), 50);
+		add(signupLabel);
+		
+//		Button
 		signupButton.setForeground(offWhite);
-		signupButton.setFont(new Font("Gill Sans MT", Font.BOLD, 25));
+		signupButton.setFont(new Font("Gill Sans MT", Font.BOLD, 20));
 		signupButton.setBorderColor(Color.WHITE);
-		signupButton.setBounds(1200, loginLabel.getY() + 30, loginLabel.getWidth() + 20, 70);
+		signupButton.setBounds(signupLabel.getX(), signupLabel.getY() + 60, signupLabel.getWidth(), 50);
 		add(signupButton);
 	}
-
-
 }
