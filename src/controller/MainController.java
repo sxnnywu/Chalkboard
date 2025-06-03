@@ -7,14 +7,16 @@ import view.MainFrame;
 
 public class MainController implements ActionListener {
 	
+//	FIELDS  --------------------------------------------------------------------------------------------------------
 	private MainFrame frame = new MainFrame();
 	
-//	CONSTRUCTOR
+//	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 	public MainController(){
 		
+		addActionListeners();
 	}
 
-//	ACTION LISTENERS
+//	ACTION LISTENERS -----------------------------------------------------------------------------------------------
 	public void addActionListeners() {
 		
 //		Start panel
@@ -26,15 +28,19 @@ public class MainController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 //		Start --> Login
-		if(e.equals(frame.getStartPanel().getLoginButton())){
+		if(e.getSource() == frame.getStartPanel().getLoginButton()){
 			frame.remove(frame.getStartPanel());
 			frame.add(frame.getLoginPanel());
+			frame.revalidate();
+			frame.repaint();
 		}
 		
 //		Start --> Signup
-		if(e.equals(frame.getStartPanel().getSignupButton())) {
+		if(e.getSource() == frame.getStartPanel().getSignupButton()) {
 			frame.remove(frame.getStartPanel());
 			frame.add(frame.getSignupPanel());
+			frame.revalidate();
+			frame.repaint();
 		}
 		
 	}

@@ -4,12 +4,12 @@ import javax.swing.JFrame;
 
 public class MainFrame extends JFrame{
 	
-//	FIELDS
+//	FIELDS  --------------------------------------------------------------------------------------------------------
 	StartPanel startPanel = new StartPanel();
 	LoginPanel loginPanel = new LoginPanel();
 	SignupPanel signupPanel = new SignupPanel();
 	
-//	CONSTRUCTOR
+//	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 	public MainFrame() {
 		
 //		Set up the frame
@@ -21,15 +21,15 @@ public class MainFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 //		Starting panel
-		add(startPanel);
-//		add(signupPanel);
+//		add(startPanel);
+		add(signupPanel);
 //		add(loginPanel);
 		
 //		Make the frame appear
 		setVisible(true);
 	}
 
-//	GETTERS
+//	GETTERS --------------------------------------------------------------------------------------------------------
 	public StartPanel getStartPanel() {
 		return startPanel;
 	}

@@ -38,8 +38,7 @@ public class StartPanel extends JPanel {
 		    "<html><div style='text-align: center;'>"
 		    + "<span style='font-size: 28pt; font-weight: bold;'>Login</span><br>"
 		    + "<span style='font-size: 16pt;'>Get started with an existing account</span></div></html>",
-		    Color.WHITE,
-		    offWhite
+		    Color.WHITE, offWhite, new Color(255, 255, 255, 50)
 		);
 	
 //	Login button
@@ -47,8 +46,7 @@ public class StartPanel extends JPanel {
 			"<html><div style='text-align: center;'>"
 			+ "<span style='font-size: 28pt; font-weight: bold;'>Sign Up</span><br>"
 			+ "<span style='font-size: 16pt;'>Create a new account</span></div></html>",
-			darkGrey,
-			grey
+			darkGrey, grey, new Color(255, 255, 255, 50)
     );
 	
 //	Typing title animation

@@ -11,9 +11,10 @@ public class RoundedButton extends JButton {
     private Color hoverColor;
     private Color borderColor = null; // Optional border color
     private boolean hovered = false;
+    private Color shadowColor;
 
 // 	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
-    public RoundedButton(String text, Color backgroundColor, Color hoverColor) {
+    public RoundedButton(String text, Color backgroundColor, Color hoverColor, Color shadowColor) {
         
 //    	Fields
     	super(text);
@@ -55,7 +56,7 @@ public class RoundedButton extends JButton {
         Graphics2D g2 = (Graphics2D) g.create();
         int arc = 30;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
+        
 //     	Fill background
         Color fill = hovered ? hoverColor : backgroundColor;
         g2.setColor(fill);
