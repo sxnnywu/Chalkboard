@@ -140,6 +140,12 @@ public class StartPanel extends JPanel {
 //		Let paintComponent start fading other elements
 		showRest = true;
 		
+	    // Set everything visible so hover + paintComponent works
+	    for (Component comp : getComponents()) {
+	        if (comp != titleLabel) 
+	            comp.setVisible(true);
+	    }
+		
 //		Set up timer
 	    fadeInTimer = new Timer(20, e -> {
 	    	
@@ -148,6 +154,9 @@ public class StartPanel extends JPanel {
 	        if (fadeAlpha >= 1f) {
 	            fadeAlpha = 1f;
 	            fadeInTimer.stop();
+	        }
+	        if (fadeAlpha >= 1f) {
+	            showRest = false;
 	        }
 	        repaint();
 	    });
@@ -190,20 +199,99 @@ public class StartPanel extends JPanel {
 //	PAINT COMPONENT -----------------------------------------------------------------------------------------------
 	@Override
 	protected void paintComponent(Graphics g) {
-	    super.paintComponent(g);
+	    
+		super.paintComponent(g);
+
 	    if (showRest) {
 	        Graphics2D g2 = (Graphics2D) g.create();
 	        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, fadeAlpha));
-
-	        // Manually paint the rest of the components
-	        for (Component comp : getComponents()) {
-	            if (comp != titleLabel) {
-	                Graphics compGraphics = g2.create(comp.getX(), comp.getY(), comp.getWidth(), comp.getHeight());
-	                comp.paint(compGraphics);
-	                compGraphics.dispose();
-	            }
-	        }
 	        g2.dispose();
 	    }
+	}
+
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public JLabel getTitleLabel() {
+		return titleLabel;
+	}
+	public void setTitleLabel(JLabel titleLabel) {
+		this.titleLabel = titleLabel;
+	}
+	public JLabel getSloganLabel() {
+		return sloganLabel;
+	}
+	public void setSloganLabel(JLabel sloganLabel) {
+		this.sloganLabel = sloganLabel;
+	}
+	public ImageIcon getUnscaledLogo() {
+		return unscaledLogo;
+	}
+	public void setUnscaledLogo(ImageIcon unscaledLogo) {
+		this.unscaledLogo = unscaledLogo;
+	}
+	public Image getScaledLogo() {
+		return scaledLogo;
+	}
+	public void setScaledLogo(Image scaledLogo) {
+		this.scaledLogo = scaledLogo;
+	}
+	public JLabel getLogo() {
+		return logo;
+	}
+	public void setLogo(JLabel logo) {
+		this.logo = logo;
+	}
+	public JSeparator getLine() {
+		return line;
+	}
+	public void setLine(JSeparator line) {
+		this.line = line;
+	}
+	public RoundedButton getLoginButton() {
+		return loginButton;
+	}
+	public void setLoginButton(RoundedButton loginButton) {
+		this.loginButton = loginButton;
+	}
+	public RoundedButton getSignupButton() {
+		return signupButton;
+	}
+	public void setSignupButton(RoundedButton signupButton) {
+		this.signupButton = signupButton;
+	}
+	public int getTitleCharIndex() {
+		return titleCharIndex;
+	}
+	public void setTitleCharIndex(int titleCharIndex) {
+		this.titleCharIndex = titleCharIndex;
+	}
+	public Timer getTypewriterTimer() {
+		return typewriterTimer;
+	}
+	public void setTypewriterTimer(Timer typewriterTimer) {
+		this.typewriterTimer = typewriterTimer;
+	}
+	public Timer getFadeInTimer() {
+		return fadeInTimer;
+	}
+	public void setFadeInTimer(Timer fadeInTimer) {
+		this.fadeInTimer = fadeInTimer;
+	}
+	public float getFadeAlpha() {
+		return fadeAlpha;
+	}
+	public void setFadeAlpha(float fadeAlpha) {
+		this.fadeAlpha = fadeAlpha;
+	}
+	public boolean isShowRest() {
+		return showRest;
+	}
+	public void setShowRest(boolean showRest) {
+		this.showRest = showRest;
+	}
+	public static int getPanelWidth() {
+		return PANEL_WIDTH;
+	}
+	public static int getPanelHeight() {
+		return PANEL_HEIGHT;
 	}
 }
