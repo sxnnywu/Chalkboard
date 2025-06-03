@@ -8,6 +8,7 @@ public class MainFrame extends JFrame{
 	StartPanel startPanel = new StartPanel();
 	LoginPanel loginPanel = new LoginPanel();
 	SignupPanel signupPanel = new SignupPanel();
+	HomePanel homePanel = new HomePanel();
 	
 //	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 	public MainFrame() {
@@ -23,7 +24,8 @@ public class MainFrame extends JFrame{
 //		Starting panel
 //		add(startPanel);
 //		add(signupPanel);
-		add(loginPanel);
+//		add(loginPanel);
+		add(homePanel);
 		
 //		Make the frame appear
 		setVisible(true);
@@ -38,5 +40,8 @@ public class MainFrame extends JFrame{
 	}
 	public SignupPanel getSignupPanel() {
 		return signupPanel;
+	}
+	public HomePanel getHomePanel() {
+		return homePanel;
 	}
 }

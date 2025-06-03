@@ -50,21 +50,12 @@ public class LoginPanel extends JPanel {
 //		Set up the panel
 		initializePanel();
 		
-//		Logo image
-		logo.setBounds(40, 30, 100, 100);
-		add(logo);
-		
-//		Logo label
-		logoLabel.setForeground(offWhite);
-		logoLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 30));
-		logoLabel.setBounds(logo.getX() + 100, logo.getY(), 200, 100);
-		add(logoLabel);
-		
 //		Input panel
 		inputPanel.setBounds(110, 215, inputPanel.getPanelWidth(), inputPanel.getPanelHeight());
 		add(inputPanel);
 
 //		Set up all elements
+		setUpLogo();
 		setUpTitle();
 		setUpLoginButton();
 		setUpSignupButton();
@@ -88,6 +79,19 @@ public class LoginPanel extends JPanel {
 		g2.drawImage(srcImg, 0, 0, width, height, null);
 		g2.dispose();
 		return resizedImg;
+	}
+	
+//	SET UP LOGO ---------------------------------------------------------------------------------------------------
+	private void setUpLogo() {
+//		Logo image
+		logo.setBounds(40, 30, 100, 100);
+		add(logo);
+		
+//		Logo label
+		logoLabel.setForeground(offWhite);
+		logoLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 30));
+		logoLabel.setBounds(logo.getX() + 100, logo.getY(), 200, 100);
+		add(logoLabel);
 	}
 	
 //	SET UP TITLE --------------------------------------------------------------------------------------------------

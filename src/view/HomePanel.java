@@ -33,7 +33,9 @@ public class HomePanel extends JPanel {
 	private JLabel logo = new JLabel(new ImageIcon(scaledLogo));
 	
 //	Labels
+	private JLabel welcomeLabel = new JLabel("Welcome back, Sunny");
 	
+	private ClubsPanel clubPanel = new ClubsPanel();
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public HomePanel() { 
@@ -41,15 +43,13 @@ public class HomePanel extends JPanel {
 //		Set up the panel
 		initializePanel();
 		
-//		Logo image
-		logo.setBounds(40, 30, 100, 100);
-		add(logo);
+//		Set up components
+		setUpLogo();
+		setUpWelcome();
 		
-//		Logo label
-		logoLabel.setForeground(offWhite);
-		logoLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 30));
-		logoLabel.setBounds(logo.getX() + 100, logo.getY(), 200, 100);
-		add(logoLabel);
+//		Club panel
+		clubPanel.setBounds(0, 280, clubPanel.getPanelWidth(), clubPanel.getPanelHeight());
+		add(clubPanel);
 	}
 	
 //	INITIALIZE PANEL ----------------------------------------------------------------------------------------------
@@ -70,5 +70,27 @@ public class HomePanel extends JPanel {
 		g2.drawImage(srcImg, 0, 0, width, height, null);
 		g2.dispose();
 		return resizedImg;
+	}
+	
+//	SET UP LOGO ---------------------------------------------------------------------------------------------------
+	private void setUpLogo() {
+//		Logo image
+		logo.setBounds(40, 30, 100, 100);
+		add(logo);
+		
+//		Logo label
+		logoLabel.setForeground(offWhite);
+		logoLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 30));
+		logoLabel.setBounds(logo.getX() + 100, logo.getY(), 200, 100);
+		add(logoLabel);
+	}
+	
+//	SET UP WELCOME ------------------------------------------------------------------------------------------------
+	private void setUpWelcome() {
+		
+		welcomeLabel.setForeground(offWhite);
+		welcomeLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 70));
+		welcomeLabel.setBounds(410, 140, 800, 120);
+		add(welcomeLabel);
 	}
 }
