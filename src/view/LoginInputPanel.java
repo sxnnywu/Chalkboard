@@ -47,11 +47,10 @@ public class LoginInputPanel extends RoundedPanel {
 		add(passwordField);
 	}
 
-//	GETTERS 
+//	GETTERS -------------------------------------------------------------------------------------------------------
 	public static int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-
 	public static int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}

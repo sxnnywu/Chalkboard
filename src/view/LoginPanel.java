@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 
 public class LoginPanel extends JPanel {
 
+//	FIELDS  --------------------------------------------------------------------------------------------------------
+	
 //	Constants
 	private static final int PANEL_WIDTH = 1920;
 	private static final int PANEL_HEIGHT = 1080;
@@ -121,5 +123,67 @@ public class LoginPanel extends JPanel {
 		signupButton.setBorderColor(Color.WHITE);
 		signupButton.setBounds(signupLabel.getX(), signupLabel.getY() + 60, signupLabel.getWidth(), 50);
 		add(signupButton);
+	}
+
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public JLabel getTitleLabel() {
+		return titleLabel;
+	}
+	public void setTitleLabel(JLabel titleLabel) {
+		this.titleLabel = titleLabel;
+	}
+	public JLabel getSignupLabel() {
+		return signupLabel;
+	}
+	public void setSignupLabel(JLabel signupLabel) {
+		this.signupLabel = signupLabel;
+	}
+	public RoundedButton getLoginButton() {
+		return loginButton;
+	}
+	public void setLoginButton(RoundedButton loginButton) {
+		this.loginButton = loginButton;
+	}
+	public RoundedButton getSignupButton() {
+		return signupButton;
+	}
+	public void setSignupButton(RoundedButton signupButton) {
+		this.signupButton = signupButton;
+	}
+	public JLabel getLogoLabel() {
+		return logoLabel;
+	}
+	public void setLogoLabel(JLabel logoLabel) {
+		this.logoLabel = logoLabel;
+	}
+	public ImageIcon getUnscaledLogo() {
+		return unscaledLogo;
+	}
+	public void setUnscaledLogo(ImageIcon unscaledLogo) {
+		this.unscaledLogo = unscaledLogo;
+	}
+	public Image getScaledLogo() {
+		return scaledLogo;
+	}
+	public void setScaledLogo(Image scaledLogo) {
+		this.scaledLogo = scaledLogo;
+	}
+	public JLabel getLogo() {
+		return logo;
+	}
+	public void setLogo(JLabel logo) {
+		this.logo = logo;
+	}
+	public LoginInputPanel getInputPanel() {
+		return inputPanel;
+	}
+	public void setInputPanel(LoginInputPanel inputPanel) {
+		this.inputPanel = inputPanel;
+	}
+	public static int getPanelWidth() {
+		return PANEL_WIDTH;
+	}
+	public static int getPanelHeight() {
+		return PANEL_HEIGHT;
 	}
 }
