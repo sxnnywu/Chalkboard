@@ -55,7 +55,7 @@ public class ClubDisplayHeader extends RoundedPanel{
 		clubLabel = new JLabel(club);
 		clubLabel.setForeground(darkGrey);
 		clubLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 24));
-		clubLabel.setBounds(50, 15, 200, 40);
+		clubLabel.setBounds(60, 15, 200, 40);
 		add(clubLabel);
 	}
 	
@@ -68,6 +68,7 @@ public class ClubDisplayHeader extends RoundedPanel{
 		add(viewButton);
 	}
 	
+//	PAINT COMPONENT -----------------------------------------------------------------------------------------------
 	@Override
 	protected void paintComponent(Graphics g) {
 	
@@ -79,17 +80,13 @@ public class ClubDisplayHeader extends RoundedPanel{
 	    
 //	    Rounded rectangle, only top corners are rounded
 	    g2.setColor(backgroundColor);
+	    g2.fillRect(0, radius/2, width, height - radius/2);
 	    g2.fillRoundRect(0, 0, width, radius, radius, radius);
 	    
 	    g2.dispose();
 	    
 //	   	Call super to paint child components
 	    super.paintChildren(g);
-	}
-
-	@Override
-	protected void paintChildren(Graphics g) {
-	    super.paintChildren(g); 
 	}
 
 //	GETTERS -------------------------------------------------------------------------------------------------------
@@ -105,5 +102,4 @@ public class ClubDisplayHeader extends RoundedPanel{
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
-	
 }

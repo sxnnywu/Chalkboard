@@ -10,8 +10,8 @@ public class ClubDisplay extends RoundedPanel{
 	
 //	Constants
 	private static final int PANEL_WIDTH = 500;
-	private static final int PANEL_HEIGHT = 250;
-	private static final int RADIUS = 150;
+	private static final int PANEL_HEIGHT = 200;
+	private static final int RADIUS = 90;
 	
 //	Colours
 	Color backgroundColor;
