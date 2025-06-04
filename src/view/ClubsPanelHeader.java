@@ -21,8 +21,8 @@ public class ClubsPanelHeader extends JPanel {
 	
 //	Components
 	private JLabel label = new JLabel("My Clubs");
-	private RoundedButton createButton = new RoundedButton("Create Club", offWhite, Color.WHITE, Color.WHITE);
-	private RoundedButton joinButton = new RoundedButton("Join Club", offWhite, Color.WHITE, Color.WHITE);
+	private RoundedButton createButton = new RoundedButton("Create Club", Color.WHITE, offWhite, Color.WHITE);
+	private RoundedButton joinButton = new RoundedButton("Join Club", Color.WHITE, offWhite, Color.WHITE);
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public ClubsPanelHeader() {

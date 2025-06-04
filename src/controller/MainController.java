@@ -1,9 +1,7 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import view.MainFrame;
+import java.awt.event.*;
+import view.*;
 
 public class MainController implements ActionListener {
 	

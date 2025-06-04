@@ -1,15 +1,8 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.awt.image.*;
+import javax.swing.*;
 
 public class HomePanel extends JPanel {
 	
@@ -33,12 +26,18 @@ public class HomePanel extends JPanel {
 	private JLabel logo = new JLabel(new ImageIcon(scaledLogo));
 	
 //	Labels
-	private JLabel welcomeLabel = new JLabel("Welcome back, Sunny");
+	private JLabel welcomeLabel;
 	
+//	Clubs panel
 	private ClubsPanel clubPanel = new ClubsPanel();
 	
+//	First name
+	private String firstName;
+	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
-	public HomePanel() { 
+	public HomePanel(String firstName) { 
+		
+		this.firstName = firstName;
 		
 //		Set up the panel
 		initializePanel();
@@ -87,7 +86,7 @@ public class HomePanel extends JPanel {
 	
 //	SET UP WELCOME ------------------------------------------------------------------------------------------------
 	private void setUpWelcome() {
-		
+		welcomeLabel = new JLabel("Welcome back, " + firstName);
 		welcomeLabel.setForeground(offWhite);
 		welcomeLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 70));
 		welcomeLabel.setBounds(410, 140, 800, 120);

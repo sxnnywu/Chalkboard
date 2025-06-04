@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.*;
-import java.awt.geom.*;
 import javax.swing.*;
 
 public class ClubDisplayHeader extends RoundedPanel{
@@ -9,7 +8,7 @@ public class ClubDisplayHeader extends RoundedPanel{
 //	FIELDS ----------------------------------------------------------------------------------------------------------
 	
 //	Constants
-	private static final int PANEL_WIDTH = 500;
+	private static final int PANEL_WIDTH = 460;
 	private static final int PANEL_HEIGHT = 70;
 	
 //	Colors
@@ -54,17 +53,16 @@ public class ClubDisplayHeader extends RoundedPanel{
 	private void setUpLabel() {
 		clubLabel = new JLabel(club);
 		clubLabel.setForeground(darkGrey);
-		clubLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 24));
-		clubLabel.setBounds(60, 15, 200, 40);
+		clubLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 26));
+		clubLabel.setBounds(45, 15, 200, 40);
 		add(clubLabel);
 	}
 	
 //	SET UP BUTTON -------------------------------------------------------------------------------------------------
 	private void setUpButton() {
 		viewButton.setForeground(darkGrey);
-		viewButton.setBorderColor(Color.BLACK);
-		viewButton.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
-		viewButton.setBounds(340, 15, 120, 40);
+		viewButton.setFont(new Font("Gill Sans MT", Font.PLAIN, 16));
+		viewButton.setBounds(290, 15, 130, 40);
 		add(viewButton);
 	}
 	

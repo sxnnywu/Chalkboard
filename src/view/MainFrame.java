@@ -1,6 +1,6 @@
 package view;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class MainFrame extends JFrame{
 	
@@ -8,7 +8,7 @@ public class MainFrame extends JFrame{
 	StartPanel startPanel = new StartPanel();
 	LoginPanel loginPanel = new LoginPanel();
 	SignupPanel signupPanel = new SignupPanel();
-	HomePanel homePanel = new HomePanel();
+	HomePanel homePanel = new HomePanel("Sunny"); // HARD CODE FOR NOW
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public MainFrame() {
