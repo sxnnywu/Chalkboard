@@ -18,18 +18,19 @@ public class RoundedPanel extends JPanel {
 // 	PAINT COMPONENT  ----------------------------------------------------------------------------------------------
     @Override
     protected void paintComponent(Graphics g) {
-        // Enable antialiasing for smooth corners
+        
+//    	Enable antialiasing for smooth corners
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Set background color
+//    	Set background color
         g2.setColor(getBackground());
 
-        // Draw rounded rectangle
+//     	Draw rounded rectangle
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);
         g2.dispose();
 
-        // Call superclass to paint children
+//    	Paint children
         super.paintComponent(g);
     }
 }

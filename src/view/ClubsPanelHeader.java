@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class ClubsPanelHeader extends JPanel {
 
-//	FIELDS
+//	FIELDS --------------------------------------------------------------------------------------------------------
 	
 //	Constants
 	private static final int PANEL_WIDTH = 1920;
@@ -24,7 +24,7 @@ public class ClubsPanelHeader extends JPanel {
 	private RoundedButton createButton = new RoundedButton("Create Club", offWhite, Color.WHITE, Color.WHITE);
 	private RoundedButton joinButton = new RoundedButton("Join Club", offWhite, Color.WHITE, Color.WHITE);
 	
-//	CONSTRUCTOR
+//	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public ClubsPanelHeader() {
 		
 		initializePanel();
@@ -33,14 +33,14 @@ public class ClubsPanelHeader extends JPanel {
 		setUpJoinButton();
 	}
 	
-//	INITIALIZE PANEL
+//	INITIALIZE PANEL ----------------------------------------------------------------------------------------------
 	private void initializePanel() {
 		setBounds(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
 		setLayout(null);
 		setBackground(grey);
 	}
 	
-//	SET UP LABEL
+//	SET UP LABEL --------------------------------------------------------------------------------------------------
 	private void setUpLabel() {
 		label.setForeground(darkGrey);
 		label.setFont(new Font("Gill Sans MT", Font.BOLD, 36));
@@ -48,7 +48,7 @@ public class ClubsPanelHeader extends JPanel {
 		add(label);
 	}
 
-//	SET UP CREATE BUTTON
+//	SET UP CREATE BUTTON ------------------------------------------------------------------------------------------
 	private void setUpCreateButton() {
 		
 //		ADD ICON!!!!!!!!!
@@ -58,6 +58,7 @@ public class ClubsPanelHeader extends JPanel {
 		add(createButton);
 	}
 	
+//	SET UP JOIN BUTTON --------------------------------------------------------------------------------------------
 	private void setUpJoinButton() {
 		
 //		ADD ICON!
@@ -67,11 +68,20 @@ public class ClubsPanelHeader extends JPanel {
 		add(joinButton);
 	}
 	
-//	GETTERS
+//	GETTERS -------------------------------------------------------------------------------------------------------
 	public static int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
 	public static int getPanelHeight() {
 		return PANEL_HEIGHT;
+	}
+	public JLabel getLabel() {
+		return label;
+	}
+	public RoundedButton getCreateButton() {
+		return createButton;
+	}
+	public RoundedButton getJoinButton() {
+		return joinButton;
 	}
 }

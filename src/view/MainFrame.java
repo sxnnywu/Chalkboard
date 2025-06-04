@@ -4,13 +4,13 @@ import javax.swing.JFrame;
 
 public class MainFrame extends JFrame{
 	
-//	FIELDS  --------------------------------------------------------------------------------------------------------
+//	FIELDS --------------------------------------------------------------------------------------------------------
 	StartPanel startPanel = new StartPanel();
 	LoginPanel loginPanel = new LoginPanel();
 	SignupPanel signupPanel = new SignupPanel();
 	HomePanel homePanel = new HomePanel();
 	
-//	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
+//	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public MainFrame() {
 		
 //		Set up the frame
@@ -31,7 +31,7 @@ public class MainFrame extends JFrame{
 		setVisible(true);
 	}
 
-//	GETTERS --------------------------------------------------------------------------------------------------------
+//	GETTERS -------------------------------------------------------------------------------------------------------
 	public StartPanel getStartPanel() {
 		return startPanel;
 	}

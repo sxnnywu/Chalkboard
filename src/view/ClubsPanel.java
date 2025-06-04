@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 
 public class ClubsPanel extends JPanel {
 
-//	FIELDS
+//	FIELDS --------------------------------------------------------------------------------------------------------
 	
 //	Constants
 	private static final int PANEL_WIDTH = 1920;
@@ -17,8 +17,9 @@ public class ClubsPanel extends JPanel {
 	
 //	Components
 	ClubsPanelHeader header = new ClubsPanelHeader();
+	ClubDisplay mathDisplay = new ClubDisplay(Color.decode("#afcebb"), "Math Club");
 	
-//	CONSTRUCTOR
+//	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public ClubsPanel() {
 		
 //		Set up the panel
@@ -26,23 +27,23 @@ public class ClubsPanel extends JPanel {
 		
 		header.setBounds(0, 0, header.getPanelWidth(), header.getPanelHeight());
 		add(header);
+		
+		mathDisplay.setBounds(15, 120, mathDisplay.getPanelWidth(), mathDisplay.getPanelHeight());
+		add(mathDisplay);
 	}
 	
-//	INITIALIZE PANEL
+//	INITIALIZE PANEL ----------------------------------------------------------------------------------------------
 	public void initializePanel() {
 		setBounds(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
         setLayout(null);
         setBackground(offWhite);
 	}
 
-//	GETTERS
+//	GETTERS -------------------------------------------------------------------------------------------------------
 	public static int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-
 	public static int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
-	
-	
 }
