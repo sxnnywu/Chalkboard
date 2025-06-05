@@ -82,4 +82,22 @@ public class ClubsPanel extends JPanel {
 	public static int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
+	public Color[] getColours() {
+		return colours;
+	}
+	public void setColours(Color[] colours) {
+		this.colours = colours;
+	}
+	public ClubsPanelHeader getHeader() {
+		return header;
+	}
+	public void setHeader(ClubsPanelHeader header) {
+		this.header = header;
+	}
+	public List<ClubDisplay> getClubs() {
+		return clubs;
+	}
+	public void setClubs(List<ClubDisplay> clubs) {
+		this.clubs = clubs;
+	}
 }

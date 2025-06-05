@@ -100,4 +100,32 @@ public class ClubDisplayHeader extends RoundedPanel{
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
+
+	public String getClub() {
+		return club;
+	}
+
+	public void setClub(String club) {
+		this.club = club;
+	}
+
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+	public JLabel getClubLabel() {
+		return clubLabel;
+	}
+	public void setClubLabel(JLabel clubLabel) {
+		this.clubLabel = clubLabel;
+	}
+	public RoundedButton getViewButton() {
+		return viewButton;
+	}
+	public void setViewButton(RoundedButton viewButton) {
+		this.viewButton = viewButton;
+	}
 }

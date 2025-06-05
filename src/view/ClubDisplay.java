@@ -98,4 +98,49 @@ public class ClubDisplay extends RoundedPanel{
 	public static int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
+	public Color getBackgroundColor() {
+		return backgroundColor;
+	}
+	public void setBackgroundColor(Color backgroundColor) {
+		this.backgroundColor = backgroundColor;
+	}
+	public ClubDisplayHeader getHeader() {
+		return header;
+	}
+	public void setHeader(ClubDisplayHeader header) {
+		this.header = header;
+	}
+	public JLabel getMeetingLabel() {
+		return meetingLabel;
+	}
+	public void setMeetingLabel(JLabel meetingLabel) {
+		this.meetingLabel = meetingLabel;
+	}
+	public JLabel getJoinCodeLabel() {
+		return joinCodeLabel;
+	}
+	public void setJoinCodeLabel(JLabel joinCodeLabel) {
+		this.joinCodeLabel = joinCodeLabel;
+	}
+	public String getClubName() {
+		return clubName;
+	}
+	public void setClubName(String clubName) {
+		this.clubName = clubName;
+	}
+	public String getNextMeeting() {
+		return nextMeeting;
+	}
+	public void setNextMeeting(String nextMeeting) {
+		this.nextMeeting = nextMeeting;
+	}
+	public String getJoinCode() {
+		return joinCode;
+	}
+	public void setJoinCode(String joinCode) {
+		this.joinCode = joinCode;
+	}
+	public static int getRadius() {
+		return RADIUS;
+	}
 }

@@ -5,17 +5,25 @@ import javax.swing.*;
 public class MainFrame extends JFrame{
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
+	
+//	Constants
+	private static final int FRAME_WIDTH = 1920;
+	private static final int FRAME_HEIGHT = 1080;
+	
+//	Panels & Components
 	StartPanel startPanel = new StartPanel();
 	LoginPanel loginPanel = new LoginPanel();
 	SignupPanel signupPanel = new SignupPanel();
 	HomePanel homePanel = new HomePanel("Sunny"); // HARD CODE FOR NOW
+	JoinPanel joinPanel = new JoinPanel(80);
+	BlurWrapper blurWrapper;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public MainFrame() {
 		
 //		Set up the frame
 		setTitle("Chalkboard");
-		setSize(1920, 1080);
+		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setLayout(null);
 		
 //		Closing the program
@@ -27,8 +35,29 @@ public class MainFrame extends JFrame{
 //		add(loginPanel);
 		add(homePanel);
 		
+//		homePanel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+//	    blurWrapper = new BlurWrapper(homePanel);
+//	    blurWrapper.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+//	    add(blurWrapper);
+		
 //		Make the frame appear
 		setVisible(true);
+	}
+	
+//	UNBLUR --------------------------------------------------------------------------------------------------------
+	public void unBlur(RoundedPanel panel) {
+		blurWrapper.clearBlur();
+		blurWrapper.remove(panel);  // remove the panel
+		blurWrapper.repaint();
+	}
+	
+//	SHOW JOIN CLUB ------------------------------------------------------------------------------------------------
+	public void showJoinClub() {
+		joinPanel.setBounds(430, 200, joinPanel.getPanelWidth(), joinPanel.getPanelHeight());
+		homePanel.add(joinPanel);
+		homePanel.setComponentZOrder(joinPanel, 0);
+		revalidate();
+		repaint();
 	}
 
 //	GETTERS -------------------------------------------------------------------------------------------------------

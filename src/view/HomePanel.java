@@ -32,7 +32,8 @@ public class HomePanel extends JPanel {
 	private ClubsPanel clubPanel = new ClubsPanel();
 	
 //	Menu icon
-	private JButton menuIcon = new JButton(new ImageIcon("icon/menu.png"));
+	private ImageIcon unscaledMenu = new ImageIcon("icons/menu.png");
+	private JButton menuIcon = new JButton(new ImageIcon(unscaledMenu.getImage().getScaledInstance(42, 42, java.awt.Image.SCALE_SMOOTH)));
 	
 //	First name
 	private String firstName;
@@ -40,6 +41,7 @@ public class HomePanel extends JPanel {
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public HomePanel(String firstName) { 
 		
+//		First name
 		this.firstName = firstName;
 		
 //		Set up the panel
@@ -103,7 +105,69 @@ public class HomePanel extends JPanel {
 		menuIcon.setBackground(darkGrey);
 		menuIcon.setBorderPainted(false);
 		menuIcon.setOpaque(false);
-		menuIcon.setBounds(1430, 40, 80, 50);
+		menuIcon.setBounds(1450, 40, 42, 42);
 		add(menuIcon);
+	}
+
+//	GETTER + SETTERS ----------------------------------------------------------------------------------------------
+	public JLabel getLogoLabel() {
+		return logoLabel;
+	}
+	public void setLogoLabel(JLabel logoLabel) {
+		this.logoLabel = logoLabel;
+	}
+	public ImageIcon getUnscaledLogo() {
+		return unscaledLogo;
+	}
+	public void setUnscaledLogo(ImageIcon unscaledLogo) {
+		this.unscaledLogo = unscaledLogo;
+	}
+	public Image getScaledLogo() {
+		return scaledLogo;
+	}
+	public void setScaledLogo(Image scaledLogo) {
+		this.scaledLogo = scaledLogo;
+	}
+	public JLabel getLogo() {
+		return logo;
+	}
+	public void setLogo(JLabel logo) {
+		this.logo = logo;
+	}
+	public JLabel getWelcomeLabel() {
+		return welcomeLabel;
+	}
+	public void setWelcomeLabel(JLabel welcomeLabel) {
+		this.welcomeLabel = welcomeLabel;
+	}
+	public ClubsPanel getClubPanel() {
+		return clubPanel;
+	}
+	public void setClubPanel(ClubsPanel clubPanel) {
+		this.clubPanel = clubPanel;
+	}
+	public ImageIcon getUnscaledMenu() {
+		return unscaledMenu;
+	}
+	public void setUnscaledMenu(ImageIcon unscaledMenu) {
+		this.unscaledMenu = unscaledMenu;
+	}
+	public JButton getMenuIcon() {
+		return menuIcon;
+	}
+	public void setMenuIcon(JButton menuIcon) {
+		this.menuIcon = menuIcon;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public static int getPanelWidth() {
+		return PANEL_WIDTH;
+	}
+	public static int getPanelHeight() {
+		return PANEL_HEIGHT;
 	}
 }
