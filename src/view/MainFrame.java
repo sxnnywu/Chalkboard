@@ -16,6 +16,7 @@ public class MainFrame extends JFrame{
 	SignupPanel signupPanel = new SignupPanel();
 	HomePanel homePanel = new HomePanel("Sunny"); // HARD CODE FOR NOW
 	JoinPanel joinPanel = new JoinPanel(80);
+	CreatePanel createPanel = new CreatePanel(90);
 	BlurWrapper blurWrapper;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
@@ -56,6 +57,15 @@ public class MainFrame extends JFrame{
 		joinPanel.setBounds(430, 200, joinPanel.getPanelWidth(), joinPanel.getPanelHeight());
 		homePanel.add(joinPanel);
 		homePanel.setComponentZOrder(joinPanel, 0);
+		revalidate();
+		repaint();
+	}
+	
+//	SHOW CREATE CLUB -----------------------------------------------------------------------------------------------
+	public void showCreateClub() {
+		createPanel.setBounds(430, 130, createPanel.getPanelWidth(), createPanel.getPanelHeight());
+		homePanel.add(createPanel);
+		homePanel.setComponentZOrder(createPanel, 0);
 		revalidate();
 		repaint();
 	}

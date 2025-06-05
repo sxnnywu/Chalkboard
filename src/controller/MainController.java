@@ -70,19 +70,16 @@ public class MainController implements ActionListener {
 			login();
 		
 //		Home --> Menu display
-		if(e.getSource() == frame.getHomePanel().getMenuIcon()) {
-			
+		if(e.getSource() == frame.getHomePanel().getMenuIcon()) {			
 		}
 		
 //		Home --> Join Club
-		if(e.getSource() == frame.getHomePanel().getClubPanel().getHeader().getJoinButton()) {
+		if(e.getSource() == frame.getHomePanel().getClubPanel().getHeader().getJoinButton()) 
 			frame.showJoinClub();
-		}
 		
 //		Home --> Create Club
-		if(e.getSource() == frame.getHomePanel().getClubPanel().getHeader().getCreateButton()) {
-			
-		}
+		if(e.getSource() == frame.getHomePanel().getClubPanel().getHeader().getCreateButton()) 
+			frame.showCreateClub();
 	}
 	
 //	SWITCH PANEL ---------------------------------------------------------------------------------------------------
