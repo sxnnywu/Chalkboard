@@ -31,6 +31,9 @@ public class HomePanel extends JPanel {
 //	Clubs panel
 	private ClubsPanel clubPanel = new ClubsPanel();
 	
+//	Menu icon
+	private JButton menuIcon = new JButton(new ImageIcon("icon/menu.png"));
+	
 //	First name
 	private String firstName;
 	
@@ -45,6 +48,7 @@ public class HomePanel extends JPanel {
 //		Set up components
 		setUpLogo();
 		setUpWelcome();
+		setUpMenuIcon();
 		
 //		Club panel
 		clubPanel.setBounds(0, 280, clubPanel.getPanelWidth(), clubPanel.getPanelHeight());
@@ -91,5 +95,15 @@ public class HomePanel extends JPanel {
 		welcomeLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 70));
 		welcomeLabel.setBounds(410, 140, 800, 120);
 		add(welcomeLabel);
+	}
+	
+//	SET UP MENU ICON ----------------------------------------------------------------------------------------------
+	private void setUpMenuIcon() {
+		menuIcon.setForeground(offWhite);
+		menuIcon.setBackground(darkGrey);
+		menuIcon.setBorderPainted(false);
+		menuIcon.setOpaque(false);
+		menuIcon.setBounds(1430, 40, 80, 50);
+		add(menuIcon);
 	}
 }

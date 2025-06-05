@@ -54,25 +54,26 @@ public class ClubDisplay extends RoundedPanel{
 	
 //	GET LIGHTER COLOUR --------------------------------------------------------------------------------------------
 	private Color getLighterColor(Color color, float factor) {
-		// Convert RGB to HSB (Hue, Saturation, Brightness)
-	    float[] hsb = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
-	    
-	    // Increase brightness while clamping to maximum of 1.0
-	    hsb[2] = Math.min(1.0f, hsb[2] + factor);
-	    
-	    // Convert back to RGB Color object
-	    return Color.getHSBColor(hsb[0], hsb[1], hsb[2]);
+		
+		// Clamp factor between 0 and 1
+		factor = Math.max(0f, Math.min(factor, 1f));
+
+		int r = (int) (color.getRed() + (255 - color.getRed()) * factor);
+		int g = (int) (color.getGreen() + (255 - color.getGreen()) * factor);
+		int b = (int) (color.getBlue() + (255 - color.getBlue()) * factor);
+
+		return new Color(r, g, b);
 	}
 
-//	SET UP HEADER
+//	SET UP HEADER -------------------------------------------------------------------------------------------------
 	private void setUpHeader() {
-		Color lighterColor = getLighterColor(backgroundColor, 0.15f);
+		Color lighterColor = getLighterColor(backgroundColor, 0.35f);
 		header = new ClubDisplayHeader(RADIUS, lighterColor, clubName);
 		header.setBounds(0, 0, header.getPanelWidth(), header.getPanelHeight());
 		add(header);
 	}
 	
-//	SET UP MEETING LABEL
+//	SET UP MEETING LABEL ------------------------------------------------------------------------------------------
 	private void setUpMeetingLabel() {
 		meetingLabel = new JLabel("Next Meeting: " + nextMeeting);
 		meetingLabel.setForeground(darkGrey);
@@ -81,7 +82,7 @@ public class ClubDisplay extends RoundedPanel{
 		add(meetingLabel);
 	}
 	
-//	SET UP JOIN CODE LABEL
+//	SET UP JOIN CODE LABEL ----------------------------------------------------------------------------------------
 	private void setUpJoinCodeLabel(){
 		joinCodeLabel = new JLabel("Join Code: " + joinCode);
 		joinCodeLabel.setForeground(darkGrey);
