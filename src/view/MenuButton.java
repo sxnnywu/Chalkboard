@@ -10,23 +10,26 @@ public class MenuButton extends JButton{
 //	FIELDS --------------------------------------------------------------------------------------------------------
 	
 //	Constants
-	private static final int BUTTON_WIDTH = 330;
 	private static final int BUTTON_HEIGHT = 55;
 	
 //	Parameters
 	private String text;
 	private ImageIcon image;
+	private int width;
+	private Color colour;
 	
 //	Components
 	private JLabel icon;
 	private JLabel label;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
-	public MenuButton(String text, ImageIcon image) {
+	public MenuButton(String text, ImageIcon image, int width, Color colour) {
 		
 //		Parameters
 		this.text = text;
 		this.image = image;
+		this.width = width;
+		this.colour = colour;
 		
 //		Set up the button
 		initializeButton();
@@ -38,10 +41,10 @@ public class MenuButton extends JButton{
 	
 //	INITIALIZE BUTTON ----------------------------------------------------------------------------------------------
 	private void initializeButton() {
-		setBounds(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT);
+		setBounds(0, 0, width, BUTTON_HEIGHT);
 		setBorderPainted(false);
         setLayout(null);
-        setBackground(Color.WHITE);
+        setBackground(colour);
 	}
 	
 //	SET UP LABEL --------------------------------------------------------------------------------------------------
@@ -49,7 +52,7 @@ public class MenuButton extends JButton{
 		label = new JLabel(text);
 		label.setForeground(Color.BLACK);
 		label.setFont(new Font("Gill Sans MT", Font.PLAIN, 16));
-		label.setBounds(60, 8, 130, 40);
+		label.setBounds(60, 8, 200, 40);
 		add(label);
 	}
 	
@@ -76,8 +79,8 @@ public class MenuButton extends JButton{
 	public void setLabel(JLabel label) {
 		this.label = label;
 	}
-	public static int getButtonWidth() {
-		return BUTTON_WIDTH;
+	public int getButtonWidth() {
+		return width;
 	}
 	public static int getButtonHeight() {
 		return BUTTON_HEIGHT;

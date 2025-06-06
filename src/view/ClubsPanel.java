@@ -64,9 +64,9 @@ public class ClubsPanel extends JPanel {
 	
 //	ADD ALL CLUBS (HARDCODING PURPOSES, REMOVE LATER) 
 	private void addAllClubs() {
-		addClub(colours[0], "Math Club", "June 11th at 3:00 pm", "145flj3"); 
-		addClub(colours[1], "DECA", "June 17th at 7:30am", "4fh3j0i");
-		addClub(colours[2], "Breeze Code", "June 19th at 3:00pm", "8jhg39d");
+		addClub(colours[0], "Math Club", "June 11th @ 3:00 pm", "145flj3"); 
+		addClub(colours[1], "DECA", "June 17th @ 7:30am", "4fh3j0i");
+		addClub(colours[2], "Breeze Code", "June 19th @ 3:00pm", "8jhg39d");
 	}
 	
 //	ADD CLUB ------------------------------------------------------------------------------------------------------

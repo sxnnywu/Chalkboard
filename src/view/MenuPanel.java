@@ -35,11 +35,11 @@ public class MenuPanel extends JPanel {
 //	Menu buttons
 	private int y = 80; // y value of FIRST button
 	private List<MenuButton> clubs = new ArrayList<>();
-	private MenuButton joinButton = new MenuButton("Join Club", arrowIcon);
-	private MenuButton createButton = new MenuButton("Create Club", addIcon);
-	private MenuButton notifButton = new MenuButton("Notifications", notifIcon);
-	private MenuButton taskButton = new MenuButton("Pending Tasks", checklistIcon);
-	private MenuButton profileButton = new MenuButton("My Account", profileIcon);
+	private MenuButton joinButton = new MenuButton("Join Club", arrowIcon, PANEL_WIDTH, Color.WHITE);
+	private MenuButton createButton = new MenuButton("Create Club", addIcon, PANEL_WIDTH, Color.WHITE);
+	private MenuButton notifButton = new MenuButton("Notifications", notifIcon, PANEL_WIDTH, Color.WHITE);
+	private MenuButton taskButton = new MenuButton("Pending Tasks", checklistIcon, PANEL_WIDTH, Color.WHITE);
+	private MenuButton profileButton = new MenuButton("My Account", profileIcon, PANEL_WIDTH, Color.WHITE);
 	
 //	Logout button
 	private RoundedButton logoutButton = new RoundedButton("Log Out", red, getLighterColor(red, 0.2f), Color.BLACK);
@@ -107,7 +107,7 @@ public class MenuPanel extends JPanel {
 	
 //	ADD CLUB -----------------------------------------------------------------------------------------------------
 	private void addClub(String clubName) {
-		clubs.add(new MenuButton(clubName, groupIcon));
+		clubs.add(new MenuButton(clubName, groupIcon, PANEL_WIDTH, Color.WHITE));
 	}
 	
 //	SET UP ACTIONS LABEL -----------------------------------------------------------------------------------------

@@ -16,11 +16,14 @@ public class MainFrame extends JFrame{
 	StartPanel startPanel = new StartPanel();
 	LoginPanel loginPanel = new LoginPanel();
 	SignupPanel signupPanel = new SignupPanel();
+	
 	HomePanel homePanel = new HomePanel("Sunny"); // HARD CODE FOR NOW
 	JoinPanel joinPanel = new JoinPanel(80);
 	CreatePanel createPanel = new CreatePanel(90);
 	MenuPanel menuPanel = new MenuPanel();
 	BlurWrapper blurWrapper;
+	
+	DashboardPanel dashboardPanel = new DashboardPanel();
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public MainFrame() {
@@ -37,14 +40,13 @@ public class MainFrame extends JFrame{
 //		add(startPanel);
 //		add(signupPanel);
 //		add(loginPanel);
-		add(homePanel);
+//		add(homePanel);
+		add(dashboardPanel);
 		
 //		homePanel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 //	    blurWrapper = new BlurWrapper(homePanel);
 //	    blurWrapper.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 //	    add(blurWrapper);
-		
-		showMenu();
 		
 //		Make the frame appear
 		setVisible(true);
