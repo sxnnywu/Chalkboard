@@ -10,10 +10,11 @@ public class MainController implements ActionListener {
 	
 //	FIELDS  --------------------------------------------------------------------------------------------------------
 	private MainFrame frame = new MainFrame();
+	private MenuController menuController = new MenuController(frame);
 	
 //	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 	public MainController(){
-		
+
 		addActionListeners();
 	}
 
@@ -39,6 +40,12 @@ public class MainController implements ActionListener {
 		for(ClubDisplay club : frame.getHomePanel().getClubPanel().getClubs()) { 
 			club.getHeader().getViewButton().addActionListener(this); // view club
 		}
+		
+//		Join panel
+		frame.getJoinPanel().getJoinButton().addActionListener(this); // join club
+		
+//		Create panel
+		frame.getCreatePanel().getCreateButton().addActionListener(this); // create club
 	}
 	
 //	ACTION PERFORMED -----------------------------------------------------------------------------------------------
@@ -70,8 +77,8 @@ public class MainController implements ActionListener {
 			login();
 		
 //		Home --> Menu display
-		if(e.getSource() == frame.getHomePanel().getMenuIcon()) {			
-		}
+		if(e.getSource() == frame.getHomePanel().getMenuIcon()) 
+			frame.showMenu();
 		
 //		Home --> Join Club
 		if(e.getSource() == frame.getHomePanel().getClubPanel().getHeader().getJoinButton()) 
@@ -80,6 +87,14 @@ public class MainController implements ActionListener {
 //		Home --> Create Club
 		if(e.getSource() == frame.getHomePanel().getClubPanel().getHeader().getCreateButton()) 
 			frame.showCreateClub();
+		
+//		Join club validation
+		if(e.getSource() == frame.getJoinPanel().getJoinButton()) 
+			joinClub();
+		
+//		Create club validation
+		if(e.getSource() == frame.getCreatePanel().getCreateButton()) 
+			createClub();
 	}
 	
 //	SWITCH PANEL ---------------------------------------------------------------------------------------------------
@@ -104,4 +119,13 @@ public class MainController implements ActionListener {
 		frame.remove(frame.getLoginPanel());
 	}
 
+//	JOIN CLUB VALIDATION -------------------------------------------------------------------------------------------
+	private void joinClub() {
+		
+	}
+	
+//	CREATE CLUB VALIDATION -----------------------------------------------------------------------------------------
+	private void createClub() {
+		
+	}
 }

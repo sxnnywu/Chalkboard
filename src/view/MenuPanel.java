@@ -42,7 +42,7 @@ public class MenuPanel extends JPanel {
 	private MenuButton profileButton = new MenuButton("My Account", profileIcon);
 	
 //	Logout button
-	private RoundedButton logoutButton = new RoundedButton("Log Out", red, getLighterColor(red, 1.5f), Color.BLACK);
+	private RoundedButton logoutButton = new RoundedButton("Log Out", red, getLighterColor(red, 0.2f), Color.BLACK);
 	
 //	CONSTRUCTOR --------------------------------------------------------------------------------------------------
 	public MenuPanel() {
@@ -169,5 +169,86 @@ public class MenuPanel extends JPanel {
 	}
 	public static int getPanelHeight() {
 		return PANEL_HEIGHT;
+	}
+	public JLabel getMyClubsLabel() {
+		return myClubsLabel;
+	}
+	public void setMyClubsLabel(JLabel myClubsLabel) {
+		this.myClubsLabel = myClubsLabel;
+	}
+	public JLabel getActionsLabel() {
+		return actionsLabel;
+	}
+	public void setActionsLabel(JLabel actionsLabel) {
+		this.actionsLabel = actionsLabel;
+	}
+	public JLabel getShortcutsLabel() {
+		return shortcutsLabel;
+	}
+	public void setShortcutsLabel(JLabel shortcutsLabel) {
+		this.shortcutsLabel = shortcutsLabel;
+	}
+	public List<MenuButton> getClubs() {
+		return clubs;
+	}
+	public void setClubs(List<MenuButton> clubs) {
+		this.clubs = clubs;
+	}
+	public MenuButton getJoinButton() {
+		return joinButton;
+	}
+	public void setJoinButton(MenuButton joinButton) {
+		this.joinButton = joinButton;
+	}
+	public MenuButton getCreateButton() {
+		return createButton;
+	}
+	public void setCreateButton(MenuButton createButton) {
+		this.createButton = createButton;
+	}
+	public MenuButton getNotifButton() {
+		return notifButton;
+	}
+	public void setNotifButton(MenuButton notifButton) {
+		this.notifButton = notifButton;
+	}
+	public MenuButton getTaskButton() {
+		return taskButton;
+	}
+	public void setTaskButton(MenuButton taskButton) {
+		this.taskButton = taskButton;
+	}
+	public MenuButton getProfileButton() {
+		return profileButton;
+	}
+	public void setProfileButton(MenuButton profileButton) {
+		this.profileButton = profileButton;
+	}
+	public RoundedButton getLogoutButton() {
+		return logoutButton;
+	}
+	public void setLogoutButton(RoundedButton logoutButton) {
+		this.logoutButton = logoutButton;
+	}
+	public static int getButtonHeight() {
+		return BUTTON_HEIGHT;
+	}
+	public ImageIcon getAddIcon() {
+		return addIcon;
+	}
+	public ImageIcon getArrowIcon() {
+		return arrowIcon;
+	}
+	public ImageIcon getChecklistIcon() {
+		return checklistIcon;
+	}
+	public ImageIcon getGroupIcon() {
+		return groupIcon;
+	}
+	public ImageIcon getNotifIcon() {
+		return notifIcon;
+	}
+	public ImageIcon getProfileIcon() {
+		return profileIcon;
 	}
 }

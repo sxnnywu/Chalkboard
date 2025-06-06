@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.*;
 
+import model.Club;
+
 public class MainFrame extends JFrame{
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -81,6 +83,11 @@ public class MainFrame extends JFrame{
 		revalidate();
 		repaint();
 	}
+	
+//	SHOW CLUB ------------------------------------------------------------------------------------------------------
+	public void showClub(String clubName) {
+		
+	}
 
 //	GETTERS --------------------------------------------------------------------------------------------------------
 	public StartPanel getStartPanel() {
@@ -94,5 +101,20 @@ public class MainFrame extends JFrame{
 	}
 	public HomePanel getHomePanel() {
 		return homePanel;
+	}
+	public JoinPanel getJoinPanel() {
+		return joinPanel;
+	}
+	public CreatePanel getCreatePanel() {
+		return createPanel;
+	}
+	public MenuPanel getMenuPanel() {
+		return menuPanel;
+	}
+	public static int getFrameWidth() {
+		return FRAME_WIDTH;
+	}
+	public static int getFrameHeight() {
+		return FRAME_HEIGHT;
 	}
 }
