@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class HomePanel extends JPanel {
 	
-//	FIELDS  --------------------------------------------------------------------------------------------------------
+//	FIELDS --------------------------------------------------------------------------------------------------------
 	
 //	Constants
 	private static final int PANEL_WIDTH = 1920;
@@ -38,7 +38,7 @@ public class HomePanel extends JPanel {
 //	First name
 	private String firstName;
 	
-//	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
+//	CONSTRUCTOR --------------------------------------------------------------------------------------------------
 	public HomePanel(String firstName) { 
 		
 //		First name

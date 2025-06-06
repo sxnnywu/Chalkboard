@@ -17,6 +17,7 @@ public class MainFrame extends JFrame{
 	HomePanel homePanel = new HomePanel("Sunny"); // HARD CODE FOR NOW
 	JoinPanel joinPanel = new JoinPanel(80);
 	CreatePanel createPanel = new CreatePanel(90);
+	MenuPanel menuPanel = new MenuPanel();
 	BlurWrapper blurWrapper;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
@@ -40,6 +41,8 @@ public class MainFrame extends JFrame{
 //	    blurWrapper = new BlurWrapper(homePanel);
 //	    blurWrapper.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 //	    add(blurWrapper);
+		
+		showMenu();
 		
 //		Make the frame appear
 		setVisible(true);
@@ -69,8 +72,17 @@ public class MainFrame extends JFrame{
 		revalidate();
 		repaint();
 	}
+	
+//	SHOW MENU ------------------------------------------------------------------------------------------------------
+	public void showMenu() {
+		menuPanel.setBounds(1200, 0, menuPanel.getPanelWidth(), menuPanel.getPanelHeight());
+		homePanel.add(menuPanel);
+		homePanel.setComponentZOrder(menuPanel, 0);
+		revalidate();
+		repaint();
+	}
 
-//	GETTERS -------------------------------------------------------------------------------------------------------
+//	GETTERS --------------------------------------------------------------------------------------------------------
 	public StartPanel getStartPanel() {
 		return startPanel;
 	}

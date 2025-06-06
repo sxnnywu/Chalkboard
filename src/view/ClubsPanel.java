@@ -19,7 +19,7 @@ public class ClubsPanel extends JPanel {
 	
 //	Components
 	private ClubsPanelHeader header = new ClubsPanelHeader();
-	private List<ClubDisplay> clubs = new ArrayList<>();
+	private static List<ClubDisplay> clubs = new ArrayList<>();
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public ClubsPanel() {
@@ -94,7 +94,7 @@ public class ClubsPanel extends JPanel {
 	public void setHeader(ClubsPanelHeader header) {
 		this.header = header;
 	}
-	public List<ClubDisplay> getClubs() {
+	public static List<ClubDisplay> getClubs() {
 		return clubs;
 	}
 	public void setClubs(List<ClubDisplay> clubs) {

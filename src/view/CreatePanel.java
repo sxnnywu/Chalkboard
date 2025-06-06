@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class CreatePanel extends RoundedPanel {
 	
-//	FIELDS
+//	FIELDS --------------------------------------------------------------------------------------------------------
 
 //	Constants
 	private static final int PANEL_WIDTH = 700;
@@ -28,7 +28,7 @@ public class CreatePanel extends RoundedPanel {
 	private JLabel frequencyLabel = new JLabel("Meeting Frequency");
 	private JComboBox frequencyBox = new JComboBox();
 	
-//	CONSTRUCTOR
+//	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public CreatePanel(int radius) {
 		super(radius);
 		
@@ -122,13 +122,59 @@ public class CreatePanel extends RoundedPanel {
 		add(frequencyBox);
 	}
 
-//	GETTERS -------------------------------------------------------------------------------------------------------
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
 	public static int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
 	public static int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
-	
-	
+	public JLabel getTitleLabel() {
+		return titleLabel;
+	}
+	public void setTitleLabel(JLabel titleLabel) {
+		this.titleLabel = titleLabel;
+	}
+	public RoundedButton getCreateButton() {
+		return createButton;
+	}
+	public void setCreateButton(RoundedButton createButton) {
+		this.createButton = createButton;
+	}
+	public InputField getNameInput() {
+		return nameInput;
+	}
+	public void setNameInput(InputField nameInput) {
+		this.nameInput = nameInput;
+	}
+	public InputField getRoleInput() {
+		return roleInput;
+	}
+	public void setRoleInput(InputField roleInput) {
+		this.roleInput = roleInput;
+	}
+	public InputField getMeetingInput() {
+		return meetingInput;
+	}
+	public void setMeetingInput(InputField meetingInput) {
+		this.meetingInput = meetingInput;
+	}
+	public InputField getLocationInput() {
+		return locationInput;
+	}
+	public void setLocationInput(InputField locationInput) {
+		this.locationInput = locationInput;
+	}
+	public JLabel getFrequencyLabel() {
+		return frequencyLabel;
+	}
+	public void setFrequencyLabel(JLabel frequencyLabel) {
+		this.frequencyLabel = frequencyLabel;
+	}
+	public JComboBox getFrequencyBox() {
+		return frequencyBox;
+	}
+	public void setFrequencyBox(JComboBox frequencyBox) {
+		this.frequencyBox = frequencyBox;
+	}
 }

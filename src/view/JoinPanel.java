@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class JoinPanel extends RoundedPanel {
 
-//	FIELDS
+//	FIELDS --------------------------------------------------------------------------------------------------------
 	
 //	Constants
 	private static final int PANEL_WIDTH = 700;
@@ -22,7 +22,7 @@ public class JoinPanel extends RoundedPanel {
 	private InputField joinCodeInput = new InputField("Join Code", 60, true);
 	private InputField roleInput = new InputField("My Role", 60, true);
 	
-//	CONSTRUCTOR
+//	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public JoinPanel(int radius) {
 		
 		super(radius);
@@ -91,5 +91,29 @@ public class JoinPanel extends RoundedPanel {
 	}
 	public static int getPanelHeight() {
 		return PANEL_HEIGHT;
+	}
+	public JLabel getTitleLabel() {
+		return titleLabel;
+	}
+	public void setTitleLabel(JLabel titleLabel) {
+		this.titleLabel = titleLabel;
+	}
+	public RoundedButton getJoinButton() {
+		return joinButton;
+	}
+	public void setJoinButton(RoundedButton joinButton) {
+		this.joinButton = joinButton;
+	}
+	public InputField getJoinCodeInput() {
+		return joinCodeInput;
+	}
+	public void setJoinCodeInput(InputField joinCodeInput) {
+		this.joinCodeInput = joinCodeInput;
+	}
+	public InputField getRoleInput() {
+		return roleInput;
+	}
+	public void setRoleInput(InputField roleInput) {
+		this.roleInput = roleInput;
 	}
 }
