@@ -2,7 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
-
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,22 +22,26 @@ public class TasksPanel extends RoundedPanel {
 	private final Color blue = Color.decode("#70bdfa");
 	private final Color navy = Color.decode("#004aad");
 	
+//	Parameters
+	List<String[]> data;
+	
 //	Components
 	private JLabel titleLabel = new JLabel("Tasks");
 	private JTable taskTable;
 	private JScrollPane scrollPane;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
-	public TasksPanel(int radius) {
+	public TasksPanel(int radius, List<String[]> data) {
 		
 		super(radius);
+		this.data = data;
 		
 //		Set up the panel
 		initializePanel();
-		
+			
 //		Set up components
 		setUpTitleLabel();
-		setUpTable();
+		setUpTable(data);
 	}
 	
 //	INITIALIZE PANEL ----------------------------------------------------------------------------------------------
@@ -69,36 +73,43 @@ public class TasksPanel extends RoundedPanel {
 	}
 
 //	SET UP TABLE ---------------------------------------------------------------------------------------------------
-	private void setUpTable() {
+	private void setUpTable(List<String[]> data) {
 
 		String[] columns = { "Deliverables", "Assignee", "Deadline", "Status", "Notes" };
-		Object[][] data = {};
+	    
+//		Convert data (arraylist) to dataArray (array) - FIXED DIMENSIONS
+	    String[][] dataArray = new String[data.size()][5];
+	    for(int i = 0; i < data.size(); i++) {
+	        dataArray[i] = data.get(i);
+	    }
+	    
+//	    Rest of your code remains the same
+	    DefaultTableModel model = new DefaultTableModel(dataArray, columns) {
+	        @Override
+	        public boolean isCellEditable(int row, int column) {
+	            return false;
+	        }
+	    };
 
-		DefaultTableModel model = new DefaultTableModel(data, columns) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-
+//		Create the table
 		taskTable = new JTable(model);
 		taskTable.setFillsViewportHeight(true);
 		taskTable.setBackground(Color.WHITE);
-		taskTable.setFont(new Font("Gill Sans MT", Font.PLAIN, 14));
-		taskTable.setRowHeight(42); // taller rows
+		taskTable.setFont(new Font("Gill Sans MT", Font.PLAIN, 12));
+		taskTable.setRowHeight(32); // taller rows
 
-		// Add light borders between cells
+//		Light borders between cells
 		taskTable.setShowGrid(true);
-		taskTable.setGridColor(new Color(220, 220, 220)); // light grey grid
+		taskTable.setGridColor(Color.LIGHT_GRAY); 
 
-		// Header styling
+//		Header styling
 		JTableHeader header = taskTable.getTableHeader();
 		header.setBackground(navy);
 		header.setForeground(Color.WHITE);
 		header.setFont(new Font("Gill Sans MT", Font.BOLD, 13));
 		header.setReorderingAllowed(false); // optional: prevents dragging columns
 
-		// Wrap in scroll pane
+//		Wrap in scroll pane
 		scrollPane = new JScrollPane(taskTable);
 		scrollPane.setBounds(40, 80, 620, 230);
 		scrollPane.setBorder(null);
@@ -113,6 +124,4 @@ public class TasksPanel extends RoundedPanel {
 	public static int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
-	
-	
 }

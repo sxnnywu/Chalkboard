@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
 public class DashboardBodyPanel extends JPanel {
@@ -17,6 +19,7 @@ public class DashboardBodyPanel extends JPanel {
 	private String joinCode;
 	private int pendingTasks;
 	private int newAnnouncements;
+	private List<String[]> data = new ArrayList<>();
 	
 //	Components
 	private JLabel clubLabel;
@@ -27,7 +30,9 @@ public class DashboardBodyPanel extends JPanel {
 	
 //	Panels
 	private AnnouncementsPanel announcementsPanel = new AnnouncementsPanel(80);
-	private TasksPanel tasksPanel = new TasksPanel(80);
+	private TasksPanel tasksPanel;
+	private MembersPanel membersPanel;
+	private CalendarPanel calendarPanel;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public DashboardBodyPanel(String clubName, String nextMeet, String joinCode, int tasks, int newAnnouncements) {
@@ -40,6 +45,23 @@ public class DashboardBodyPanel extends JPanel {
 		
 //		Set up the panel
 		initializePanel();
+		
+//		HARD CODED TASKS FOR NOW
+		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
+		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
+		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
+		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
+		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
+		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
+		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
+		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
+		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
+		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
+		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
+		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
+		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
+		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
+		data.add(new String[] {"Task!!", "Theodore", "June 20th", "In progress", "Need help"});
 		
 //		Set up the components
 		setUpSummary(); // summary at the top
@@ -101,7 +123,23 @@ public class DashboardBodyPanel extends JPanel {
 		add(announcementsPanel);
 		
 //		Tasks
+		tasksPanel = new TasksPanel(80, data);
 		tasksPanel.setBounds(announcementsPanel.getX() + announcementsPanel.getWidth() + 40, clubLabel.getY() + 150, tasksPanel.getPanelWidth(), tasksPanel.getPanelHeight());
 		add(tasksPanel);
+		
+//		Members
+		membersPanel = new MembersPanel(80);
+		membersPanel.setBounds(announcementsPanel.getX(), announcementsPanel.getY() + announcementsPanel.getHeight() + 30, membersPanel.getPanelWidth(), membersPanel.getPanelHeight());
+		add(membersPanel);
+		
+//		Calendar
+//		calendarPanel = new CalendarPanel(80);
+//		calendarPanel.setBounds(tasksPanel.getX(), membersPanel.getY(), calendarPanel.getPanelWidth(), calendarPanel.getPanelHeight());
+//		add(calendarPanel);
+	}
+	
+	@Override
+	public Dimension getPreferredSize() {
+	    return new Dimension(800, 1500); // Make height larger than your window
 	}
 }
