@@ -66,6 +66,29 @@ public class DashboardBodyPanel extends JPanel {
 //		Set up the components
 		setUpSummary(); // summary at the top
 		setUpPanels(); // panels
+		
+//		TESTING PURPOSES -- HARD CODED ANNOUNCEMENTS
+		announcementsPanel.addAnnouncement("Meeting Cancelled", "John", "Hey everyone! Please note that this week's meeting is cancelled due to the snow storm.");
+		announcementsPanel.addAnnouncement("Budget Complete", "Jane", "I have completed the budget, please see.");
+		announcementsPanel.addAnnouncement("Budget Complete", "Jane", "I have completed the budget, please see.");
+		announcementsPanel.addAnnouncement("Budget Complete", "Jane", "I have completed the budget, please see.");
+		announcementsPanel.addAnnouncement("Budget Complete", "Jane", "I have completed the budget, please see.");
+		
+//		HARD CODED MEMBERS FOR NOW
+		membersPanel.addMember("John", "President");
+		membersPanel.addMember("Jane", "Head of Finance");
+		membersPanel.addMember("Michelle", "Head of Marketing");
+		membersPanel.addMember("Ella", "Member");
+		membersPanel.addMember("Thomas", "Marketing Executive");
+		membersPanel.addMember("Paul", "Member");
+		membersPanel.addMember("Paul", "Member");
+		membersPanel.addMember("Paul", "Member");
+		membersPanel.addMember("Paul", "Member");
+		membersPanel.addMember("Paul", "Member");
+		membersPanel.addMember("George", "Member");
+		membersPanel.addMember("Hannah", "Member");
+		
+//		HARD CODED MEETINGS AND EVENTS FOR NOW
 	}
 	
 //	INITIALIZE PANEL ----------------------------------------------------------------------------------------------
@@ -133,9 +156,9 @@ public class DashboardBodyPanel extends JPanel {
 		add(membersPanel);
 		
 //		Calendar
-//		calendarPanel = new CalendarPanel(80);
-//		calendarPanel.setBounds(tasksPanel.getX(), membersPanel.getY(), calendarPanel.getPanelWidth(), calendarPanel.getPanelHeight());
-//		add(calendarPanel);
+		calendarPanel = new CalendarPanel(80);
+		calendarPanel.setBounds(membersPanel.getX() + membersPanel.getPanelWidth() + 40, membersPanel.getY(), calendarPanel.getPanelWidth(), calendarPanel.getPanelHeight());
+		add(calendarPanel);
 	}
 	
 	@Override

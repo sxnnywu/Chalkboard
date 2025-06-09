@@ -9,7 +9,7 @@ public class AnnouncementsPanel extends RoundedPanel {
 	
 //	Constants
 	private static final int PANEL_WIDTH = 450;
-	private static final int PANEL_HEIGHT = 270;
+	private static final int PANEL_HEIGHT = 350;
 	
 //	Colours
 	private final Color green = Color.decode("#afcebb");
@@ -32,10 +32,6 @@ public class AnnouncementsPanel extends RoundedPanel {
 		setUpScrollContent(); // scroll content
 		scrollPane =  new JScrollPane(scrollContent); 
 		setUpScrollPane();
-		
-//		TESTING PURPOSES -- HARD CODED ANNOUNCEMENTS
-		addAnnouncement("Meeting Cancelled", "John", "Hey everyone! Please note that this week's meeting is cancelled due to the snow storm.");
-		addAnnouncement("Budget Complete", "Jane", "I have completed the budget, please see.");
 	}
 
 //	INITIALIZE PANEL ----------------------------------------------------------------------------------------------
@@ -70,7 +66,7 @@ public class AnnouncementsPanel extends RoundedPanel {
 	private void setUpScrollContent() {
 		
 //		Set up panel
-		scrollContent.setBounds(0, 0, 400, 170);
+		scrollContent.setBounds(0, 0, 400, PANEL_HEIGHT - 100);
 		scrollContent.setLayout(new BoxLayout(scrollContent, BoxLayout.Y_AXIS));
 		scrollContent.setBackground(green);
 		scrollContent.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -80,6 +76,7 @@ public class AnnouncementsPanel extends RoundedPanel {
 	private void setUpScrollPane() {
 		scrollPane.setBounds(25, titleLabel.getY() + 50, scrollContent.getWidth(), scrollContent.getHeight());
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBorder(null);
 		add(scrollPane);

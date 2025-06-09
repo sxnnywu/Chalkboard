@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JLabel;
@@ -12,8 +13,8 @@ public class MembersPanel extends RoundedPanel{
 //	FIELDS --------------------------------------------------------------------------------------------------------
 	
 //	Constants
-	private static final int PANEL_WIDTH = 450;
-	private static final int PANEL_HEIGHT = 650;
+	private static final int PANEL_WIDTH = 300;
+	private static final int PANEL_HEIGHT = 570;
 	
 //	Colours
 	private final Color red = Color.decode("#fc7b7b");
@@ -73,6 +74,7 @@ public class MembersPanel extends RoundedPanel{
 	    scrollPane = new JScrollPane(scrollContent);
 	    scrollPane.setBounds(20, 80, PANEL_WIDTH - 40, PANEL_HEIGHT - 100);
 	    scrollPane.setBorder(null);
+	    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Ensure scrolling
 
 	    add(scrollPane);
@@ -85,19 +87,18 @@ public class MembersPanel extends RoundedPanel{
 	    JPanel memberPanel = new JPanel();
 	    memberPanel.setLayout(null);
 	    memberPanel.setBackground(Color.WHITE);
-	    memberPanel.setBounds(0, 0, PANEL_WIDTH - 20, 60); // Adjust size
+	    memberPanel.setPreferredSize(new Dimension(PANEL_WIDTH - 20, 50));
 	    memberPanel.setBorder(javax.swing.BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1)); // Add subtle border
-
 	    
 //	    Name label (Bolded)
 	    JLabel nameLabel = new JLabel(name);
-	    nameLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 16));
-	    nameLabel.setBounds(20, 5, PANEL_WIDTH - 40, 20);
+	    nameLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
+	    nameLabel.setBounds(20, 10, PANEL_WIDTH - 40, 20);
 	    
 //	    Role label (Unbolded)
 	    JLabel roleLabel = new JLabel(role);
-	    roleLabel.setFont(new Font("Gill Sans MT", Font.PLAIN, 14));
-	    roleLabel.setBounds(20, 30, PANEL_WIDTH - 40, 20);
+	    roleLabel.setFont(new Font("Gill Sans MT", Font.PLAIN, 12));
+	    roleLabel.setBounds(20, 26, PANEL_WIDTH - 40, 20);
 
 //	    Add components to member panel
 	    memberPanel.add(nameLabel);
