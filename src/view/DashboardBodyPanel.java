@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -89,6 +90,12 @@ public class DashboardBodyPanel extends JPanel {
 		membersPanel.addMember("Hannah", "Member");
 		
 //		HARD CODED MEETINGS AND EVENTS FOR NOW
+		calendarPanel.addEvent(LocalDate.of(2025, 6, 4), "Weekly Meeting");
+		calendarPanel.addEvent(LocalDate.of(2025, 6, 11), "Weekly Meeting");
+		calendarPanel.addEvent(LocalDate.of(2025, 6, 18), "Weekly Meeting");
+		calendarPanel.addEvent(LocalDate.of(2025, 6, 25), "Weekly Meeting");
+		calendarPanel.addEvent(LocalDate.of(2025, 6, 20), "Fundraiser");
+		calendarPanel.renderCalendar(LocalDate.of(2025, 6, 1)); // re-render AFTER events
 	}
 	
 //	INITIALIZE PANEL ----------------------------------------------------------------------------------------------
@@ -161,6 +168,7 @@ public class DashboardBodyPanel extends JPanel {
 		add(calendarPanel);
 	}
 	
+//	SIZING --------------------------------------------------------------------------------------------------------
 	@Override
 	public Dimension getPreferredSize() {
 	    return new Dimension(800, 1500); // Make height larger than your window

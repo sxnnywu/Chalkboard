@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 import java.time.*;
 import java.time.format.TextStyle;
 import java.util.*;
@@ -54,7 +55,7 @@ public class CalendarPanel extends RoundedPanel {
 	}
 
 //	RENDER CALENDAR -----------------------------------------------------------------------------------------------
-	private void renderCalendar(LocalDate firstOfMonth) {
+	public void renderCalendar(LocalDate firstOfMonth) {
 		
 		currentMonth = firstOfMonth;
 		dayGridPanel.removeAll();
@@ -94,24 +95,42 @@ public class CalendarPanel extends RoundedPanel {
 //	CREATE SINGLE DAY CELL ----------------------------------------------------------------------------------------
 	private JPanel createDayCell(LocalDate date) {
 		
+//		Set up the day panel
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		panel.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220)));
 		panel.setBackground(Color.WHITE);
 
+//		Day number label (top-right)
 		JLabel dayLabel = new JLabel(String.valueOf(date.getDayOfMonth()), SwingConstants.RIGHT);
 		dayLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		dayLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		panel.add(dayLabel, BorderLayout.NORTH);
 
-		// Add event dot (optional — you can later add custom icons or labels here)
+//		Event container (center)
+		JPanel eventContainer = new JPanel();
+		eventContainer.setLayout(new BoxLayout(eventContainer, BoxLayout.Y_AXIS));
+		eventContainer.setOpaque(false); // Transparent so background shows through
+
+//		Add events as mini colored labels
 		if (events.containsKey(date)) {
-			JLabel dot = new JLabel("•", SwingConstants.CENTER);
-			dot.setForeground(red);
-			panel.add(dot, BorderLayout.SOUTH);
+			List<String> eventList = events.get(date);
+
+//			Styling and alignment for each event
+			for (String event : eventList) {
+				JLabel eventLabel = new JLabel(event);
+				eventLabel.setFont(new Font("SansSerif", Font.PLAIN, 10));
+				eventLabel.setOpaque(true);
+				eventLabel.setBackground(new Color(255, 235, 235)); // light red background
+				eventLabel.setForeground(Color.BLACK);
+				eventLabel.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
+				eventLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+				eventContainer.add(eventLabel);
+			}
 		}
 
-		// TODO: Add mouse listener for click-to-view or open day agenda
+		panel.add(eventContainer, BorderLayout.CENTER);
 
 		return panel;
 	}
@@ -119,6 +138,8 @@ public class CalendarPanel extends RoundedPanel {
 //	ADD EVENT -----------------------------------------------------------------------------------------------------
 	public void addEvent(LocalDate date, String eventName) {
 		events.computeIfAbsent(date, k -> new ArrayList<>()).add(eventName);
+		revalidate();
+		repaint();
 	}
 
 //	NEXT MONTH  ---------------------------------------------------------------------------------------------------
@@ -131,13 +152,38 @@ public class CalendarPanel extends RoundedPanel {
 		renderCalendar(currentMonth.minusMonths(1));
 	}
 
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
 	public static int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-
 	public static int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
-	
-	
+	public JLabel getTitleLabel() {
+		return titleLabel;
+	}
+	public void setTitleLabel(JLabel titleLabel) {
+		this.titleLabel = titleLabel;
+	}
+	public JPanel getDayGridPanel() {
+		return dayGridPanel;
+	}
+	public void setDayGridPanel(JPanel dayGridPanel) {
+		this.dayGridPanel = dayGridPanel;
+	}
+	public LocalDate getCurrentMonth() {
+		return currentMonth;
+	}
+	public void setCurrentMonth(LocalDate currentMonth) {
+		this.currentMonth = currentMonth;
+	}
+	public Map<LocalDate, java.util.List<String>> getEvents() {
+		return events;
+	}
+	public void setEvents(Map<LocalDate, java.util.List<String>> events) {
+		this.events = events;
+	}
+	public static int getHeaderHeight() {
+		return HEADER_HEIGHT;
+	}
 }
