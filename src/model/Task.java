@@ -55,6 +55,26 @@ public class Task {
 	public LocalDate getDeadline() {
 		return deadline;
 	}
+	public String getStringDeadline() {
+		if (deadline == null) return "";
+
+	    String month = deadline.getMonth().getDisplayName(java.time.format.TextStyle.FULL, java.util.Locale.ENGLISH);
+	    int day = deadline.getDayOfMonth();
+	    String suffix = getDaySuffix(day);
+
+	    return month + " " + day + suffix;
+	}
+	private String getDaySuffix(int day) {
+	    if (day >= 11 && day <= 13) {
+	        return "th";
+	    }
+	    switch (day % 10) {
+	        case 1: return "st";
+	        case 2: return "nd";
+	        case 3: return "rd";
+	        default: return "th";
+	    }
+	}
 	public void setDeadline(LocalDate deadline) {
 		
 //		Check if deadline is in the past
@@ -64,6 +84,18 @@ public class Task {
 	}
 	public List<Member> getAssignees() {
 		return assignees;
+	}
+	public String getStringAssignees() {
+		if (assignees == null || assignees.isEmpty()) 
+	        return "";
+	    StringBuilder list = new StringBuilder();
+
+	    for (int i = 0; i < assignees.size(); i++) {
+	        list.append(assignees.get(i).getFirstName());
+	        if (i < assignees.size() - 1) 
+	            list.append(", ");
+	    }
+	    return list.toString();
 	}
 	public void setAssignees(List<Member> assignees) {
 		this.assignees = assignees;

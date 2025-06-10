@@ -67,6 +67,9 @@ public class MenuButton extends JButton{
 	public void setText(String text) {
 		this.text = text;
 	}
+	public String getLabel() {
+		return text;
+	}
 	public ImageIcon getImage() {
 		return image;
 	}

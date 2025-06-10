@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 import model.Club;
@@ -23,7 +25,7 @@ public class MainFrame extends JFrame{
 	MenuPanel menuPanel = new MenuPanel();
 	BlurWrapper blurWrapper;
 	
-	DashboardPanel dashboardPanel = new DashboardPanel();
+	DashboardPanel dashboardPanel;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public MainFrame() {
@@ -37,11 +39,12 @@ public class MainFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 //		Starting panel
-//		add(startPanel);
+		add(startPanel);
 //		add(signupPanel);
 //		add(loginPanel);
 //		add(homePanel);
-		add(dashboardPanel);
+
+//		showClub("Math Club", announcementData(), tasksData());
 		
 //		homePanel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 //	    blurWrapper = new BlurWrapper(homePanel);
@@ -85,11 +88,6 @@ public class MainFrame extends JFrame{
 		revalidate();
 		repaint();
 	}
-	
-//	SHOW CLUB ------------------------------------------------------------------------------------------------------
-	public void showClub(String clubName) {
-		
-	}
 
 //	GETTERS --------------------------------------------------------------------------------------------------------
 	public StartPanel getStartPanel() {
@@ -118,5 +116,32 @@ public class MainFrame extends JFrame{
 	}
 	public static int getFrameHeight() {
 		return FRAME_HEIGHT;
+	}
+	public DashboardPanel getDashboardPanel() {
+		return dashboardPanel;
+	}
+	public void setDashboardPanel(DashboardPanel dashboardPanel) {
+		this.dashboardPanel = dashboardPanel;
+	}
+	public void setStartPanel(StartPanel startPanel) {
+		this.startPanel = startPanel;
+	}
+	public void setLoginPanel(LoginPanel loginPanel) {
+		this.loginPanel = loginPanel;
+	}
+	public void setSignupPanel(SignupPanel signupPanel) {
+		this.signupPanel = signupPanel;
+	}
+	public void setHomePanel(HomePanel homePanel) {
+		this.homePanel = homePanel;
+	}
+	public void setJoinPanel(JoinPanel joinPanel) {
+		this.joinPanel = joinPanel;
+	}
+	public void setCreatePanel(CreatePanel createPanel) {
+		this.createPanel = createPanel;
+	}
+	public void setMenuPanel(MenuPanel menuPanel) {
+		this.menuPanel = menuPanel;
 	}
 }

@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.util.*;
 import javax.swing.*;
 
 public class DashboardPanel extends JPanel {
@@ -20,10 +20,11 @@ public class DashboardPanel extends JPanel {
 //	Panels
 	private DashboardHeaderPanel header = new DashboardHeaderPanel();
 	private DashboardSidePanel sidebar = new DashboardSidePanel();
-	private DashboardBodyPanel bodyContent = new DashboardBodyPanel("Math Club", "June 11th @ 3:00pm", "145flj3", 2, 1); // HARD CODED FOR NOW
+	private DashboardBodyPanel bodyContent;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
-	public DashboardPanel() {
+	public DashboardPanel(String clubName, String nextMeeting, String joinCode, ArrayList<String[]> announcementList, 
+			ArrayList<String[]> taskList, ArrayList<String[]> memberList) {
 	
 //		Set up the panel
 		initializePanel();
@@ -35,12 +36,13 @@ public class DashboardPanel extends JPanel {
         sidebar.setPreferredSize(new Dimension(sidebar.getPanelWidth(), 0));
 
 //     	Body
+        bodyContent = new DashboardBodyPanel(clubName, nextMeeting, joinCode, 2, 1, announcementList, taskList, memberList);
         JScrollPane scrollPane = new JScrollPane(bodyContent);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBorder(null);
 
-        // Assemble
+//    	Assemble panels
         add(header, BorderLayout.NORTH);
         add(sidebar, BorderLayout.WEST);
         add(scrollPane, BorderLayout.CENTER);
@@ -53,5 +55,4 @@ public class DashboardPanel extends JPanel {
         setBackground(darkGrey);
         setOpaque(true);
 	}
-
 }

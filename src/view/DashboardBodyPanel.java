@@ -20,7 +20,8 @@ public class DashboardBodyPanel extends JPanel {
 	private String joinCode;
 	private int pendingTasks;
 	private int newAnnouncements;
-	private List<String[]> data = new ArrayList<>();
+	private List<String[]> taskList = new ArrayList<>();
+	private List<String[]> announcementList = new ArrayList<>();
 	
 //	Components
 	private JLabel clubLabel;
@@ -36,58 +37,30 @@ public class DashboardBodyPanel extends JPanel {
 	private CalendarPanel calendarPanel;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
-	public DashboardBodyPanel(String clubName, String nextMeet, String joinCode, int tasks, int newAnnouncements) {
+	public DashboardBodyPanel(String clubName, String nextMeet, String joinCode, int tasks, int newAnnouncements, 
+			ArrayList<String[]> announcementList, ArrayList<String[]> taskList, ArrayList<String[]> memberList) {
 		
 		this.clubName = clubName;
 		this.nextMeet = nextMeet;
 		this.joinCode = joinCode;
 		pendingTasks = tasks;
 		this.newAnnouncements = newAnnouncements;
+		this.taskList = taskList;
+		this.announcementList = announcementList;
 		
 //		Set up the panel
 		initializePanel();
-		
-//		HARD CODED TASKS FOR NOW
-		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
-		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
-		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
-		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
-		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
-		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
-		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
-		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
-		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
-		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
-		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
-		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
-		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
-		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
-		data.add(new String[] {"Task!!", "Theodore", "June 20th", "In progress", "Need help"});
 		
 //		Set up the components
 		setUpSummary(); // summary at the top
 		setUpPanels(); // panels
 		
-//		TESTING PURPOSES -- HARD CODED ANNOUNCEMENTS
-		announcementsPanel.addAnnouncement("Meeting Cancelled", "John", "Hey everyone! Please note that this week's meeting is cancelled due to the snow storm.");
-		announcementsPanel.addAnnouncement("Budget Complete", "Jane", "I have completed the budget, please see.");
-		announcementsPanel.addAnnouncement("Budget Complete", "Jane", "I have completed the budget, please see.");
-		announcementsPanel.addAnnouncement("Budget Complete", "Jane", "I have completed the budget, please see.");
-		announcementsPanel.addAnnouncement("Budget Complete", "Jane", "I have completed the budget, please see.");
-		
-//		HARD CODED MEMBERS FOR NOW
-		membersPanel.addMember("John", "President");
-		membersPanel.addMember("Jane", "Head of Finance");
-		membersPanel.addMember("Michelle", "Head of Marketing");
-		membersPanel.addMember("Ella", "Member");
-		membersPanel.addMember("Thomas", "Marketing Executive");
-		membersPanel.addMember("Paul", "Member");
-		membersPanel.addMember("Paul", "Member");
-		membersPanel.addMember("Paul", "Member");
-		membersPanel.addMember("Paul", "Member");
-		membersPanel.addMember("Paul", "Member");
-		membersPanel.addMember("George", "Member");
-		membersPanel.addMember("Hannah", "Member");
+		for(String[] announcement : announcementList) {
+			announcementsPanel.addAnnouncement(announcement[0], announcement[1], announcement[2]);
+		}
+		for(String[] member : memberList) {
+			membersPanel.addMember(member[0], member[1]);
+		}
 		
 //		HARD CODED MEETINGS AND EVENTS FOR NOW
 		calendarPanel.addEvent(LocalDate.of(2025, 6, 4), "Weekly Meeting");
@@ -153,7 +126,7 @@ public class DashboardBodyPanel extends JPanel {
 		add(announcementsPanel);
 		
 //		Tasks
-		tasksPanel = new TasksPanel(80, data);
+		tasksPanel = new TasksPanel(80, taskList);
 		tasksPanel.setBounds(announcementsPanel.getX() + announcementsPanel.getWidth() + 40, clubLabel.getY() + 150, tasksPanel.getPanelWidth(), tasksPanel.getPanelHeight());
 		add(tasksPanel);
 		

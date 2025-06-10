@@ -10,7 +10,8 @@ public class MainController implements ActionListener {
 	
 //	FIELDS  --------------------------------------------------------------------------------------------------------
 	private MainFrame frame = new MainFrame();
-	private MenuController menuController = new MenuController(frame);
+	private DashboardController dashboardController = new DashboardController(frame);
+	private MenuController menuController = new MenuController(frame, dashboardController);
 	
 //	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 	public MainController(){
@@ -64,7 +65,7 @@ public class MainController implements ActionListener {
 		if(e.getSource() == frame.getSignupPanel().getLoginButton()) 
 			switchPanel(frame.getSignupPanel(), frame.getLoginPanel());
 		
-//		Sign up validation
+//		TODO: Sign up validation
 		if(e.getSource() == frame.getSignupPanel().getSignupButton()) 
 			signUp();
 		
@@ -72,7 +73,7 @@ public class MainController implements ActionListener {
 		if(e.getSource() == frame.getLoginPanel().getSignupButton()) 
 			switchPanel(frame.getLoginPanel(), frame.getSignupPanel());
 		
-//		Login validation
+//		TODO: Login validation
 		if(e.getSource() == frame.getLoginPanel().getLoginButton()) 
 			login();
 		
@@ -88,13 +89,14 @@ public class MainController implements ActionListener {
 		if(e.getSource() == frame.getHomePanel().getClubPanel().getHeader().getCreateButton()) 
 			frame.showCreateClub();
 		
-//		Join club validation
+//		TODO: Join club validation
 		if(e.getSource() == frame.getJoinPanel().getJoinButton()) 
 			joinClub();
 		
-//		Create club validation
+//		TODO: Create club validation
 		if(e.getSource() == frame.getCreatePanel().getCreateButton()) 
 			createClub();
+		
 	}
 	
 //	SWITCH PANEL ---------------------------------------------------------------------------------------------------
