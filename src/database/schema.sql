@@ -1,24 +1,36 @@
+-- USERS
 CREATE TABLE users (
     user_id VARCHAR(36) PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL
+    password_hash VARCHAR(255) NOT NULL,
+    CONSTRAINT valid_email CHECK (email LIKE '%@%.%')  -- Basic email validation
 );
 
-CREATE TABLE members (
-    member_id SERIAL PRIMARY KEY,
+-- CLUBS
+CREATE TABLE clubs (
+    club_id VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    join_code VARCHAR(36) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_active BOOLEAN DEFAULT TRUE,
+    CONSTRAINT valid_name CHECK (LENGTH(name) >= 3)  -- Minimum club name length
+);
+
+-- MEMBERSHIPS
+CREATE TABLE memberships (
+    membership_id SERIAL PRIMARY KEY,
     user_id VARCHAR(36) NOT NULL,
     club_id VARCHAR(36) NOT NULL,
     role VARCHAR(50) NOT NULL DEFAULT 'Member',
-    
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (club_id) REFERENCES clubs(club_id) ON DELETE CASCADE,
-    
-    UNIQUE (user_id, club_id) -- Prevents duplicate members
+    UNIQUE (user_id, club_id)
 );
 
+-- ANNOUNCEMENTS
 CREATE TABLE announcements (
     announcement_id SERIAL PRIMARY KEY,
     club_id VARCHAR(36) NOT NULL,
@@ -31,6 +43,7 @@ CREATE TABLE announcements (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
+-- TASKS
 CREATE TABLE tasks (
     task_id VARCHAR(36) PRIMARY KEY,
     club_id VARCHAR(36) NOT NULL,
@@ -41,7 +54,7 @@ CREATE TABLE tasks (
 
     FOREIGN KEY (club_id) REFERENCES clubs(club_id) ON DELETE CASCADE
 );
-
+-- TASK ASSIGNEES
 CREATE TABLE task_assignees (
     task_id VARCHAR(36),
     user_id VARCHAR(36),
@@ -51,7 +64,7 @@ CREATE TABLE task_assignees (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
-
+-- MEETINGS
 CREATE TABLE meetings (
     meeting_id VARCHAR(36) PRIMARY KEY,
     club_id VARCHAR(36) NOT NULL,
@@ -65,7 +78,7 @@ CREATE TABLE meetings (
     FOREIGN KEY (club_id) REFERENCES clubs(club_id) ON DELETE CASCADE
 );
 
-
+-- EVENTS
 CREATE TABLE events (
     event_id VARCHAR(36) PRIMARY KEY,
     club_id VARCHAR(36) NOT NULL,

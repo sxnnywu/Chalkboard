@@ -74,11 +74,21 @@ public class AnnouncementDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                String author = rs.getString("first_name") + " " + rs.getString("last_name");
+                Member member = new Member(
+                    new model.User(
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("password_hash"),
+                        null
+                    ),
+                    rs.getString("role")
+                );
                 announcements.add(new Announcement(
                     rs.getInt("announcement_id"),
-                    clubId,
-                    author,
+                    rs.getString("club_id"),
+                    member,
                     rs.getString("title"),
                     rs.getString("body"),
                     rs.getTimestamp("created_at").toLocalDateTime()

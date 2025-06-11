@@ -13,9 +13,8 @@ public class User {
 	private String passwordHash;
 	private List<Club> joinedClubs;
 	
-//	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
-	public User(String firstName, String lastName, String userName, String email, String passwordHash,
-			List<Club> joinedClubs) {
+//	CONSTRUCTOR (NEW USERS) ---------------------------------------------------------------------------------------
+	public User(String firstName, String lastName, String userName, String email, String passwordHash) {
 		super();
 		userID = UUID.randomUUID().toString();
 		this.firstName = firstName;
@@ -23,7 +22,18 @@ public class User {
 		this.userName = userName;
 		this.email = email;
 		this.passwordHash = passwordHash;
-		this.joinedClubs = (joinedClubs != null) ? joinedClubs : new ArrayList<>(); // Initialize if null
+		this.joinedClubs = new ArrayList<>(); 
+	}
+	
+//	CONSTRUCTOR (EXISTING USERS) ----------------------------------------------------------------------------------
+	public User(String userID, String firstName, String lastName, String userName, String email, String passwordHash) {
+	    this.userID = userID;
+	    this.firstName = firstName;
+	    this.lastName = lastName;
+	    this.userName = userName;
+	    this.email = email;
+	    this.passwordHash = passwordHash;
+	    this.joinedClubs = new ArrayList<>();
 	}
 	
 //	GET FULL NAME -------------------------------------------------------------------------------------------------

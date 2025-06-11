@@ -25,6 +25,7 @@ public class MemberDAO {
         }
     }
 
+
     // Get all members of a club
     public List<Member> getMembersByClubId(String clubId) throws SQLException {
         List<Member> members = new ArrayList<>();
@@ -33,14 +34,14 @@ public class MemberDAO {
             stmt.setString(1, clubId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    User user = new User(
-                        rs.getString("first_name"),
-                        rs.getString("last_name"),
-                        rs.getString("username"),
-                        rs.getString("email"),
-                        rs.getString("password_hash"),
-                        null // joinedClubs can be filled later if needed
-                    );
+                	User user = new User(
+                		    rs.getString("user_id"),
+                		    rs.getString("first_name"),
+                		    rs.getString("last_name"),
+                		    rs.getString("username"),
+                		    rs.getString("email"),
+                		    rs.getString("password_hash")
+                	);
                     Member member = new Member(user, rs.getString("role"));
                     members.add(member);
                 }

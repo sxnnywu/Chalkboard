@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,6 +26,17 @@ public class Task {
 		this.notes = notes;
 		this.taskID = UUID.randomUUID().toString();
 		this.clubID = clubID;
+	}
+	
+//	CONSTRUCTOR (DAO ACCESS) --------------------------------------------------------------------------------------
+	public Task(String taskID, String title, LocalDate deadline, String status, String notes, String clubID) {
+	    this.title = title;
+	    this.deadline = deadline;
+	    this.assignees = new ArrayList<>(); // default empty list
+	    this.status = status;
+	    this.notes = notes;
+	    this.taskID = taskID;
+	    this.clubID = clubID;
 	}
 	
 //	ADD ASSIGNEE --------------------------------------------------------------------------------------------------

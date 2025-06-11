@@ -1,6 +1,5 @@
 package model;
 
-import java.time.*;
 import java.util.*;
 
 public class Club {
@@ -15,18 +14,29 @@ public class Club {
 	private List<Event> events;
 	private List<Task> tasks;
 	
-//	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
-	public Club(String name, List<Member> members, List<Announcement> announcements,
-			List<Meeting> meetings, List<Event> events, List<Task> tasks) {
+//	CONSTRUCTOR (NEW CLUB) -----------------------------------------------------------------------------------------
+	public Club(String name) {
 		super();
 		this.clubID = UUID.randomUUID().toString();
 		this.name = name;
 		joinCode = UUID.randomUUID().toString();
-		this.members = (members != null) ? members : new ArrayList<>();
-		this.announcements = (announcements != null) ? announcements : new ArrayList<>();
-		this.meetings = (meetings != null) ? meetings : new ArrayList<>();;
-		this.events = (events != null) ? events : new ArrayList<>();
-		this.tasks = (tasks != null) ? tasks : new ArrayList<>();;
+		this.members = new ArrayList<>();
+		this.announcements = new ArrayList<>();
+		this.meetings = new ArrayList<>();;
+		this.events = new ArrayList<>();
+		this.tasks = new ArrayList<>();;
+	}
+	
+//	CONSTRUCTOR (EXISTING CLUB) -----------------------------------------------------------------------------------
+	public Club(String clubID, String name, String joinCode) {
+	    this.clubID = clubID;
+	    this.name = name;
+	    this.joinCode = joinCode;
+	    this.members = new ArrayList<>();
+	    this.announcements = new ArrayList<>();
+	    this.meetings = new ArrayList<>();
+	    this.events = new ArrayList<>();
+	    this.tasks = new ArrayList<>();
 	}
 	
 //	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
