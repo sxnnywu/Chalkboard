@@ -1,10 +1,6 @@
 package view;
 
-import java.util.ArrayList;
-
 import javax.swing.*;
-
-import model.Club;
 
 public class MainFrame extends JFrame{
 	
@@ -39,12 +35,8 @@ public class MainFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 //		Starting panel
-		add(startPanel);
-//		add(signupPanel);
-//		add(loginPanel);
-//		add(homePanel);
-
-//		showClub("Math Club", announcementData(), tasksData());
+//		add(startPanel);
+		add(homePanel);
 		
 //		homePanel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 //	    blurWrapper = new BlurWrapper(homePanel);

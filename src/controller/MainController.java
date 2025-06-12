@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.event.*;
+import java.sql.SQLException;
 
 import javax.swing.JPanel;
 
@@ -10,16 +11,19 @@ public class MainController implements ActionListener {
 	
 //	FIELDS  --------------------------------------------------------------------------------------------------------
 	private MainFrame frame = new MainFrame();
-	private DashboardController dashboardController = new DashboardController(frame);
-	private MenuController menuController = new MenuController(frame, dashboardController);
+	private DashboardController dashboardController;
+	private MenuController menuController;
 	
 //	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
-	public MainController(){
+	public MainController() throws SQLException{
 
+		dashboardController = new DashboardController(frame);
+		menuController = new MenuController(frame, dashboardController);
 		addActionListeners();
 	}
 
 //	ADD ACTION LISTENERS -------------------------------------------------------------------------------------------
+	@SuppressWarnings("static-access")
 	public void addActionListeners() {
 		
 //		Start panel
@@ -110,14 +114,12 @@ public class MainController implements ActionListener {
 //	SIGN UP VALIDATION ---------------------------------------------------------------------------------------------
 	private void signUp() {
 		
-//		CALL BOOLEAN METHOD TO VALIDATE INPUT
 		frame.remove(frame.getSignupPanel());
 	}
 	
 //	LOGIN VALIDATION -----------------------------------------------------------------------------------------------
 	private void login() {
 		
-//		CALL BOOLEAN METHOD TO VALIDATE INPUT
 		frame.remove(frame.getLoginPanel());
 	}
 

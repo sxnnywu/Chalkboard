@@ -1,8 +1,7 @@
 package controller;
 
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 
 import dao.*;
 import model.*;
@@ -15,13 +14,12 @@ public class MenuController implements ActionListener{
 	private MainFrame frame;
 	private static MenuPanel menuPanel;
 	
-	private AnnouncementDAO announcementDAO;
-	private TaskDAO taskDAO;
-	private Member membershipDAO;
 	private ClubDAO clubDAO;
 
 //	CONSTRUCTOR  ---------------------------------------------------------------------------------------------------
-	public MenuController(MainFrame frame, DashboardController dashboardController) {
+	public MenuController(MainFrame frame, DashboardController dashboardController) throws SQLException {
+		
+		clubDAO = new ClubDAO(DBUtil.getConnection());
 		
 		this.dashboardController = dashboardController;
 		this.frame = frame;
@@ -40,63 +38,6 @@ public class MenuController implements ActionListener{
 		menuPanel.getProfileButton().addActionListener(this); // my account
 		menuPanel.getLogoutButton().addActionListener(this); // log out
 	}
-	
-//	ANNOUNCEMENTS (HARD CODED FOR NOW)
-	private ArrayList<String[]> announcementData(){
-		
-		ArrayList<String[]> data = new ArrayList<>();
-		data.add(new String[] {"Meeting Cancelled", "John", "Hey everyone! Please note that this week's meeting is cancelled due to the snow storm."});
-		data.add(new String[] {"Budget Complete", "Jane", "I have completed the budget, please see."});
-		data.add(new String[] {"Budget Complete", "Jane", "I have completed the budget, please see."});
-		data.add(new String[] {"Budget Complete", "Jane", "I have completed the budget, please see."});
-		data.add(new String[] {"Budget Complete", "Jane", "I have completed the budget, please see."});
-		
-		return data;
-	}
-	
-//	TASKS (HARD CODED FOR NOW)
-	private ArrayList<String[]> tasksData() {
-		
-		ArrayList<String[]> data = new ArrayList<>();
-		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
-		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
-		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
-		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
-		data.add(new String[] {"Sample Task", "John", "June 16th", "In Progress", "Test note"});
-		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
-		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
-		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
-		data.add(new String[] {"Another Task", "Jane", "June 19th", "Pending", "Another note"});
-		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
-		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
-		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
-		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
-		data.add(new String[] {"Task 3", "Anita", "June 19th", "Complete", "Note"});
-		data.add(new String[] {"Task!!", "Theodore", "June 20th", "In progress", "Need help"});
-		
-		return data;
-	}
-	
-//	MEMBERS (HARD CODED FOR NOW)
-	private ArrayList<String[]> memberData(){
-		
-		ArrayList<String[]> data = new ArrayList<>();
-		
-		data.add(new String[] {"John", "President"});
-		data.add(new String[] {"Jane", "Head of Finance"});
-		data.add(new String[] {"Michelle", "Head of Marketing"});
-		data.add(new String[] {"Ella", "Member"});
-		data.add(new String[] {"Thomas", "Marketing Executive"});
-		data.add(new String[] {"Paul", "Member"});
-		data.add(new String[] {"Paul", "Member"});
-		data.add(new String[] {"Paul", "Member"});
-		data.add(new String[] {"Paul", "Member"});
-		data.add(new String[] {"Paul", "Member"});
-		data.add(new String[] {"George", "Member"});
-		data.add(new String[] {"Hannah", "Member"});
-		
-		return data;
-	}
 
 //	ACTION PERFORMED  ----------------------------------------------------------------------------------------------
 	@Override
@@ -104,16 +45,8 @@ public class MenuController implements ActionListener{
 		
 //		View club
 		for(MenuButton button : menuPanel.getClubs()) {
-			if(e.getSource() == button){
-
-				String clubId = clubDAO.getClubIdByName(button.getLabel());
-				List<Announcement> announcements = AnnouncementDAO.getAnnouncementsByClubId(clubId);
-				List<Task> tasks = taskDAO.getTasksByClubId(clubId);
-				List<Member> members = membershipDAO.getMembersByClubId(clubId);
-
-//				Convert these to ArrayList<String[]> if your dashboard still expects them in that format
-				dashboardController.showClub(button.getLabel(), formatAnnouncements(announcements), formatTasks(tasks), formatMembers(members));
-s
+			if(e.getSource() == button) {
+				showClub(button);
 			}
 		}
 		
@@ -141,14 +74,28 @@ s
 		}
 		
 //		Log out
-		if(e.getSource() == menuPanel.getLogoutButton()) {
-			frame.remove(frame.getHomePanel());
-			frame.add(frame.getStartPanel());
-			frame.revalidate();
-			frame.repaint();
+		if(e.getSource() == menuPanel.getLogoutButton()) 
+			logOut();
+	}
+	
+//	SHOW CLUB ------------------------------------------------------------------------------------------------------
+	private void showClub(MenuButton button) {
+		String clubID = clubDAO.getClubIdByName(button.getLabel());
+		try {
+			dashboardController.showClub(button.getLabel(), clubID);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
 	}
 
+//	LOG OUT --------------------------------------------------------------------------------------------------------
+	private void logOut() {
+		frame.remove(frame.getHomePanel());
+		frame.add(frame.getStartPanel());
+		frame.revalidate();
+		frame.repaint();
+	}
+	
 //	GETTERS  -------------------------------------------------------------------------------------------------------
 	public MainFrame getFrame() {
 		return frame;
@@ -161,5 +108,11 @@ s
 	}
 	public static void setMenuPanel(MenuPanel menuPanel) {
 		MenuController.menuPanel = menuPanel;
+	}
+	public DashboardController getDashboardController() {
+		return dashboardController;
+	}
+	public void setDashboardController(DashboardController dashboardController) {
+		this.dashboardController = dashboardController;
 	}
 }

@@ -8,12 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AnnouncementDAO {
+	
+//	FIELDS --------------------------------------------------------------------------------------------------------
     private final Connection conn;
 
+//	CONSTRUCTOR --------------------------------------------------------------------------------------------------
     public AnnouncementDAO(Connection conn) {
         this.conn = conn;
     }
 
+// 	INSERT ------------------------------------------------------------------------------------------------------
     public void insert(Announcement announcement, String clubId) throws SQLException {
         String sql = "INSERT INTO announcements (club_id, user_id, title, body) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -25,6 +29,7 @@ public class AnnouncementDAO {
         }
     }
 
+// 	GET BY CLUB ID
     public List<Announcement> getByClubId(String clubId) throws SQLException {
         List<Announcement> announcements = new ArrayList<>();
         String sql = "SELECT a.*, u.first_name, u.last_name, u.username, u.email, u.password_hash, m.role " +
