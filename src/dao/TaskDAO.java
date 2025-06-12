@@ -4,6 +4,7 @@ import model.Member;
 import model.Task;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,7 +102,7 @@ public class TaskDAO {
                 tasks.add(new Task(
                 	rs.getString("task_id"),
                 	rs.getString("title"),
-                	rs.getDate("deadline").toLocalDate(),
+                	LocalDate.parse(rs.getString("deadline")),
                 	rs.getString("status"),
                 	rs.getString("notes"),
                 	rs.getString("club_id")

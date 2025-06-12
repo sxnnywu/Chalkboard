@@ -2,7 +2,11 @@ package view;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
+
 import javax.swing.*;
+
+import model.ScheduleItem;
 
 public class DashboardPanel extends JPanel {
 	
@@ -24,7 +28,7 @@ public class DashboardPanel extends JPanel {
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public DashboardPanel(String clubName, String nextMeeting, String joinCode, ArrayList<String[]> announcementList, 
-			ArrayList<String[]> taskList, ArrayList<String[]> memberList) {
+			ArrayList<String[]> taskList, ArrayList<String[]> memberList, List<ScheduleItem> scheduleItems) {
 	
 //		Set up the panel
 		initializePanel();
@@ -36,7 +40,7 @@ public class DashboardPanel extends JPanel {
         sidebar.setPreferredSize(new Dimension(sidebar.getPanelWidth(), 0));
 
 //     	Body
-        bodyContent = new DashboardBodyPanel(clubName, nextMeeting, joinCode, 2, 1, announcementList, taskList, memberList);
+        bodyContent = new DashboardBodyPanel(clubName, nextMeeting, joinCode, 2, 1, announcementList, taskList, memberList, scheduleItems);
         JScrollPane scrollPane = new JScrollPane(bodyContent);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 
+import model.ScheduleItem;
+
 public class DashboardBodyPanel extends JPanel {
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -31,14 +33,15 @@ public class DashboardBodyPanel extends JPanel {
 	private JLabel announcementsLabel;
 	
 //	Panels
-	private AnnouncementsPanel announcementsPanel = new AnnouncementsPanel(80);
+	private AnnouncementsPanel announcementsPanel;
 	private TasksPanel tasksPanel;
 	private MembersPanel membersPanel;
 	private CalendarPanel calendarPanel;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public DashboardBodyPanel(String clubName, String nextMeet, String joinCode, int tasks, int newAnnouncements, 
-			ArrayList<String[]> announcementList, ArrayList<String[]> taskList, ArrayList<String[]> memberList) {
+			ArrayList<String[]> announcementList, ArrayList<String[]> taskList, ArrayList<String[]> memberList,
+			List<ScheduleItem> scheduleItems) {
 		
 		this.clubName = clubName;
 		this.nextMeet = nextMeet;
@@ -55,20 +58,15 @@ public class DashboardBodyPanel extends JPanel {
 		setUpSummary(); // summary at the top
 		setUpPanels(); // panels
 		
-		for(String[] announcement : announcementList) {
+//		Data
+		for(String[] announcement : announcementList) 
 			announcementsPanel.addAnnouncement(announcement[0], announcement[1], announcement[2]);
-		}
-		for(String[] member : memberList) {
+		for(String[] member : memberList) 
 			membersPanel.addMember(member[0], member[1]);
-		}
-		
-//		HARD CODED MEETINGS AND EVENTS FOR NOW
-		calendarPanel.addEvent(LocalDate.of(2025, 6, 4), "Weekly Meeting");
-		calendarPanel.addEvent(LocalDate.of(2025, 6, 11), "Weekly Meeting");
-		calendarPanel.addEvent(LocalDate.of(2025, 6, 18), "Weekly Meeting");
-		calendarPanel.addEvent(LocalDate.of(2025, 6, 25), "Weekly Meeting");
-		calendarPanel.addEvent(LocalDate.of(2025, 6, 20), "Fundraiser");
-		calendarPanel.renderCalendar(LocalDate.of(2025, 6, 1)); // re-render AFTER events
+		calendarPanel.clearEvents();
+		for (ScheduleItem item : scheduleItems) 
+		    calendarPanel.addEvent(item.getDate(), item.getTitle());	
+		calendarPanel.renderCalendar(LocalDate.now().withDayOfMonth(1));
 	}
 	
 //	INITIALIZE PANEL ----------------------------------------------------------------------------------------------
@@ -93,21 +91,21 @@ public class DashboardBodyPanel extends JPanel {
 		nextMeetingLabel = new JLabel("<html><b>Next Meeting</b><br>"+nextMeet+"</html>");
 		nextMeetingLabel.setForeground(Color.BLACK);
 		nextMeetingLabel.setFont(new Font("Gill Sans MT", Font.PLAIN, 17));
-		nextMeetingLabel.setBounds(clubLabel.getX() + 730, clubLabel.getY() - 20, 150, 45);
+		nextMeetingLabel.setBounds(clubLabel.getX() + 680, clubLabel.getY() - 20, 200, 45);
 		add(nextMeetingLabel);
 		
 //		Join code
 		joinCodeLabel = new JLabel("<html><b>Join Code</b><br>"+joinCode+"</html>");
 		joinCodeLabel.setForeground(Color.BLACK);
 		joinCodeLabel.setFont(new Font("Gill Sans MT", Font.PLAIN, 17));
-		joinCodeLabel.setBounds(nextMeetingLabel.getX() + 200, nextMeetingLabel.getY(), 370, 45);
+		joinCodeLabel.setBounds(nextMeetingLabel.getX() + 240, nextMeetingLabel.getY(), 370, 45);
 		add(joinCodeLabel);
 		
 //		Tasks
 		tasksLabel = new JLabel("<html><b>Your Tasks</b><br>"+pendingTasks+" pending</html>");
 		tasksLabel.setForeground(Color.BLACK);
 		tasksLabel.setFont(new Font("Gill Sans MT", Font.PLAIN, 17));
-		tasksLabel.setBounds(nextMeetingLabel.getX(), nextMeetingLabel.getY() + 60, 370, 45);
+		tasksLabel.setBounds(nextMeetingLabel.getX(), nextMeetingLabel.getY() + 60, 420, 45);
 		add(tasksLabel);
 		
 //		Announcements
@@ -119,9 +117,11 @@ public class DashboardBodyPanel extends JPanel {
 	}
 
 //	SET UP PANELS -------------------------------------------------------------------------------------------------
+	@SuppressWarnings("static-access")
 	private void setUpPanels() {
 		
 //		Announcements
+		announcementsPanel = new AnnouncementsPanel(80, announcementList);
 		announcementsPanel.setBounds(clubLabel.getX(), clubLabel.getY() + 150, announcementsPanel.getPanelWidth(), announcementsPanel.getPanelHeight());
 		add(announcementsPanel);
 		

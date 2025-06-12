@@ -18,8 +18,10 @@ public class DashboardController {
 	private AnnouncementDAO announcementDAO;
 	private TaskDAO taskDAO;
 	private MemberDAO memberDAO;
+	private EventDAO eventDAO;
+	private MeetingDAO meetingDAO;
 	
-//	CONSTRUCTOR
+//	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 	public DashboardController(MainFrame frame) throws SQLException {
 		
 //		View
@@ -32,27 +34,37 @@ public class DashboardController {
         announcementDAO = new AnnouncementDAO(conn);
         taskDAO = new TaskDAO(conn);
         memberDAO = new MemberDAO(conn);
+        eventDAO = new EventDAO(conn);
+        meetingDAO = new MeetingDAO(conn);
 	}
 	
 //	SHOW CLUB ------------------------------------------------------------------------------------------------------
 	public void showClub(String clubName, String clubID) throws SQLException {
-		
-//		Club data
-		String nextMeeting = clubDAO.getNextMeetingTime(clubID); // returns something like "June 11th @ 3:00pm"
+	    
+	    // Club data
+	    String nextMeeting = clubDAO.getNextMeetingTime(clubID); // returns something like "June 11th @ 3:00pm"
 	    String joinCode = clubDAO.getJoinCode(clubID);
 	    List<Announcement> announcements = announcementDAO.getByClubId(clubID);
 	    List<Task> tasks = taskDAO.getTasksByClubId(clubID);
 	    List<Member> members = memberDAO.getMembersByClubId(clubID);
-		
-//	    Create dashboard panel
-		dashboardPanel = new DashboardPanel(clubName, nextMeeting, joinCode, formatAnnouncements(announcements), 
-				formatTasks(tasks), formatMembers(members));
-		
-//		Update frame with dashboard panel
-		frame.getContentPane().removeAll();
-		frame.add(dashboardPanel);
-		frame.revalidate();
-		frame.repaint();
+	    List<ScheduleItem> scheduleItems = fetchScheduleItems(clubID); // fetch events + meetings
+
+	    // Create dashboard panel
+	    dashboardPanel = new DashboardPanel(
+	        clubName,
+	        nextMeeting,
+	        joinCode,
+	        formatAnnouncements(announcements),
+	        formatTasks(tasks),
+	        formatMembers(members),
+	        scheduleItems
+	    );
+
+	    // Update frame with dashboard panel
+	    frame.getContentPane().removeAll();
+	    frame.add(dashboardPanel);
+	    frame.revalidate();
+	    frame.repaint();
 	}
 	
 //	FORMAT ANNOUNCEMENTS -------------------------------------------------------------------------------------------
@@ -98,5 +110,13 @@ public class DashboardController {
 	        formatted.add(row);
 	    }
 	    return formatted;
+	}
+	
+//	FETCH SCHEDULE ITEMS
+	private List<ScheduleItem> fetchScheduleItems(String clubId) throws SQLException {
+	    List<ScheduleItem> items = new ArrayList<>();
+	    items.addAll(eventDAO.getAllByClub(clubId));
+	    items.addAll(meetingDAO.getAllByClub(clubId));
+	    return items;
 	}
 }

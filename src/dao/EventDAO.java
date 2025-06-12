@@ -84,10 +84,16 @@ public class EventDAO {
             stmt.setString(1, clubId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
+                    String dateStr = rs.getString("date");
+                    String timeStr = rs.getString("time");
+
+                    LocalDate date = LocalDate.parse(dateStr);
+                    LocalTime time = (timeStr != null) ? LocalTime.parse(timeStr) : null;
+
                     Event event = new Event(
                         rs.getString("title"),
-                        rs.getDate("date").toLocalDate(),
-                        rs.getTime("time") != null ? rs.getTime("time").toLocalTime() : null,
+                        date,
+                        time,
                         rs.getString("location"),
                         rs.getString("description"),
                         rs.getString("club_id")

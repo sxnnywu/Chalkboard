@@ -53,6 +53,10 @@ public class CalendarPanel extends RoundedPanel {
 		dayGridPanel.setBounds(25, 70, PANEL_WIDTH - 50, PANEL_HEIGHT - 100);
 		add(dayGridPanel);
 	}
+	
+	public void clearEvents() {
+	    events.clear();
+	}
 
 //	RENDER CALENDAR -----------------------------------------------------------------------------------------------
 	public void renderCalendar(LocalDate firstOfMonth) {

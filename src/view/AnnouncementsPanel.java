@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.*;
+import java.util.List;
+
 import javax.swing.*;
 
 public class AnnouncementsPanel extends RoundedPanel {
@@ -14,21 +16,29 @@ public class AnnouncementsPanel extends RoundedPanel {
 //	Colours
 	private final Color green = Color.decode("#afcebb");
 	
+//	Parameters
+	List<String[]> data;
+	
 //	Components
 	private JLabel titleLabel = new JLabel("Announcements");
 	private JScrollPane scrollPane;
 	private JPanel scrollContent = new JPanel();
 
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
-	public AnnouncementsPanel(int radius) {
+	public AnnouncementsPanel(int radius, List<String[]> data) {
 		super(radius);
+		
+//		Load announcements list
+		this.data = data;
+		for(String[] s : data) {
+			addAnnouncement(s[0], s[1], s[2]);
+		}
 		
 //		Set up the panel
 		initializePanel();
 		
 //		Set up components
 		setUpTitleLabel(); // title
-		
 		setUpScrollContent(); // scroll content
 		scrollPane =  new JScrollPane(scrollContent); 
 		setUpScrollPane();

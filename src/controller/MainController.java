@@ -5,6 +5,8 @@ import java.sql.SQLException;
 
 import javax.swing.JPanel;
 
+import dao.ClubDAO;
+import dao.DBUtil;
 import view.*;
 
 public class MainController implements ActionListener {
@@ -13,10 +15,12 @@ public class MainController implements ActionListener {
 	private MainFrame frame = new MainFrame();
 	private DashboardController dashboardController;
 	private MenuController menuController;
+	private ClubDAO clubDAO;
 	
 //	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 	public MainController() throws SQLException{
 
+		clubDAO = new ClubDAO(DBUtil.getConnection());
 		dashboardController = new DashboardController(frame);
 		menuController = new MenuController(frame, dashboardController);
 		addActionListeners();
@@ -101,6 +105,12 @@ public class MainController implements ActionListener {
 		if(e.getSource() == frame.getCreatePanel().getCreateButton()) 
 			createClub();
 		
+//		VIEW CLUB
+		for(ClubDisplay club : frame.getHomePanel().getClubPanel().getClubs()) { 
+			if(e.getSource() == club.getHeader().getViewButton()) 
+				showClub(club.getClubName());
+		}
+		
 	}
 	
 //	SWITCH PANEL ---------------------------------------------------------------------------------------------------
@@ -109,6 +119,16 @@ public class MainController implements ActionListener {
 		frame.add(panel2);
 		frame.revalidate();
 		frame.repaint();
+	}
+	
+//	SHOW CLUB
+	private void showClub(String clubName) {
+		String clubID = clubDAO.getClubIdByName(clubName);
+		try {
+			dashboardController.showClub(clubName, clubID);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 	}
 	
 //	SIGN UP VALIDATION ---------------------------------------------------------------------------------------------
