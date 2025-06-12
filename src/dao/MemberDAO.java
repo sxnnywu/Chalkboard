@@ -9,10 +9,12 @@ public class MemberDAO {
 
 //	FIELDS --------------------------------------------------------------------------------------------------------
     private final Connection conn;
+    private UserDAO userDAO;
 
 // 	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
     public MemberDAO(Connection conn) {
         this.conn = conn;
+        userDAO = new UserDAO(conn);
     }
 
 // 	INSERT -------------------------------------------------------------------------------------------------------
@@ -99,8 +101,52 @@ public class MemberDAO {
         }
     }
 
-	public List<Member> getClubsByUserId(String cURRENT_USER_ID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	GET CLUBS BY USER ID -----------------------------------------------------------------------------------------
+    public List<Member> getClubsByUserId(String currentUserID) {
+    	
+//    	Members list
+    	List<Member> memberships = new ArrayList<>();
+    	
+//    	SQL query
+    	String sql = "SELECT * FROM memberships WHERE user_id = ?";
+    	
+//    	Prepare statement
+    	try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+    		stmt.setString(1, currentUserID);
+    		
+//    		Execute query
+    		ResultSet rs = stmt.executeQuery();
+    		
+    		while (rs.next()) {
+    			String clubId = rs.getString("club_id");
+    			String role = rs.getString("role");
+    			
+//    			Fetch the full User object
+    			User user = userDAO.getById(currentUserID); 
+    			
+//    			Create the Member object
+    			Member member = new Member(user, role, clubId);
+    			memberships.add(member);
+    		}	
+    		rs.close();
+    	} catch (SQLException e) {
+    		e.printStackTrace(); 
+    	}
+    	return memberships;
+    }
+    
+//	EXISTS -------------------------------------------------------------------------------------------------------
+    public boolean exists(String userId, String clubId) throws SQLException {
+        
+//    	SQL query
+    	String query = "SELECT 1 FROM Memberships WHERE user_id = ? AND club_id = ?";
+        
+//    	Prepare & execute statement
+    	try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, userId);
+            stmt.setString(2, clubId);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next(); // true if found
+        }
+    }
 }

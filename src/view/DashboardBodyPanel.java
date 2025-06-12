@@ -86,7 +86,7 @@ public class DashboardBodyPanel extends JPanel {
 		clubLabel = new JLabel(clubName);
 		clubLabel.setForeground(Color.BLACK);
 		clubLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 75));
-		clubLabel.setBounds(55, 70, 370, 60);
+		clubLabel.setBounds(55, 70, 470, 60);
 		add(clubLabel);
 		
 //		Next meeting

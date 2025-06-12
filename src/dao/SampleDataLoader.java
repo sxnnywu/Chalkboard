@@ -106,16 +106,24 @@ public class SampleDataLoader {
         
 //    	Prepare & execute statement
     	try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            for (int i = 1; i <= 10; i++) {
-                String userId = "user" + i;
-                for (int c = 1; c <= 3; c++) {
-                    String clubId = "club" + c;
-                    ps.setString(1, userId);
-                    ps.setString(2, clubId);
-                    ps.setString(3, "Member");
-                    ps.executeUpdate();
-                }
-            }
+    		
+//    		Loop through users
+    		for (int i = 1; i <= 10; i++) {
+    		    String userId = "user" + i;
+    		    
+//    		    Loop through clubs
+    		    for (int c = 1; c <= 3; c++) {
+    		    	
+//    		    	Skip user1 for club3
+    		        if (userId.equals("user1") && c == 3) continue;
+
+    		        String clubId = "club" + c;
+    		        ps.setString(1, userId);
+    		        ps.setString(2, clubId);
+    		        ps.setString(3, "Member");
+    		        ps.executeUpdate();
+    		    }
+    		}
         }
     }
 

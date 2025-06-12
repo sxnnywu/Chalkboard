@@ -69,13 +69,16 @@ public class ClubsPanel extends JPanel {
 		colours[4] = Color.decode("#55e5e1");
 	}
 	
+//	GET RANDOM COLOUR ---------------------------------------------------------------------------------------------
+	public Color getRandomColour() {
+		Random rand = new Random();
+		return colours[rand.nextInt(colours.length)];
+	}
+	
 //	ADD ALL CLUBS -------------------------------------------------------------------------------------------------
 	private void addAllClubs() {	
-		int i = 0;
-		for(String[] s : data) {
-			addClub(colours[i], s[0], s[1], s[2]);
-			i++;
-		}
+		for(String[] s : data) 
+			addClub(getRandomColour(), s[0], s[1], s[2]);
 	}
 	
 //	ADD CLUB ------------------------------------------------------------------------------------------------------
@@ -108,5 +111,11 @@ public class ClubsPanel extends JPanel {
 	}
 	public void setClubs(List<ClubDisplay> clubs) {
 		this.clubs = clubs;
+	}
+	public List<String[]> getData() {
+		return data;
+	}
+	public void setData(List<String[]> data) {
+		this.data = data;
 	}
 }

@@ -18,7 +18,7 @@ public class MainFrame extends JFrame{
 	LoginPanel loginPanel = new LoginPanel();
 	SignupPanel signupPanel = new SignupPanel();
 	
-	HomePanel homePanel = new HomePanel(); 
+	HomePanel homePanel; 
 	JoinPanel joinPanel = new JoinPanel(80);
 	CreatePanel createPanel = new CreatePanel(90);
 	MenuPanel menuPanel = new MenuPanel(sampleHomeClubs()); // HARD CODE FOR NOW
@@ -55,6 +55,12 @@ public class MainFrame extends JFrame{
 	
 //	INITIALIZE HOME PANEL ------------------------------------------------------------------------------------------
 	public void initializeHomePanel(String userName, List<String[]> userClubs) {
+		
+//		Remove any existing home panels
+		if (homePanel != null) 
+		    remove(homePanel);
+		
+//		Create and add new home panel
 		homePanel = new HomePanel(userName, userClubs);
 		add(homePanel);
 		revalidate();
@@ -66,6 +72,13 @@ public class MainFrame extends JFrame{
 		joinPanel.setBounds(430, 200, joinPanel.getPanelWidth(), joinPanel.getPanelHeight());
 		homePanel.add(joinPanel);
 		homePanel.setComponentZOrder(joinPanel, 0);
+		revalidate();
+		repaint();
+	}
+	
+//	REMOVE JOIN CLUB -----------------------------------------------------------------------------------------------
+	public void removeJoinClub() {
+		homePanel.remove(joinPanel);
 		revalidate();
 		repaint();
 	}

@@ -121,7 +121,7 @@ public class HomePanel extends JPanel {
 		welcomeLabel = new JLabel("Welcome back, " + firstName);
 		welcomeLabel.setForeground(offWhite);
 		welcomeLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 70));
-		welcomeLabel.setBounds(410, 140, 800, 120);
+		welcomeLabel.setBounds(310, 140, 1000, 120);
 		add(welcomeLabel);
 	}
 	

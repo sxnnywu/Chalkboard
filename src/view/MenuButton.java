@@ -99,9 +99,6 @@ public class MenuButton extends JButton{
 	public void setColour(Color colour) {
 		this.colour = colour;
 	}
-	public String getText() {
-		return text;
-	}
 	public JLabel getIButtoncon() {
 		return icon;
 	}

@@ -261,25 +261,26 @@ public class ClubDAO {
         return clubs;
     }
 
-// 	VALIDATE JOIN CODE --------------------------------------------------------------------------------------------
-    public String validateJoinCode(String joinCode) throws SQLException {
-        
+// 	GET BY JOIN CODE ----------------------------------------------------------------------------------------------
+    public Club getByJoinCode(String joinCode) throws SQLException {
+    	
 //    	SQL query
-    	String sql = "SELECT club_id FROM clubs WHERE join_code = ? AND is_active = TRUE";
+        String query = "SELECT * FROM Clubs WHERE join_code = ?";
         
 //    	Prepare statement
-    	try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, joinCode);
             
-//        	Execute statement
-            try (ResultSet rs = stmt.executeQuery()) {
-            	
-//            	If a club was found, return its id
-                if (rs.next())
-                    return rs.getString("club_id");
+//        	Execute query
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Club(
+                    rs.getString("club_id"),
+                    rs.getString("name"),
+                    rs.getString("join_code")
+                );
             }
         }
-//    	If no club was found
         return null;
     }
     
