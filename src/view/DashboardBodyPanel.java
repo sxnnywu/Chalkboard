@@ -8,6 +8,7 @@ import javax.swing.*;
 
 import model.ScheduleItem;
 
+@SuppressWarnings("serial")
 public class DashboardBodyPanel extends JPanel {
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -16,7 +17,7 @@ public class DashboardBodyPanel extends JPanel {
 	private static final int PANEL_WIDTH = 1625;
 	private static final int PANEL_HEIGHT = 950;
 	
-//	Parameters
+//	Parameters (club information)
 	private String clubName;
 	private String nextMeet;
 	private String joinCode;
@@ -43,6 +44,7 @@ public class DashboardBodyPanel extends JPanel {
 			ArrayList<String[]> announcementList, ArrayList<String[]> taskList, ArrayList<String[]> memberList,
 			List<ScheduleItem> scheduleItems) {
 		
+//		Parameters
 		this.clubName = clubName;
 		this.nextMeet = nextMeet;
 		this.joinCode = joinCode;
@@ -58,7 +60,7 @@ public class DashboardBodyPanel extends JPanel {
 		setUpSummary(); // summary at the top
 		setUpPanels(); // panels
 		
-//		Data
+//		Data (club information)
 		for(String[] announcement : announcementList) 
 			announcementsPanel.addAnnouncement(announcement[0], announcement[1], announcement[2]);
 		for(String[] member : memberList) 
@@ -77,7 +79,7 @@ public class DashboardBodyPanel extends JPanel {
         setOpaque(true);
 	}
 	
-//	SET UP COMPONENTS ---------------------------------------------------------------------------------------------
+//	SET UP SUMMARY ------------------------------------------------------------------------------------------------
 	private void setUpSummary() {
 		
 //		Club 
@@ -117,7 +119,6 @@ public class DashboardBodyPanel extends JPanel {
 	}
 
 //	SET UP PANELS -------------------------------------------------------------------------------------------------
-	@SuppressWarnings("static-access")
 	private void setUpPanels() {
 		
 //		Announcements
@@ -144,6 +145,110 @@ public class DashboardBodyPanel extends JPanel {
 //	SIZING --------------------------------------------------------------------------------------------------------
 	@Override
 	public Dimension getPreferredSize() {
-	    return new Dimension(800, 1500); // Make height larger than your window
+	    return new Dimension(800, 1500); 
+	}
+
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public String getClubName() {
+		return clubName;
+	}
+	public void setClubName(String clubName) {
+		this.clubName = clubName;
+	}
+	public String getNextMeet() {
+		return nextMeet;
+	}
+	public void setNextMeet(String nextMeet) {
+		this.nextMeet = nextMeet;
+	}
+	public String getJoinCode() {
+		return joinCode;
+	}
+	public void setJoinCode(String joinCode) {
+		this.joinCode = joinCode;
+	}
+	public int getPendingTasks() {
+		return pendingTasks;
+	}
+	public void setPendingTasks(int pendingTasks) {
+		this.pendingTasks = pendingTasks;
+	}
+	public int getNewAnnouncements() {
+		return newAnnouncements;
+	}
+	public void setNewAnnouncements(int newAnnouncements) {
+		this.newAnnouncements = newAnnouncements;
+	}
+	public List<String[]> getTaskList() {
+		return taskList;
+	}
+	public void setTaskList(List<String[]> taskList) {
+		this.taskList = taskList;
+	}
+	public List<String[]> getAnnouncementList() {
+		return announcementList;
+	}
+	public void setAnnouncementList(List<String[]> announcementList) {
+		this.announcementList = announcementList;
+	}
+	public JLabel getClubLabel() {
+		return clubLabel;
+	}
+	public void setClubLabel(JLabel clubLabel) {
+		this.clubLabel = clubLabel;
+	}
+	public JLabel getNextMeetingLabel() {
+		return nextMeetingLabel;
+	}
+	public void setNextMeetingLabel(JLabel nextMeetingLabel) {
+		this.nextMeetingLabel = nextMeetingLabel;
+	}
+	public JLabel getJoinCodeLabel() {
+		return joinCodeLabel;
+	}
+	public void setJoinCodeLabel(JLabel joinCodeLabel) {
+		this.joinCodeLabel = joinCodeLabel;
+	}
+	public JLabel getTasksLabel() {
+		return tasksLabel;
+	}
+	public void setTasksLabel(JLabel tasksLabel) {
+		this.tasksLabel = tasksLabel;
+	}
+	public JLabel getAnnouncementsLabel() {
+		return announcementsLabel;
+	}
+	public void setAnnouncementsLabel(JLabel announcementsLabel) {
+		this.announcementsLabel = announcementsLabel;
+	}
+	public AnnouncementsPanel getAnnouncementsPanel() {
+		return announcementsPanel;
+	}
+	public void setAnnouncementsPanel(AnnouncementsPanel announcementsPanel) {
+		this.announcementsPanel = announcementsPanel;
+	}
+	public TasksPanel getTasksPanel() {
+		return tasksPanel;
+	}
+	public void setTasksPanel(TasksPanel tasksPanel) {
+		this.tasksPanel = tasksPanel;
+	}
+	public MembersPanel getMembersPanel() {
+		return membersPanel;
+	}
+	public void setMembersPanel(MembersPanel membersPanel) {
+		this.membersPanel = membersPanel;
+	}
+	public CalendarPanel getCalendarPanel() {
+		return calendarPanel;
+	}
+	public void setCalendarPanel(CalendarPanel calendarPanel) {
+		this.calendarPanel = calendarPanel;
+	}
+	public static int getPanelWidth() {
+		return PANEL_WIDTH;
+	}
+	public static int getPanelHeight() {
+		return PANEL_HEIGHT;
 	}
 }

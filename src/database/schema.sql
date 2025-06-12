@@ -6,7 +6,6 @@ CREATE TABLE users (
     username TEXT NOT NULL UNIQUE,
     email TEXT NOT NULL UNIQUE,
     password_hash TEXT NOT NULL
-    -- You can add a CHECK constraint for email if needed
 );
 
 -- CLUBS
@@ -62,6 +61,19 @@ CREATE TABLE task_assignees (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
+-- EVENTS
+CREATE TABLE events (
+    event_id TEXT PRIMARY KEY,
+    club_id TEXT NOT NULL,
+    title TEXT NOT NULL,
+    date TEXT NOT NULL,
+    time TEXT,
+    location TEXT,
+    description TEXT,
+    FOREIGN KEY (club_id) REFERENCES clubs(club_id) ON DELETE CASCADE,
+    UNIQUE (club_id, title, date, time)
+);
+
 -- MEETINGS
 CREATE TABLE meetings (
     meeting_id TEXT PRIMARY KEY,
@@ -72,17 +84,6 @@ CREATE TABLE meetings (
     location TEXT,
     description TEXT,
     recurrence TEXT DEFAULT 'NONE',
-    FOREIGN KEY (club_id) REFERENCES clubs(club_id) ON DELETE CASCADE
-);
-
--- EVENTS
-CREATE TABLE events (
-    event_id TEXT PRIMARY KEY,
-    club_id TEXT NOT NULL,
-    title TEXT NOT NULL,
-    date TEXT NOT NULL,
-    time TEXT,
-    location TEXT,
-    description TEXT,
-    FOREIGN KEY (club_id) REFERENCES clubs(club_id) ON DELETE CASCADE
+    FOREIGN KEY (club_id) REFERENCES clubs(club_id) ON DELETE CASCADE,
+    UNIQUE (club_id, title, date, time)
 );

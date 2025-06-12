@@ -2,9 +2,9 @@ package view;
 
 import java.awt.*;
 import java.util.List;
-
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class AnnouncementsPanel extends RoundedPanel {
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -26,6 +26,8 @@ public class AnnouncementsPanel extends RoundedPanel {
 
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public AnnouncementsPanel(int radius, List<String[]> data) {
+		
+//		Parent object constructor
 		super(radius);
 		
 //		Load announcements list
@@ -54,9 +56,10 @@ public class AnnouncementsPanel extends RoundedPanel {
 //	GET LIGHTER COLOUR --------------------------------------------------------------------------------------------
 	private Color getLighterColor(Color color, float factor) {
 		
-		// Clamp factor between 0 and 1
+//		Clamp factor between 0 and 1
 		factor = Math.max(0f, Math.min(factor, 1f));
 
+//		Alter RGB values
 		int r = (int) (color.getRed() + (255 - color.getRed()) * factor);
 		int g = (int) (color.getGreen() + (255 - color.getGreen()) * factor);
 		int b = (int) (color.getBlue() + (255 - color.getBlue()) * factor);
@@ -74,8 +77,6 @@ public class AnnouncementsPanel extends RoundedPanel {
 	
 //	SCROLL CONTENT ------------------------------------------------------------------------------------------------
 	private void setUpScrollContent() {
-		
-//		Set up panel
 		scrollContent.setBounds(0, 0, 400, PANEL_HEIGHT - 100);
 		scrollContent.setLayout(new BoxLayout(scrollContent, BoxLayout.Y_AXIS));
 		scrollContent.setBackground(green);
@@ -126,10 +127,10 @@ public class AnnouncementsPanel extends RoundedPanel {
     }
 
 //	GETTERS + SETTERS ----------------------------------------------------------------------------------------------
-	public static int getPanelWidth() {
+	public int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-	public static int getPanelHeight() {
+	public int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
 	public JLabel getTitleLabel() {
@@ -149,5 +150,11 @@ public class AnnouncementsPanel extends RoundedPanel {
 	}
 	public void setScrollContent(JPanel scrollContent) {
 		this.scrollContent = scrollContent;
+	}
+	public List<String[]> getData() {
+		return data;
+	}
+	public void setData(List<String[]> data) {
+		this.data = data;
 	}	
 }

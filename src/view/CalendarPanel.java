@@ -7,37 +7,42 @@ import java.time.*;
 import java.time.format.TextStyle;
 import java.util.*;
 
+@SuppressWarnings("serial")
 public class CalendarPanel extends RoundedPanel {
 
 //	FIELDS --------------------------------------------------------------------------------------------------------
 
-	// Constants
+//	Constants
 	private static final int PANEL_WIDTH = 850;
 	private static final int PANEL_HEIGHT = 570;
 	private static final int HEADER_HEIGHT = 50;
 
-	// Colors
-	private final Color red = Color.decode("#fc7b7b");
+//	Colours
 	private final Color gray = Color.decode("#cccccc");
 
-	// Components
+//	Components
 	private JLabel titleLabel;
 	private JPanel dayGridPanel;
 	private LocalDate currentMonth;
 
-	// Calendar Data (Map of LocalDate to List of Event Titles or IDs — change later)
+//	Calendar Data (Map of LocalDate to List of Events)
 	private Map<LocalDate, java.util.List<String>> events = new HashMap<>();
 
 //	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 	public CalendarPanel(int radius) {
 		
+//		Parent object constructor
 		super(radius);
+		
+//		Set up panel + components
 		initializePanel();
 		renderCalendar(LocalDate.now().withDayOfMonth(1));
 	}
 
 //	INITIALIZE PANEL ----------------------------------------------------------------------------------------------
 	private void initializePanel() {
+		
+//		Set up the panel
 		setBounds(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
 		setLayout(null);
 		setBackground(Color.WHITE);
@@ -54,6 +59,7 @@ public class CalendarPanel extends RoundedPanel {
 		add(dayGridPanel);
 	}
 	
+//	CLEAR EVENTS --------------------------------------------------------------------------------------------------
 	public void clearEvents() {
 	    events.clear();
 	}
@@ -133,9 +139,7 @@ public class CalendarPanel extends RoundedPanel {
 				eventContainer.add(eventLabel);
 			}
 		}
-
 		panel.add(eventContainer, BorderLayout.CENTER);
-
 		return panel;
 	}
 
@@ -157,10 +161,10 @@ public class CalendarPanel extends RoundedPanel {
 	}
 
 //	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
-	public static int getPanelWidth() {
+	public int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-	public static int getPanelHeight() {
+	public int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
 	public JLabel getTitleLabel() {

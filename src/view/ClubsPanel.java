@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.List;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class ClubsPanel extends JPanel {
 
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -13,16 +14,22 @@ public class ClubsPanel extends JPanel {
 	private static final int PANEL_WIDTH = 1920;
 	private static final int PANEL_HEIGHT = 360;
 	
-//	Colors
+//	Colours
 	private final Color offWhite = Color.decode("#f3f3f3");
 	private Color[] colours = new Color[5];
 	
 //	Components
 	private ClubsPanelHeader header = new ClubsPanelHeader();
-	private static List<ClubDisplay> clubs = new ArrayList<>();
+	private List<ClubDisplay> clubs = new ArrayList<>();
+	
+//	Parameters
+	private List<String[]> data;
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
-	public ClubsPanel() {
+	public ClubsPanel(List<String[]> data) {
+		
+//		Parameters
+		this.data = data;
 		
 //		Set up the panel
 		initializePanel();
@@ -34,7 +41,7 @@ public class ClubsPanel extends JPanel {
 //		Set up colours
 		setUpColours();
 		
-//		Add clubs (HARDCODING PURPOSES, REMOVE LATER)
+//		Add clubs
 		addAllClubs();
 		
 //		Club Display
@@ -62,11 +69,13 @@ public class ClubsPanel extends JPanel {
 		colours[4] = Color.decode("#55e5e1");
 	}
 	
-//	ADD ALL CLUBS (HARDCODING PURPOSES, REMOVE LATER) 
-	private void addAllClubs() {
-		addClub(colours[0], "Math Club", "June 11th @ 3:00 pm", "145flj3"); 
-		addClub(colours[1], "DECA", "June 17th @ 7:30am", "4fh3j0i");
-		addClub(colours[2], "Breeze Code", "June 19th @ 3:00pm", "8jhg39d");
+//	ADD ALL CLUBS -------------------------------------------------------------------------------------------------
+	private void addAllClubs() {	
+		int i = 0;
+		for(String[] s : data) {
+			addClub(colours[i], s[0], s[1], s[2]);
+			i++;
+		}
 	}
 	
 //	ADD CLUB ------------------------------------------------------------------------------------------------------
@@ -75,11 +84,11 @@ public class ClubsPanel extends JPanel {
 		clubs.add(newClub);
 	}
 
-//	GETTERS -------------------------------------------------------------------------------------------------------
-	public static int getPanelWidth() {
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-	public static int getPanelHeight() {
+	public int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
 	public Color[] getColours() {
@@ -94,7 +103,7 @@ public class ClubsPanel extends JPanel {
 	public void setHeader(ClubsPanelHeader header) {
 		this.header = header;
 	}
-	public static List<ClubDisplay> getClubs() {
+	public List<ClubDisplay> getClubs() {
 		return clubs;
 	}
 	public void setClubs(List<ClubDisplay> clubs) {

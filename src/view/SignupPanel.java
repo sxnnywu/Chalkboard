@@ -1,17 +1,10 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import javax.swing.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
+@SuppressWarnings("serial")
 public class SignupPanel extends JPanel{
 	
 //	FIELDS  --------------------------------------------------------------------------------------------------------
@@ -25,11 +18,9 @@ public class SignupPanel extends JPanel{
 	private final Color grey = Color.decode("#434242");
 	private final Color offWhite = Color.decode("#f3f3f3");
 	
-//	Labels
+//	Components
 	private JLabel titleLabel = new JLabel("Sign Up");
 	private JLabel loginLabel = new JLabel("Already have an account?");
-	
-//	Buttons
 	private RoundedButton loginButton = new RoundedButton("Log In", darkGrey, grey,  new Color(255, 255, 255, 50));
 	private RoundedButton signupButton = new RoundedButton("Sign Up", darkGrey, grey,  new Color(255, 255, 255, 50));
 	
@@ -54,7 +45,7 @@ public class SignupPanel extends JPanel{
 		inputPanel.setBounds(110, 215, inputPanel.getPanelWidth(), inputPanel.getPanelHeight());
 		add(inputPanel);
 
-//		Set up all elements
+//		Set up components
 		setUpLogo();
 		setUpTitle();
 		setUpLoginButton();
@@ -71,18 +62,28 @@ public class SignupPanel extends JPanel{
 	
 //	GET SCALED IMAGE ----------------------------------------------------------------------------------------------
 	private Image getScaledImage(Image srcImg, int width, int height) {
-		BufferedImage resizedImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2 = resizedImg.createGraphics();
-		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-		g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2.drawImage(srcImg, 0, 0, width, height, null);
-		g2.dispose();
-		return resizedImg;
+	    
+//		New buffered image with desired width, height, and transparency support (ARGB)
+	    BufferedImage resizedImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+	    
+//	   	Graphics2D context from the buffered image
+	    Graphics2D g2 = resizedImg.createGraphics();
+	    
+//	    Rendering hints to improve image scaling quality
+	    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC); // Smooth interpolation
+	    g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);             // High-quality rendering
+	    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);            // Enable antialiasing for edges
+	    
+//	    Draw the original image scaled to the new dimensions
+	    g2.drawImage(srcImg, 0, 0, width, height, null);
+	    g2.dispose();
+	    
+	    return resizedImg;
 	}
 	
 //	SET UP LOGO ---------------------------------------------------------------------------------------------------
 	private void setUpLogo() {
+		
 //		Logo image
 		logo.setBounds(40, 30, 100, 100);
 		add(logo);

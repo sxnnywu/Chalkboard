@@ -1,7 +1,6 @@
 package model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.UUID;
 
 public class Event extends ScheduleItem{

@@ -2,11 +2,11 @@ package view;
 
 import java.awt.Color;
 
-import javax.swing.JPanel;
-
+@SuppressWarnings("serial")
 public class SignupInputPanel extends RoundedPanel {
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
+	
 //	Constants
 	private static final int PANEL_WIDTH = 1300;
 	private static final int PANEL_HEIGHT = 420;
@@ -25,8 +25,10 @@ public class SignupInputPanel extends RoundedPanel {
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public SignupInputPanel() {
 		
-//		Set up the panel
+//		Parent object constructor
 		super(60);
+		
+//		Set up the panel & components
 		initializePanel();
 		setUpInputFields();
 	}
@@ -36,7 +38,6 @@ public class SignupInputPanel extends RoundedPanel {
 		setBounds(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
         setLayout(null);
         setBackground(offWhite);
-//  	setOpaque(true);
 	}
 	
 //	SET UP INPUT FIELDS -------------------------------------------------------------------------------------------
@@ -104,13 +105,10 @@ public class SignupInputPanel extends RoundedPanel {
 	public void setConfirmField(InputField confirmField) {
 		this.confirmField = confirmField;
 	}
-	public static int getPanelWidth() {
+	public int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-	public static int getPanelHeight() {
+	public int getPanelHeight() {
 		return PANEL_HEIGHT;
-	}
-	public Color getOffWhite() {
-		return offWhite;
 	}
 }

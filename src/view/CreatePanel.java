@@ -1,10 +1,9 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
-
+import java.awt.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class CreatePanel extends RoundedPanel {
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -26,10 +25,13 @@ public class CreatePanel extends RoundedPanel {
 	private InputField meetingInput = new InputField("Meeting Date & Time", 60, true);
 	private InputField locationInput = new InputField("Meeting Location", 60, true);
 	private JLabel frequencyLabel = new JLabel("Meeting Frequency");
+	@SuppressWarnings("rawtypes")
 	private JComboBox frequencyBox = new JComboBox();
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public CreatePanel(int radius) {
+		
+//		Parent object constructor
 		super(radius);
 		
 //		Set up the panel
@@ -52,9 +54,10 @@ public class CreatePanel extends RoundedPanel {
 //	GET LIGHTER COLOUR --------------------------------------------------------------------------------------------
 	private Color getLighterColor(Color color, float factor) {
 		
-		// Clamp factor between 0 and 1
+//		Clamp factor between 0 and 1
 		factor = Math.max(0f, Math.min(factor, 1f));
 
+//		Alter RGB values
 		int r = (int) (color.getRed() + (255 - color.getRed()) * factor);
 		int g = (int) (color.getGreen() + (255 - color.getGreen()) * factor);
 		int b = (int) (color.getBlue() + (255 - color.getBlue()) * factor);
@@ -100,6 +103,7 @@ public class CreatePanel extends RoundedPanel {
 	}
 	
 //	ADD FREQUENCY OPTIONS -----------------------------------------------------------------------------------------
+	@SuppressWarnings("unchecked")
 	private void setUpComboBox() {
 		
 //		Frequency label
@@ -171,9 +175,11 @@ public class CreatePanel extends RoundedPanel {
 	public void setFrequencyLabel(JLabel frequencyLabel) {
 		this.frequencyLabel = frequencyLabel;
 	}
+	@SuppressWarnings("rawtypes")
 	public JComboBox getFrequencyBox() {
 		return frequencyBox;
 	}
+	@SuppressWarnings("rawtypes")
 	public void setFrequencyBox(JComboBox frequencyBox) {
 		this.frequencyBox = frequencyBox;
 	}

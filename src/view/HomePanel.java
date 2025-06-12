@@ -1,9 +1,11 @@
 package view;
 
+import java.util.List;
 import java.awt.*;
 import java.awt.image.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class HomePanel extends JPanel {
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -14,7 +16,6 @@ public class HomePanel extends JPanel {
 	
 //	Colours
 	private final Color darkGrey = Color.decode("#2e2e2e");
-	private final Color grey = Color.decode("#434242");
 	private final Color offWhite = Color.decode("#f3f3f3");
 	
 //	Logo text
@@ -25,23 +26,23 @@ public class HomePanel extends JPanel {
 	private Image scaledLogo = getScaledImage(unscaledLogo.getImage(), 100, 100);
 	private JLabel logo = new JLabel(new ImageIcon(scaledLogo));
 	
-//	Labels
+//	Welcome label
 	private JLabel welcomeLabel;
 	
 //	Clubs panel
-	private ClubsPanel clubPanel = new ClubsPanel();
+	private ClubsPanel clubPanel;
 	
 //	Menu icon
 	private ImageIcon unscaledMenu = new ImageIcon("icons/menu.png");
 	private JButton menuIcon = new JButton(new ImageIcon(unscaledMenu.getImage().getScaledInstance(42, 42, java.awt.Image.SCALE_SMOOTH)));
 	
-//	First name
+//	Parameters
 	private String firstName;
 	
 //	CONSTRUCTOR --------------------------------------------------------------------------------------------------
-	public HomePanel(String firstName) { 
+	public HomePanel(String firstName, List<String[]> clubData) { 
 		
-//		First name
+//		Parameters
 		this.firstName = firstName;
 		
 //		Set up the panel
@@ -53,6 +54,8 @@ public class HomePanel extends JPanel {
 		setUpMenuIcon();
 		
 //		Club panel
+//		CLUB DATA: CLUB NAME, NEXT MEETING, JOIN CODE
+		clubPanel = new ClubsPanel(clubData);
 		clubPanel.setBounds(0, 280, clubPanel.getPanelWidth(), clubPanel.getPanelHeight());
 		add(clubPanel);
 	}
@@ -67,18 +70,28 @@ public class HomePanel extends JPanel {
 	
 //	GET SCALED IMAGE ----------------------------------------------------------------------------------------------
 	private Image getScaledImage(Image srcImg, int width, int height) {
-		BufferedImage resizedImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2 = resizedImg.createGraphics();
-		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-		g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2.drawImage(srcImg, 0, 0, width, height, null);
-		g2.dispose();
-		return resizedImg;
+	    
+//		New buffered image with desired width, height, and transparency support (ARGB)
+	    BufferedImage resizedImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+	    
+//	   	Graphics2D context from the buffered image
+	    Graphics2D g2 = resizedImg.createGraphics();
+	    
+//	    Rendering hints to improve image scaling quality
+	    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC); // Smooth interpolation
+	    g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);             // High-quality rendering
+	    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);            // Enable antialiasing for edges
+	    
+//	    Draw the original image scaled to the new dimensions
+	    g2.drawImage(srcImg, 0, 0, width, height, null);
+	    g2.dispose();
+	    
+	    return resizedImg;
 	}
 	
 //	SET UP LOGO ---------------------------------------------------------------------------------------------------
 	private void setUpLogo() {
+		
 //		Logo image
 		logo.setBounds(40, 30, 100, 100);
 		add(logo);

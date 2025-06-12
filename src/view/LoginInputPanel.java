@@ -1,17 +1,17 @@
 package view;
 
-import java.awt.Color;
+import java.awt.*;
 
-import javax.swing.JPanel;
-
+@SuppressWarnings("serial")
 public class LoginInputPanel extends RoundedPanel {
 
 //	FIELDS --------------------------------------------------------------------------------------------------------
+	
 //	Constants
 	private static final int PANEL_WIDTH = 1300;
 	private static final int PANEL_HEIGHT = 250;
 	
-//	Colors
+//	Colours
 	private final Color offWhite = Color.decode("#f3f3f3");
 	
 //	Input fields
@@ -20,8 +20,6 @@ public class LoginInputPanel extends RoundedPanel {
 	
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public LoginInputPanel() {
-		
-//		Set up the panel
 		super(60);
 		initializePanel();
 		setUpInputFields();
@@ -32,13 +30,12 @@ public class LoginInputPanel extends RoundedPanel {
 		setBounds(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
         setLayout(null);
         setBackground(offWhite);
-//  	setOpaque(true);
 	}
 	
 //	SET UP INPUT FIELDS -------------------------------------------------------------------------------------------
 	private void setUpInputFields() {
 		
-//		Username
+//		User name
 		userField.setBounds(70, 35, 1150, 70);
 		add(userField);
 		
@@ -47,11 +44,23 @@ public class LoginInputPanel extends RoundedPanel {
 		add(passwordField);
 	}
 
-//	GETTERS -------------------------------------------------------------------------------------------------------
-	public static int getPanelWidth() {
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-	public static int getPanelHeight() {
+	public int getPanelHeight() {
 		return PANEL_HEIGHT;
+	}
+	public InputField getUserField() {
+		return userField;
+	}
+	public void setUserField(InputField userField) {
+		this.userField = userField;
+	}
+	public InputField getPasswordField() {
+		return passwordField;
+	}
+	public void setPasswordField(InputField passwordField) {
+		this.passwordField = passwordField;
 	}
 }

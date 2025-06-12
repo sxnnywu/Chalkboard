@@ -3,11 +3,10 @@ package view;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
-
 import javax.swing.*;
+import model.*;
 
-import model.ScheduleItem;
-
+@SuppressWarnings("serial")
 public class DashboardPanel extends JPanel {
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -18,8 +17,6 @@ public class DashboardPanel extends JPanel {
 	
 //	Colours
 	private final Color darkGrey = Color.decode("#2e2e2e");
-	private final Color grey = Color.decode("#434242");
-	private final Color offWhite = Color.decode("#f3f3f3");
 	
 //	Panels
 	private DashboardHeaderPanel header = new DashboardHeaderPanel();

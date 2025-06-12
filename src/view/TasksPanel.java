@@ -1,15 +1,11 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.util.List;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
+import javax.swing.*;
+import javax.swing.table.*;
 
+@SuppressWarnings("serial")
 public class TasksPanel extends RoundedPanel {
 
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -33,6 +29,7 @@ public class TasksPanel extends RoundedPanel {
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public TasksPanel(int radius, List<String[]> data) {
 		
+//		Parameters
 		super(radius);
 		this.data = data;
 		
@@ -54,9 +51,10 @@ public class TasksPanel extends RoundedPanel {
 //	GET LIGHTER COLOUR --------------------------------------------------------------------------------------------
 	private Color getLighterColor(Color color, float factor) {
 		
-		// Clamp factor between 0 and 1
+//		Clamp factor between 0 and 1
 		factor = Math.max(0f, Math.min(factor, 1f));
 
+//		RGB values
 		int r = (int) (color.getRed() + (255 - color.getRed()) * factor);
 		int g = (int) (color.getGreen() + (255 - color.getGreen()) * factor);
 		int b = (int) (color.getBlue() + (255 - color.getBlue()) * factor);
@@ -75,16 +73,16 @@ public class TasksPanel extends RoundedPanel {
 //	SET UP TABLE ---------------------------------------------------------------------------------------------------
 	private void setUpTable(List<String[]> data) {
 
+//		Columns
 		String[] columns = { "Deliverables", "Assignee", "Deadline", "Status", "Notes" };
 	    
-//		Convert data (arraylist) to dataArray (array) - FIXED DIMENSIONS
+//		Convert data array list to array
 	    String[][] dataArray = new String[data.size()][5];
-	    for(int i = 0; i < data.size(); i++) {
+	    for(int i = 0; i < data.size(); i++) 
 	        dataArray[i] = data.get(i);
-	    }
 	    
-//	    Rest of your code remains the same
-	    DefaultTableModel model = new DefaultTableModel(dataArray, columns) {
+//	    Table model
+		DefaultTableModel model = new DefaultTableModel(dataArray, columns) {
 	        @Override
 	        public boolean isCellEditable(int row, int column) {
 	            return false;
@@ -117,11 +115,35 @@ public class TasksPanel extends RoundedPanel {
 		add(scrollPane);
 	}
 	
-	public static int getPanelWidth() {
+//	GETTERS + SETTERS
+	public int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-
-	public static int getPanelHeight() {
+	public int getPanelHeight() {
 		return PANEL_HEIGHT;
+	}
+	public List<String[]> getData() {
+		return data;
+	}
+	public void setData(List<String[]> data) {
+		this.data = data;
+	}
+	public JLabel getTitleLabel() {
+		return titleLabel;
+	}
+	public void setTitleLabel(JLabel titleLabel) {
+		this.titleLabel = titleLabel;
+	}
+	public JTable getTaskTable() {
+		return taskTable;
+	}
+	public void setTaskTable(JTable taskTable) {
+		this.taskTable = taskTable;
+	}
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
 	}
 }

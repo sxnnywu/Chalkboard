@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+@SuppressWarnings("serial")
 public class MembersPanel extends RoundedPanel{
 
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -27,6 +28,7 @@ public class MembersPanel extends RoundedPanel{
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public MembersPanel(int radius) {
 		
+//		Parent object constructor
 		super(radius);
 
 //		Set up the panel
@@ -47,9 +49,10 @@ public class MembersPanel extends RoundedPanel{
 //	GET LIGHTER COLOUR --------------------------------------------------------------------------------------------
 	private Color getLighterColor(Color color, float factor) {
 		
-		// Clamp factor between 0 and 1
+//		Clamp factor between 0 and 1
 		factor = Math.max(0f, Math.min(factor, 1f));
 
+//		Alter RGB values
 		int r = (int) (color.getRed() + (255 - color.getRed()) * factor);
 		int g = (int) (color.getGreen() + (255 - color.getGreen()) * factor);
 		int b = (int) (color.getBlue() + (255 - color.getBlue()) * factor);
@@ -68,9 +71,11 @@ public class MembersPanel extends RoundedPanel{
 //	SET UP SCROLLPANE ----------------------------------------------------------------------------------------------
 	private void setUpScrollPane() {
 	    
+//		Scroll content
 		scrollContent.setLayout(new javax.swing.BoxLayout(scrollContent, javax.swing.BoxLayout.Y_AXIS));
 	    scrollContent.setBackground(getLighterColor(red, 0.15f));
 	    
+//	    Scroll pane
 	    scrollPane = new JScrollPane(scrollContent);
 	    scrollPane.setBounds(20, 80, PANEL_WIDTH - 40, PANEL_HEIGHT - 100);
 	    scrollPane.setBorder(null);
@@ -110,21 +115,29 @@ public class MembersPanel extends RoundedPanel{
 	    scrollContent.repaint();
 	}
 
+//	GETTERS + SETTERS ----------------------------------------------------------------------------------------------
 	public JLabel getTitleLabel() {
 		return titleLabel;
 	}
-
 	public void setTitleLabel(JLabel titleLabel) {
 		this.titleLabel = titleLabel;
 	}
-
-	public static int getPanelWidth() {
+	public int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-
-	public static int getPanelHeight() {
+	public int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
-	
-	
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
+	}
+	public JPanel getScrollContent() {
+		return scrollContent;
+	}
+	public void setScrollContent(JPanel scrollContent) {
+		this.scrollContent = scrollContent;
+	}
 }

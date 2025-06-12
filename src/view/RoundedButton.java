@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+@SuppressWarnings("serial")
 public class RoundedButton extends JButton {
     
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -11,7 +12,7 @@ public class RoundedButton extends JButton {
     private Color hoverColor;
     private Color borderColor = null; // Optional border color
     private boolean hovered = false;
-    private Color shadowColor;
+    private Color shadowColor; // TODO: Add if time
 
 // 	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
     public RoundedButton(String text, Color backgroundColor, Color hoverColor, Color shadowColor) {
@@ -68,7 +69,6 @@ public class RoundedButton extends JButton {
             g2.setStroke(new BasicStroke(2));
             g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, arc, arc);
         }
-
         super.paintComponent(g2);
         g2.dispose();
     }
@@ -78,4 +78,33 @@ public class RoundedButton extends JButton {
     protected void paintBorder(Graphics g) { }
     @Override
     public boolean isOpaque() { return false; }
+
+// 	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public Color getShadowColor() {
+		return shadowColor;
+	}
+	public Color getBackgroundColor() {
+		return backgroundColor;
+	}
+	public void setBackgroundColor(Color backgroundColor) {
+		this.backgroundColor = backgroundColor;
+	}
+	public Color getHoverColor() {
+		return hoverColor;
+	}
+	public void setHoverColor(Color hoverColor) {
+		this.hoverColor = hoverColor;
+	}
+	public boolean isHovered() {
+		return hovered;
+	}
+	public void setHovered(boolean hovered) {
+		this.hovered = hovered;
+	}
+	public Color getBorderColor() {
+		return borderColor;
+	}
+	public void setShadowColor(Color shadowColor) {
+		this.shadowColor = shadowColor;
+	}
 }

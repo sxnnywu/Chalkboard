@@ -68,18 +68,22 @@ public class Task {
 		return deadline;
 	}
 	public String getStringDeadline() {
+		
+//		Check if no deadline was set
 		if (deadline == null) return "";
 
 	    String month = deadline.getMonth().getDisplayName(java.time.format.TextStyle.FULL, java.util.Locale.ENGLISH);
 	    int day = deadline.getDayOfMonth();
 	    String suffix = getDaySuffix(day);
-
 	    return month + " " + day + suffix;
 	}
+	
 	private String getDaySuffix(int day) {
-	    if (day >= 11 && day <= 13) {
+		
+//	    Between 11 and 13
+		if (day >= 11 && day <= 13) 
 	        return "th";
-	    }
+	    
 	    switch (day % 10) {
 	        case 1: return "st";
 	        case 2: return "nd";
@@ -87,6 +91,7 @@ public class Task {
 	        default: return "th";
 	    }
 	}
+	
 	public void setDeadline(LocalDate deadline) {
 		
 //		Check if deadline is in the past
@@ -97,13 +102,21 @@ public class Task {
 	public List<Member> getAssignees() {
 		return assignees;
 	}
+	
 	public String getStringAssignees() {
+		
+//		If no assignees
 		if (assignees == null || assignees.isEmpty()) 
 	        return "";
+		
+//		String builder
 	    StringBuilder list = new StringBuilder();
-
+	    
+//	    Loop through assignees and add by first name
 	    for (int i = 0; i < assignees.size(); i++) {
 	        list.append(assignees.get(i).getFirstName());
+	        
+//	        If not last assignee, add a comma
 	        if (i < assignees.size() - 1) 
 	            list.append(", ");
 	    }

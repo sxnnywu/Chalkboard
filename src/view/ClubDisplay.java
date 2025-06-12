@@ -3,6 +3,7 @@ package view;
 import java.awt.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class ClubDisplay extends RoundedPanel{
 
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -14,7 +15,6 @@ public class ClubDisplay extends RoundedPanel{
 	
 //	Colours
 	Color backgroundColor;
-	private final Color offWhite = Color.decode("#f3f3f3");
 	private final Color darkGrey = Color.decode("#2e2e2e");
 	
 //	Components
@@ -30,7 +30,10 @@ public class ClubDisplay extends RoundedPanel{
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public ClubDisplay(Color color, String clubName, String nextMeeting, String joinCode) {
 		
+//		Parent object constructor
 		super(RADIUS);
+		
+//		Parameters
 		backgroundColor = color;
 		this.clubName = clubName;
 		this.nextMeeting = nextMeeting;
@@ -55,9 +58,10 @@ public class ClubDisplay extends RoundedPanel{
 //	GET LIGHTER COLOUR --------------------------------------------------------------------------------------------
 	private Color getLighterColor(Color color, float factor) {
 		
-		// Clamp factor between 0 and 1
+//		Clamp factor between 0 and 1
 		factor = Math.max(0f, Math.min(factor, 1f));
 
+//		Alter RGB values
 		int r = (int) (color.getRed() + (255 - color.getRed()) * factor);
 		int g = (int) (color.getGreen() + (255 - color.getGreen()) * factor);
 		int b = (int) (color.getBlue() + (255 - color.getBlue()) * factor);
@@ -91,11 +95,11 @@ public class ClubDisplay extends RoundedPanel{
 		add(joinCodeLabel);
 	}
 	
-//	GETTERS -------------------------------------------------------------------------------------------------------
-	public static int getPanelWidth() {
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-	public static int getPanelHeight() {
+	public int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
 	public Color getBackgroundColor() {

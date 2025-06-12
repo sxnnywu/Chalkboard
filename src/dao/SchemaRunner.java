@@ -19,6 +19,7 @@ public class SchemaRunner {
         }
     }
 
+// 	MAIN METHOD
     public static void main(String[] args) {
         String schemaFile = "src/database/schema.sql";  
 

@@ -1,9 +1,9 @@
 package view;
 
 import java.awt.*;
-
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class InputField extends JPanel {
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -13,8 +13,9 @@ public class InputField extends JPanel {
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public InputField(String labelText, int columns, boolean centred) {
 		
-		setLayout(new BorderLayout(0, 5)); // vertical spacing
-        setOpaque(false); // important if you want transparency
+//		Set up the panel
+		setLayout(new BorderLayout(0, 5)); // Vertical spacing 
+        setOpaque(false); 
 		
 //    	Label
         label = new JLabel(labelText);

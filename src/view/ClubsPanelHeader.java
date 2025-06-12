@@ -1,11 +1,9 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
+import javax.swing.*;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
+@SuppressWarnings("serial")
 public class ClubsPanelHeader extends JPanel {
 
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -14,7 +12,7 @@ public class ClubsPanelHeader extends JPanel {
 	private static final int PANEL_WIDTH = 1920;
 	private static final int PANEL_HEIGHT = 80;
 	
-//	Colors
+//	Colours
 	private final Color darkGrey = Color.decode("#2e2e2e");
 	private final Color offWhite = Color.decode("#f3f3f3");
 	private final Color grey = Color.decode("#cccccc");
@@ -27,7 +25,10 @@ public class ClubsPanelHeader extends JPanel {
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public ClubsPanelHeader() {
 		
+//		Set up the panel
 		initializePanel();
+		
+//		Set up components
 		setUpLabel();
 		setUpCreateButton();
 		setUpJoinButton();
@@ -50,8 +51,7 @@ public class ClubsPanelHeader extends JPanel {
 
 //	SET UP CREATE BUTTON ------------------------------------------------------------------------------------------
 	private void setUpCreateButton() {
-		
-//		ADD ICON!!!!!!!!!
+//		TODO: Add icon if time
 		createButton.setForeground(darkGrey);
 		createButton.setFont(new Font("Gill Sans MT", Font.BOLD, 18));
 		createButton.setBounds(1100, 15, 180, 50);
@@ -60,19 +60,18 @@ public class ClubsPanelHeader extends JPanel {
 	
 //	SET UP JOIN BUTTON --------------------------------------------------------------------------------------------
 	private void setUpJoinButton() {
-		
-//		ADD ICON!
+//		TODO: Add icon if time
 		joinButton.setForeground(darkGrey);
 		joinButton.setFont(new Font("Gill Sans MT", Font.BOLD, 18));
 		joinButton.setBounds(1300, 15, 180, 50);
 		add(joinButton);
 	}
 	
-//	GETTERS -------------------------------------------------------------------------------------------------------
-	public static int getPanelWidth() {
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-	public static int getPanelHeight() {
+	public int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
 	public JLabel getLabel() {
@@ -83,5 +82,14 @@ public class ClubsPanelHeader extends JPanel {
 	}
 	public RoundedButton getJoinButton() {
 		return joinButton;
+	}
+	public void setLabel(JLabel label) {
+		this.label = label;
+	}
+	public void setCreateButton(RoundedButton createButton) {
+		this.createButton = createButton;
+	}
+	public void setJoinButton(RoundedButton joinButton) {
+		this.joinButton = joinButton;
 	}
 }

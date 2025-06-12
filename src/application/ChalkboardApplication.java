@@ -1,13 +1,21 @@
+/*
+ * Name: Sunny Wu
+ * Deadline: June 13th, 2025
+ * Course Code: ICS4U1-03
+ * Title: Chalkboard
+ * Description:
+ * Features:
+ * Major Skills:
+ * Areas of Concern:
+ */
+
 package application;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import controller.MainController;
-import dao.DBUtil;
+import java.sql.*;
+import controller.*;
+import dao.*;
 
 public class ChalkboardApplication {
-	
 	public static void  main(String[] args) {
 		
 //		Testing database connection
@@ -17,11 +25,11 @@ public class ChalkboardApplication {
 		    System.out.println("❌ Failed: " + e.getMessage());
 		}
 		
+//		Create main controller
 		try {
 			MainController mainController = new MainController();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
 }

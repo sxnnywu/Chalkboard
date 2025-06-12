@@ -3,6 +3,7 @@ package view;
 import java.awt.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class ClubDisplayHeader extends RoundedPanel{
 	
 //	FIELDS ----------------------------------------------------------------------------------------------------------
@@ -11,7 +12,7 @@ public class ClubDisplayHeader extends RoundedPanel{
 	private static final int PANEL_WIDTH = 460;
 	private static final int PANEL_HEIGHT = 70;
 	
-//	Colors
+//	Colours
 	private Color backgroundColor;
 	private final Color offWhite = Color.decode("#f3f3f3");
 	private final Color darkGrey = Color.decode("#2e2e2e");
@@ -27,9 +28,9 @@ public class ClubDisplayHeader extends RoundedPanel{
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public ClubDisplayHeader(int radius, Color color, String club) {
 		
+//		Parameters
 		super(radius);
 		this.radius = radius;
-		
 		backgroundColor = color;
 		this.club = club;
 		
@@ -87,11 +88,11 @@ public class ClubDisplayHeader extends RoundedPanel{
 	    super.paintChildren(g);
 	}
 
-//	GETTERS -------------------------------------------------------------------------------------------------------
-	public static int getPanelWidth() {
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-	public static int getPanelHeight() {
+	public int getPanelHeight() {
 		return PANEL_HEIGHT;
 	}
 	public Color getBackgroundColor() {
@@ -100,19 +101,15 @@ public class ClubDisplayHeader extends RoundedPanel{
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
-
 	public String getClub() {
 		return club;
 	}
-
 	public void setClub(String club) {
 		this.club = club;
 	}
-
 	public int getRadius() {
 		return radius;
 	}
-
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}

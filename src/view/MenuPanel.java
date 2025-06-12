@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class MenuPanel extends JPanel {
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -18,6 +19,9 @@ public class MenuPanel extends JPanel {
 	private final Color offWhite = Color.decode("#f3f3f3");
 	private final Color darkGrey = Color.decode("#2e2e2e");
 	private final Color red = Color.decode("#fc7b7b");
+	
+//	Parameters
+	private List<String[]> clubData;
 	
 //	Icons
 	private final ImageIcon addIcon = new ImageIcon("icons/add.png");
@@ -45,7 +49,10 @@ public class MenuPanel extends JPanel {
 	private RoundedButton logoutButton = new RoundedButton("Log Out", red, getLighterColor(red, 0.2f), Color.BLACK);
 	
 //	CONSTRUCTOR --------------------------------------------------------------------------------------------------
-	public MenuPanel() {
+	public MenuPanel(List<String[]> clubData) {
+		
+//		Parameters
+		this.clubData = clubData;
 		
 //		Set up the panel
 		initializePanel();
@@ -70,9 +77,10 @@ public class MenuPanel extends JPanel {
 //	GET LIGHTER COLOUR --------------------------------------------------------------------------------------------
 	private Color getLighterColor(Color color, float factor) {
 		
-		// Clamp factor between 0 and 1
+//		Clamp factor between 0 and 1
 		factor = Math.max(0f, Math.min(factor, 1f));
 
+//		Alter RGB values
 		int r = (int) (color.getRed() + (255 - color.getRed()) * factor);
 		int g = (int) (color.getGreen() + (255 - color.getGreen()) * factor);
 		int b = (int) (color.getBlue() + (255 - color.getBlue()) * factor);
@@ -82,8 +90,6 @@ public class MenuPanel extends JPanel {
 	
 //	SET UP CLUBS LABEL -------------------------------------------------------------------------------------------
 	private void setUpClubsLabel() {
-		
-//		My clubs
 		myClubsLabel.setForeground(darkGrey);
 		myClubsLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 27));
 		myClubsLabel.setBounds(30, 40, 330, 40);
@@ -93,11 +99,11 @@ public class MenuPanel extends JPanel {
 //	SET UP CLUB BUTTONS ------------------------------------------------------------------------------------------
 	private void setUpClubs() {
 		
-//		List of clubs HARD CODED FOR TESTING PURPOSES
-		for(ClubDisplay clubDisplay : ClubsPanel.getClubs()) 
-			addClub(clubDisplay.getClubName());
+//		New menu buttons for each club
+		for(String[] s : clubData) 
+			addClub(s[0]);
 		
-//		Menu buttons
+//		Set up menu buttons
 		for(MenuButton club : clubs) {
 			club.setBounds(0, y, 330, BUTTON_HEIGHT);
 			add(club);

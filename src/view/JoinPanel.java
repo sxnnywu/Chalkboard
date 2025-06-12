@@ -3,6 +3,7 @@ package view;
 import java.awt.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class JoinPanel extends RoundedPanel {
 
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -25,6 +26,7 @@ public class JoinPanel extends RoundedPanel {
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public JoinPanel(int radius) {
 		
+//		Parent object constructor
 		super(radius);
 		
 //		Set up the panel
@@ -46,9 +48,10 @@ public class JoinPanel extends RoundedPanel {
 //	GET LIGHTER COLOUR --------------------------------------------------------------------------------------------
 	private Color getLighterColor(Color color, float factor) {
 		
-		// Clamp factor between 0 and 1
+//		Clamp factor between 0 and 1
 		factor = Math.max(0f, Math.min(factor, 1f));
 
+//		Alter RGB values
 		int r = (int) (color.getRed() + (255 - color.getRed()) * factor);
 		int g = (int) (color.getGreen() + (255 - color.getGreen()) * factor);
 		int b = (int) (color.getBlue() + (255 - color.getBlue()) * factor);

@@ -24,7 +24,6 @@ public class Member extends User{
 	public void setRole(String role) {
 		this.role = role;
 	}
-
 	
 //	TO STRING -----------------------------------------------------------------------------------------------------
 	@Override

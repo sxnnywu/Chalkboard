@@ -1,10 +1,9 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
-
+import java.awt.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class MenuButton extends JButton{
 
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -87,5 +86,23 @@ public class MenuButton extends JButton{
 	}
 	public static int getButtonHeight() {
 		return BUTTON_HEIGHT;
+	}
+	public int getWidth() {
+		return width;
+	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	public Color getColour() {
+		return colour;
+	}
+	public void setColour(Color colour) {
+		this.colour = colour;
+	}
+	public String getText() {
+		return text;
+	}
+	public JLabel getIButtoncon() {
+		return icon;
 	}
 }

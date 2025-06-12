@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
 
 public class MainFrame extends JFrame{
@@ -15,11 +18,10 @@ public class MainFrame extends JFrame{
 	LoginPanel loginPanel = new LoginPanel();
 	SignupPanel signupPanel = new SignupPanel();
 	
-	HomePanel homePanel = new HomePanel("Sunny"); // HARD CODE FOR NOW
+	HomePanel homePanel = new HomePanel("Sunny", sampleHomeClubs()); // HARD CODE FOR NOW
 	JoinPanel joinPanel = new JoinPanel(80);
 	CreatePanel createPanel = new CreatePanel(90);
-	MenuPanel menuPanel = new MenuPanel();
-	BlurWrapper blurWrapper;
+	MenuPanel menuPanel = new MenuPanel(sampleHomeClubs()); // HARD CODE FOR NOW
 	
 	DashboardPanel dashboardPanel;
 	
@@ -38,20 +40,17 @@ public class MainFrame extends JFrame{
 //		add(startPanel);
 		add(homePanel);
 		
-//		homePanel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
-//	    blurWrapper = new BlurWrapper(homePanel);
-//	    blurWrapper.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
-//	    add(blurWrapper);
-		
 //		Make the frame appear
 		setVisible(true);
 	}
 	
-//	UNBLUR --------------------------------------------------------------------------------------------------------
-	public void unBlur(RoundedPanel panel) {
-		blurWrapper.clearBlur();
-		blurWrapper.remove(panel);  // remove the panel
-		blurWrapper.repaint();
+//	SAMPLE HOME CLUBS (HARD CODED FOR NOW, FIX LATER)
+	private List<String[]> sampleHomeClubs(){
+		List<String[]> list = new ArrayList<>();
+		list.add(new String[] {"Math Club", "meeting", "joinCode"});
+		list.add(new String[] {"DECA", "meeting", "joinCode"});
+		list.add(new String[] {"Breeze Code", "meeting", "joinCode"});
+		return list;
 	}
 	
 //	SHOW JOIN CLUB ------------------------------------------------------------------------------------------------

@@ -5,9 +5,13 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class SampleDataLoader {
+	
+//	FIELDS
     private static final String DB_URL = "jdbc:sqlite:chalkboard.db";
 
+// 	MAIN METHOD
     public static void main(String[] args) {
+    	
         try (Connection conn = DriverManager.getConnection(DB_URL)) {
             System.out.println("Connected to SQLite");
             
@@ -16,6 +20,8 @@ public class SampleDataLoader {
                 stmt.executeUpdate("DELETE FROM memberships");
                 stmt.executeUpdate("DELETE FROM announcements");
                 stmt.executeUpdate("DELETE FROM tasks");
+                stmt.executeUpdate("DELETE FROM meetings");
+                stmt.executeUpdate("DELETE FROM events");
                 stmt.executeUpdate("DELETE FROM users");
                 stmt.executeUpdate("DELETE FROM clubs");
             }
@@ -134,7 +140,7 @@ public class SampleDataLoader {
 
                     ps.setString(1, eventId);
                     ps.setString(2, clubId);
-                    ps.setString(3, "Special Event for " + clubId);
+                    ps.setString(3, "Special " + clubId);
                     ps.setString(4, eventDate.toString());
                     ps.setString(5, "18:00"); // 6:00 PM
                     ps.setString(6, "Auditorium");

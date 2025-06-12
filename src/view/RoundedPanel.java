@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class RoundedPanel extends JPanel {
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -33,5 +34,10 @@ public class RoundedPanel extends JPanel {
 //    	Paint children
         super.paintComponent(g);
     }
+
+// 	GET CORNER RADIUS ---------------------------------------------------------------------------------------------
+	public int getCornerRadius() {
+		return cornerRadius;
+	}   
 }
 

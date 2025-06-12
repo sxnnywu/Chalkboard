@@ -1,12 +1,9 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
+import javax.swing.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
+@SuppressWarnings("serial")
 public class DashboardSidePanel extends JPanel{
 	
 //	FIELDS --------------------------------------------------------------------------------------------------------
@@ -35,6 +32,7 @@ public class DashboardSidePanel extends JPanel{
 	private JLabel toolsLabel = new JLabel("Club Tools");
 	private JLabel actionsLabel = new JLabel("Quick Actions");
 	
+//	Exit button
 	private RoundedButton exitButton = new RoundedButton("Exit Club", red, getLighterColor(red, 0.5f), Color.BLACK);
 	
 //	Menu buttons
@@ -50,7 +48,10 @@ public class DashboardSidePanel extends JPanel{
 //	CONSTRUCTOR ---------------------------------------------------------------------------------------------------
 	public DashboardSidePanel() {	
 		
+//		Set up the panel
 		initializePanel();
+		
+//		Set up components
 		setUpToolsLabel();
 		setUpToolButtons();
 		setUpActionsLabel();
@@ -69,9 +70,10 @@ public class DashboardSidePanel extends JPanel{
 //	GET LIGHTER COLOUR --------------------------------------------------------------------------------------------
 	private Color getLighterColor(Color color, float factor) {
 		
-		// Clamp factor between 0 and 1
+//		Clamp factor between 0 and 1
 		factor = Math.max(0f, Math.min(factor, 1f));
 
+//		Alter RGB values
 		int r = (int) (color.getRed() + (255 - color.getRed()) * factor);
 		int g = (int) (color.getGreen() + (255 - color.getGreen()) * factor);
 		int b = (int) (color.getBlue() + (255 - color.getBlue()) * factor);
@@ -135,7 +137,7 @@ public class DashboardSidePanel extends JPanel{
 		add(addTaskButton);
 	}
 	
-//	SET UP EXIT BUTTON
+//	SET UP EXIT BUTTON --------------------------------------------------------------------------------------------
 	private void setUpExitButton() {
 		exitButton.setForeground(Color.WHITE);
 		exitButton.setFont(new Font("Gill Sans MT", Font.BOLD, 18));
@@ -144,10 +146,103 @@ public class DashboardSidePanel extends JPanel{
 	}
 	
 //	GETTERS
-	public static int getPanelWidth() {
+	public int getPanelWidth() {
 		return PANEL_WIDTH;
 	}
-	public static int getPanelHeight() {
+	public int getPanelHeight() {
 		return PANEL_HEIGHT;
+	}
+	public JLabel getToolsLabel() {
+		return toolsLabel;
+	}
+	public void setToolsLabel(JLabel toolsLabel) {
+		this.toolsLabel = toolsLabel;
+	}
+	public JLabel getActionsLabel() {
+		return actionsLabel;
+	}
+	public void setActionsLabel(JLabel actionsLabel) {
+		this.actionsLabel = actionsLabel;
+	}
+	public RoundedButton getExitButton() {
+		return exitButton;
+	}
+	public void setExitButton(RoundedButton exitButton) {
+		this.exitButton = exitButton;
+	}
+	public MenuButton getAnnouncementsButton() {
+		return announcementsButton;
+	}
+	public void setAnnouncementsButton(MenuButton announcementsButton) {
+		this.announcementsButton = announcementsButton;
+	}
+	public MenuButton getTasksButton() {
+		return tasksButton;
+	}
+	public void setTasksButton(MenuButton tasksButton) {
+		this.tasksButton = tasksButton;
+	}
+	public MenuButton getCalendarButton() {
+		return calendarButton;
+	}
+	public void setCalendarButton(MenuButton calendarButton) {
+		this.calendarButton = calendarButton;
+	}
+	public MenuButton getMemberButton() {
+		return memberButton;
+	}
+	public void setMemberButton(MenuButton memberButton) {
+		this.memberButton = memberButton;
+	}
+	public MenuButton getAddAnnounceButton() {
+		return addAnnounceButton;
+	}
+	public void setAddAnnounceButton(MenuButton addAnnounceButton) {
+		this.addAnnounceButton = addAnnounceButton;
+	}
+	public MenuButton getAddMeetingButton() {
+		return addMeetingButton;
+	}
+	public void setAddMeetingButton(MenuButton addMeetingButton) {
+		this.addMeetingButton = addMeetingButton;
+	}
+	public MenuButton getAddEventButton() {
+		return addEventButton;
+	}
+	public void setAddEventButton(MenuButton addEventButton) {
+		this.addEventButton = addEventButton;
+	}
+	public MenuButton getAddTaskButton() {
+		return addTaskButton;
+	}
+	public void setAddTaskButton(MenuButton addTaskButton) {
+		this.addTaskButton = addTaskButton;
+	}
+	public static int getButtonHeight() {
+		return BUTTON_HEIGHT;
+	}
+	public ImageIcon getAnnouncementsIcon() {
+		return announcementsIcon;
+	}
+	public ImageIcon getTaskIcon() {
+		return taskIcon;
+	}
+	public ImageIcon getCalendarIcon() {
+		return calendarIcon;
+	}
+	public ImageIcon getMembersIcon() {
+		return membersIcon;
+	}
+	public ImageIcon getAddAnnouncementIcon() {
+		return addAnnouncementIcon;
+	}
+	public ImageIcon getAddMeetingIcon() {
+		return addMeetingIcon;
+	}
+	public ImageIcon getAddEventIcon() {
+		return addEventIcon;
+	}
+	public ImageIcon getAddTaskIcon() {
+		return addTaskIcon;
 	}
 }

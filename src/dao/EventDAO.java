@@ -103,6 +103,7 @@ public class EventDAO {
                 }
             }
         }
+        System.out.println("EventDAO fetched " + events.size() + " events for club " + clubId);
         return events;
     }
 }
