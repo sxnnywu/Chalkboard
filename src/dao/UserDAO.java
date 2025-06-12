@@ -132,4 +132,34 @@ public class UserDAO {
 //      Return the list of all users
         return users;
     }
+    
+// 	GET BY USERNAME -----------------------------------------------------------------------------------------------
+    public User getByUsername(String username) throws SQLException {
+        
+//    	SQL query
+    	String sql = "SELECT * FROM users WHERE username = ?";
+        
+//    	Prepare statement
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            
+//         	Execute statement
+            try (ResultSet rs = stmt.executeQuery()) {
+            	
+//            	If a user is found, return it
+                if (rs.next()) {
+                    return new User(
+                        rs.getString("user_id"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("password_hash")
+                    );
+                }
+            }
+        }
+//    	If no user is found
+        return null;
+    }
 }

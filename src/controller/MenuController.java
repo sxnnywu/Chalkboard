@@ -4,7 +4,6 @@ import java.awt.event.*;
 import java.sql.SQLException;
 
 import dao.*;
-import model.*;
 import view.*;
 
 public class MenuController implements ActionListener{
@@ -12,8 +11,7 @@ public class MenuController implements ActionListener{
 //	FIELDS  --------------------------------------------------------------------------------------------------------
 	private DashboardController dashboardController;
 	private MainFrame frame;
-	private static MenuPanel menuPanel;
-	
+	private static MenuPanel menuPanel;	
 	private ClubDAO clubDAO;
 
 //	CONSTRUCTOR  ---------------------------------------------------------------------------------------------------

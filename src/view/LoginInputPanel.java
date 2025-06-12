@@ -63,4 +63,10 @@ public class LoginInputPanel extends RoundedPanel {
 	public void setPasswordField(InputField passwordField) {
 		this.passwordField = passwordField;
 	}
+	public String getUserName() {
+		return userField.getInput().trim();
+	}
+	public String getPasswordHash() {
+		return passwordField.getInput();
+	}
 }

@@ -71,8 +71,8 @@ public class User {
 	}
 
 //	TO MEMBER -----------------------------------------------------------------------------------------------------s
-	public Member toMember(String role) {
-		return new Member(this, role);
+	public Member toMember(String role, String clubID) {
+		return new Member(this, role, clubID);
 	}
 	
 //	GETTERS + SETTERS ---------------------------------------------------------------------------------------------

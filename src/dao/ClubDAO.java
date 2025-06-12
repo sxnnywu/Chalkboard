@@ -20,7 +20,11 @@ public class ClubDAO {
 
 //	INSERT --------------------------------------------------------------------------------------------------------
     public void insert(Club club) throws SQLException {
-        String sql = "INSERT INTO clubs (club_id, name, join_code) VALUES (?, ?, ?)";
+        
+//    	SQL query to insert into clubs table
+    	String sql = "INSERT INTO clubs (club_id, name, join_code) VALUES (?, ?, ?)";
+    	
+//    	Prepare & execute statement
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, club.getClubID());
             stmt.setString(2, club.getName());
@@ -31,9 +35,15 @@ public class ClubDAO {
 
 //	GET BY ID -----------------------------------------------------------------------------------------------------
     public Club getById(String clubId) throws SQLException {
+    	
+//    	SQL query
         String sql = "SELECT * FROM clubs WHERE club_id = ? AND is_active = TRUE";
+        
+//    	Prepare statement
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, clubId);
+            
+//         	Execute statement
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                 	Club club = new Club(
@@ -52,8 +62,12 @@ public class ClubDAO {
 
 // 	UPDATE --------------------------------------------------------------------------------------------------------
     public void update(Club club) throws SQLException {
-        String sql = "UPDATE clubs SET name = ?, join_code = ? WHERE club_id = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+//    	SQL query
+    	String sql = "UPDATE clubs SET name = ?, join_code = ? WHERE club_id = ?";
+        
+//    	Prepare & execute statement
+    	try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, club.getName());
             stmt.setString(2, club.getJoinCode());
             stmt.setString(3, club.getClubID());
@@ -63,7 +77,11 @@ public class ClubDAO {
 
 //	DELETE --------------------------------------------------------------------------------------------------------
     public void delete(String clubId) throws SQLException {
-        String sql = "DELETE FROM clubs WHERE club_id = ?";
+        
+//    	SQL query to delete from clubs table
+    	String sql = "DELETE FROM clubs WHERE club_id = ?";
+    	
+//    	Prepare & execute statement
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, clubId);
             stmt.executeUpdate();
@@ -72,11 +90,19 @@ public class ClubDAO {
 
 // 	GET ALL -------------------------------------------------------------------------------------------------------
     public List<Club> getAll() throws SQLException {
+    	
+//    	List of clubs will be stored here
         List<Club> clubs = new ArrayList<>();
+        
+//     	SQL query
         String sql = "SELECT * FROM clubs";
+        
+//     	Prepare & execute statement
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
+            
+//        	Loop through results, add clubs to list
+        	while (rs.next()) {
                 clubs.add(new Club(
                     rs.getString("name")
                 ));
@@ -87,24 +113,34 @@ public class ClubDAO {
     
 //	GET CLUB ID BY NAME -------------------------------------------------------------------------------------------
     public String getClubIdByName(String name) {
-        String query = "SELECT club_id FROM clubs WHERE name = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
- 
+        
+//    	SQL query
+    	String query = "SELECT club_id FROM clubs WHERE name = ?";
+        
+//    	Prepare & execute statement
+    	try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
+            
+//        	Return club ID if found
+            if (rs.next()) 
                 return rs.getString("club_id");
-            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
+//    	If nothing was found
         return null;
     }
        
 //	DEACTIVATE ----------------------------------------------------------------------------------------------------
     public void deactivate(String clubId) throws SQLException {
-        String sql = "UPDATE clubs SET is_active = FALSE WHERE club_id = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+//    	SQL query
+    	String sql = "UPDATE clubs SET is_active = FALSE WHERE club_id = ?";
+        
+//    	Prepare & execute statement
+    	try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, clubId);
             stmt.executeUpdate();
         }
@@ -112,19 +148,27 @@ public class ClubDAO {
     
 // 	GET CLUB MEMBERS ----------------------------------------------------------------------------------------------
     public List<Member> getClubMembers(String clubId) throws SQLException {
-        List<Member> members = new ArrayList<>();
-        String sql = """
+        
+//    	Members will be stored here
+    	List<Member> members = new ArrayList<>();
+        
+//    	SQL query
+    	String sql = """
             SELECT m.role, u.user_id, u.first_name, u.last_name, u.username, u.email, u.password_hash
             FROM members m
             JOIN users u ON m.user_id = u.user_id
             WHERE m.club_id = ?
         """;
 
+//    	Prepare statement
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, clubId);
+            
+//        	Execute statement
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    // Build User object
+                    
+//                	Build User object
                     User user = new User(
                         rs.getString("first_name"),
                         rs.getString("last_name"),
@@ -134,9 +178,8 @@ public class ClubDAO {
                     );
                     user.setUserID(rs.getString("user_id"));
 
-                    // Build Member object
-                    Member member = new Member(user, rs.getString("role"));
-
+//                 	Build Member object and add it to the list
+                    Member member = new Member(user, rs.getString("role"), rs.getString("club_id"));
                     members.add(member);
                 }
             }
@@ -146,8 +189,12 @@ public class ClubDAO {
 
 // 	ADD MEMBER ----------------------------------------------------------------------------------------------------
     public void addMember(String clubId, String userId, String role) throws SQLException {
-        String sql = "INSERT INTO members (user_id, club_id, role) VALUES (?, ?, ?)";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+//    	SQL query to insert into members table
+    	String sql = "INSERT INTO members (user_id, club_id, role) VALUES (?, ?, ?)";
+        
+//    	Prepare & execute statement
+    	try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, userId);
             stmt.setString(2, clubId);
             stmt.setString(3, role);
@@ -157,8 +204,12 @@ public class ClubDAO {
 
 // 	REMOVE MEMBER -------------------------------------------------------------------------------------------------
     public void removeMember(String clubId, String userId) throws SQLException {
-        String sql = "DELETE FROM members WHERE club_id = ? AND user_id = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+//    	SQL query to delete from members table
+    	String sql = "DELETE FROM members WHERE club_id = ? AND user_id = ?";
+        
+//    	Prepare & execute statement
+    	try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, clubId);
             stmt.setString(2, userId);
             stmt.executeUpdate();
@@ -167,8 +218,12 @@ public class ClubDAO {
    
 // 	UPDATE MEMBER ROLE --------------------------------------------------------------------------------------------
     public void updateMemberRole(String clubId, String userId, String newRole) throws SQLException {
-        String sql = "UPDATE members SET role = ? WHERE club_id = ? AND user_id = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+//    	SQL query
+    	String sql = "UPDATE members SET role = ? WHERE club_id = ? AND user_id = ?";
+        
+//    	Prepare & execute statement
+    	try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newRole);
             stmt.setString(2, clubId);
             stmt.setString(3, userId);
@@ -178,14 +233,24 @@ public class ClubDAO {
 
 // 	GET CLUBS BY USER ---------------------------------------------------------------------------------------------
     public List<Club> getClubsByUser(String userId) throws SQLException {
-        List<Club> clubs = new ArrayList<>();
+        
+//    	Clubs will be stored here
+    	List<Club> clubs = new ArrayList<>();
+    	
+//    	SQL query
         String sql = "SELECT c.* FROM clubs c " +
                      "JOIN members m ON c.club_id = m.club_id " +
                      "WHERE m.user_id = ? AND c.is_active = TRUE";        
+        
+//    	Prepare statement
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, userId);
+            
+//         	Execute statement
             try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
+                
+//            	Loop through results and add clubs to list
+            	while (rs.next()) {
                     Club club = new Club(rs.getString("name"));
                     club.setClubID(rs.getString("club_id"));
                     club.setJoinCode(rs.getString("join_code"));
@@ -198,41 +263,57 @@ public class ClubDAO {
 
 // 	VALIDATE JOIN CODE --------------------------------------------------------------------------------------------
     public String validateJoinCode(String joinCode) throws SQLException {
-        String sql = "SELECT club_id FROM clubs WHERE join_code = ? AND is_active = TRUE";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+//    	SQL query
+    	String sql = "SELECT club_id FROM clubs WHERE join_code = ? AND is_active = TRUE";
+        
+//    	Prepare statement
+    	try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, joinCode);
+            
+//        	Execute statement
             try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
+            	
+//            	If a club was found, return its id
+                if (rs.next())
                     return rs.getString("club_id");
-                }
             }
         }
+//    	If no club was found
         return null;
     }
     
 // 	GET NEXT MEETING TIME -----------------------------------------------------------------------------------------
     public String getNextMeetingTime(String clubId) {
-        String query = """
+        
+//    	SQL query
+    	String query = """
             SELECT date, time FROM meetings
             WHERE club_id = ?
             ORDER BY date ASC, time ASC
             LIMIT 1
         """;
 
+//    	Prepare statement
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, clubId);
+            
+//         	Execute statement
             ResultSet rs = stmt.executeQuery();
+            
+//         	If there is an upcoming meeting
             if (rs.next()) {
-                String date = rs.getString("date");  // e.g. "2025-06-11"
-                String time = rs.getString("time");  // e.g. "15:00"
+                String date = rs.getString("date"); 
+                String time = rs.getString("time");
 
-                // Parse and format
+//            	Parse and format
                 LocalDateTime dateTime;
-                if (time != null && !time.isEmpty()) {
+                
+//             	Check if time is empty/null
+                if (time != null && !time.isEmpty()) 
                     dateTime = LocalDateTime.parse(date + "T" + time);
-                } else {
+                else 
                     dateTime = LocalDateTime.parse(date + "T00:00");  // default to midnight
-                }
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d 'at' h:mma");
                 return dateTime.format(formatter);
@@ -240,22 +321,30 @@ public class ClubDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+//    	If no upcoming meetings were found
         return "No upcoming meeting";
     }
 
-
 // 	GET JOIN CODE -------------------------------------------------------------------------------------------------
     public String getJoinCode(String clubId) {
+    	
+//    	SQL query
         String query = "SELECT join_code FROM clubs WHERE club_id = ?";
+        
+//     	Prepare statement
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, clubId);
+            
+//         	Execute statement
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
+            
+//         	If a club was found, return its join code
+            if (rs.next()) 
                 return rs.getString("join_code");
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+//     	If no club was found
         return "Unavailable";
     }
 }

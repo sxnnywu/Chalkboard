@@ -16,6 +16,9 @@ import controller.*;
 import dao.*;
 
 public class ChalkboardApplication {
+	
+//	MAIN METHOD
+	@SuppressWarnings("unused")
 	public static void  main(String[] args) {
 		
 //		Testing database connection

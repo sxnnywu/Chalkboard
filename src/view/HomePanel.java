@@ -39,6 +39,19 @@ public class HomePanel extends JPanel {
 //	Parameters
 	private String firstName;
 	
+//	EMPTY CONSTRUCTOR 
+	public HomePanel() { 
+		
+//		Set up the panel
+		initializePanel();
+		
+//		Set up components
+		setUpLogo();
+		setUpWelcome();
+		setUpMenuIcon();
+		
+	}
+	
 //	CONSTRUCTOR --------------------------------------------------------------------------------------------------
 	public HomePanel(String firstName, List<String[]> clubData) { 
 		

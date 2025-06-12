@@ -1,7 +1,6 @@
 package dao;
 
-import model.Member;
-import model.Task;
+import model.*;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -94,7 +93,7 @@ public class TaskDAO {
     	List<Member> assignees = new ArrayList<>();
 
 //    	SQL query to retrieve all users assigned to the task
-    	String assigneesSql = "SELECT u.*, m.role " +
+    	String assigneesSql = "SELECT u.*, m.role, m.club_id " +
     	                      "FROM users u " +
     	                      "JOIN memberships m ON u.user_id = m.user_id " +
     	                      "WHERE u.user_id IN (SELECT user_id FROM task_assignees WHERE task_id = ?)";
@@ -110,16 +109,16 @@ public class TaskDAO {
     				
 //    				Construct a User object
     				model.User user = new model.User(
-    					rs.getString("first_name"),
-    					rs.getString("last_name"),
-    					rs.getString("username"),
-    					rs.getString("email"),
-    					rs.getString("password_hash"),
-    					null // userID isn't needed in Member
-    				);
-
-//    				Create a Member object using the User and role and add to list
-    				Member member = new Member(user, rs.getString("role"));
+    						rs.getString("user_id"),
+    						rs.getString("first_name"),
+    						rs.getString("last_name"),
+    						rs.getString("username"),
+    						rs.getString("email"),
+    						rs.getString("password_hash")
+    					);
+    					String role = rs.getString("role");
+    					String clubID = rs.getString("club_id");
+    					Member member = new Member(user, role, clubID);
     				assignees.add(member);
     			}
     		}

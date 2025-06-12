@@ -18,7 +18,7 @@ public class MainFrame extends JFrame{
 	LoginPanel loginPanel = new LoginPanel();
 	SignupPanel signupPanel = new SignupPanel();
 	
-	HomePanel homePanel = new HomePanel("Sunny", sampleHomeClubs()); // HARD CODE FOR NOW
+	HomePanel homePanel = new HomePanel(); 
 	JoinPanel joinPanel = new JoinPanel(80);
 	CreatePanel createPanel = new CreatePanel(90);
 	MenuPanel menuPanel = new MenuPanel(sampleHomeClubs()); // HARD CODE FOR NOW
@@ -37,8 +37,8 @@ public class MainFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 //		Starting panel
-//		add(startPanel);
-		add(homePanel);
+		add(startPanel);
+//		add(homePanel);
 		
 //		Make the frame appear
 		setVisible(true);
@@ -51,6 +51,14 @@ public class MainFrame extends JFrame{
 		list.add(new String[] {"DECA", "meeting", "joinCode"});
 		list.add(new String[] {"Breeze Code", "meeting", "joinCode"});
 		return list;
+	}
+	
+//	INITIALIZE HOME PANEL ------------------------------------------------------------------------------------------
+	public void initializeHomePanel(String userName, List<String[]> userClubs) {
+		homePanel = new HomePanel(userName, userClubs);
+		add(homePanel);
+		revalidate();
+		repaint();
 	}
 	
 //	SHOW JOIN CLUB ------------------------------------------------------------------------------------------------

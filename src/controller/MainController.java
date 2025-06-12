@@ -2,11 +2,13 @@ package controller;
 
 import java.awt.event.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import dao.ClubDAO;
-import dao.DBUtil;
+import dao.*;
+import model.*;
 import view.*;
 
 public class MainController implements ActionListener {
@@ -16,18 +18,47 @@ public class MainController implements ActionListener {
 	private DashboardController dashboardController;
 	private MenuController menuController;
 	private ClubDAO clubDAO;
+	private MemberDAO memberDAO;
+	private UserDAO userDAO;
+	
+	private User currentUser;
+	
+	private final String CURRENT_USER_ID = "S001";
 	
 //	CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 	public MainController() throws SQLException{
 
 		clubDAO = new ClubDAO(DBUtil.getConnection());
+		memberDAO = new MemberDAO(DBUtil.getConnection()); 
+		userDAO = new UserDAO(DBUtil.getConnection());
+
+		loadUserClubs();
 		dashboardController = new DashboardController(frame);
 		menuController = new MenuController(frame, dashboardController);
 		addActionListeners();
 	}
+	
+//	LOAD USER CLUBS 
+	private void loadUserClubs() throws SQLException {
+		
+		List<Member> memberships = memberDAO.getClubsByUserId(CURRENT_USER_ID); 
+
+		List<String[]> clubData = new ArrayList<>();
+		for (Member m : memberships) {
+			Club club = clubDAO.getById(m.getClubID()); 
+			String[] data = {
+				club.getName(),
+				"meeting", // TODO: next meeting logic later
+				club.getJoinCode()
+			};
+			clubData.add(data);
+		}
+
+		// Replace hardcoded panel with live data
+		frame.initializeHomePanel("Sunny", clubData); // TODO: fetch actual name later
+	}
 
 //	ADD ACTION LISTENERS -------------------------------------------------------------------------------------------
-	@SuppressWarnings("static-access")
 	public void addActionListeners() {
 		
 //		Start panel
@@ -139,9 +170,53 @@ public class MainController implements ActionListener {
 	
 //	LOGIN VALIDATION -----------------------------------------------------------------------------------------------
 	private void login() {
-		
-		frame.remove(frame.getLoginPanel());
+	    
+//		Get username and password from the login input panel
+	    String username = frame.getLoginPanel().getInputPanel().getUserName();
+	    String password = frame.getLoginPanel().getInputPanel().getPasswordHash();
+
+	    try {
+	    	
+//	    	Find user by username
+	        User user = userDAO.getByUsername(username);
+
+//	        If no user was found
+	        if (user == null) {
+	            JOptionPane.showMessageDialog(frame, "Username not found.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+	            return;
+	        }
+
+//	        If incorrect password
+	        if (!user.getPasswordHash().equals(password)) {
+	            JOptionPane.showMessageDialog(frame, "Incorrect password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+	            return;
+	        }
+
+//	        Success -- store current user and load clubs
+	        currentUser = user;
+	        List<Member> memberships = memberDAO.getClubsByUserId(currentUser.getUserID());
+
+//	        Club data
+	        List<String[]> clubData = new ArrayList<>();
+	        for (Member m : memberships) {
+	        	Club club = clubDAO.getById(m.getClubID());
+	            String[] data = {club.getName(), "meeting", // TODO: implement next meeting
+	                club.getJoinCode()
+	            };
+	            clubData.add(data);
+	        }
+
+//	        Display name
+	        String displayName = currentUser.getFirstName();
+	        frame.initializeHomePanel(displayName, clubData);
+	        switchPanel(frame.getLoginPanel(), frame.getHomePanel());
+
+	    } catch (SQLException e) {
+	        JOptionPane.showMessageDialog(frame, "Database error during login.", "Error", JOptionPane.ERROR_MESSAGE);
+	        e.printStackTrace();
+	    }
 	}
+
 
 //	JOIN CLUB VALIDATION -------------------------------------------------------------------------------------------
 	private void joinClub() {
