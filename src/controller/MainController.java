@@ -259,6 +259,11 @@ public class MainController implements ActionListener {
 	        		clubDAO.getNextMeetingTime(club.getClubID()),
 	        		joinCode
 	        		);
+	        frame.getHomePanel().getClubPanel().displayClubs();
+	        
+	        List<ClubDisplay> clubs = frame.getHomePanel().getClubPanel().getClubs();
+	        clubs.get(clubs.size() - 1).getHeader().getViewButton().addActionListener(this);
+	        
 //	        TODO: Add menu button on menu panel for the new club
 	        frame.removeJoinClub();
 

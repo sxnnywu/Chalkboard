@@ -45,12 +45,7 @@ public class ClubsPanel extends JPanel {
 		addAllClubs();
 		
 //		Club Display
-		int x = 30;
-		for(ClubDisplay club : clubs) {
-			club.setBounds(x, 115, club.getPanelWidth(), club.getPanelHeight());
-			add(club);
-			x += 500;
-		}
+		displayClubs();
 	}
 	
 //	INITIALIZE PANEL ----------------------------------------------------------------------------------------------
@@ -85,6 +80,24 @@ public class ClubsPanel extends JPanel {
 	public void addClub(Color color, String clubName, String nextMeeting, String joinCode) {	
 		ClubDisplay newClub = new ClubDisplay(color, clubName, nextMeeting, joinCode);
 		clubs.add(newClub);
+	}
+	
+//	DISPLAY CLUBS -------------------------------------------------------------------------------------------------
+	public void displayClubs() {
+		
+//		Remove all existing ClubDisplay components from the panel
+	    for (ClubDisplay club : clubs) {
+	        if (club.getParent() == this) 
+	            remove(club);
+	    }
+		
+//	    Add clubs
+		int x = 30;
+		for(ClubDisplay club : clubs) {
+			club.setBounds(x, 115, club.getPanelWidth(), club.getPanelHeight());
+			add(club);
+			x += 500;
+		}
 	}
 
 //	GETTERS + SETTERS ---------------------------------------------------------------------------------------------

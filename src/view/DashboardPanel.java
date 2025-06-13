@@ -56,4 +56,30 @@ public class DashboardPanel extends JPanel {
         setBackground(darkGrey);
         setOpaque(true);
 	}
+
+//	GETTERS + SETTERS ---------------------------------------------------------------------------------------------
+	public DashboardHeaderPanel getHeader() {
+		return header;
+	}
+	public void setHeader(DashboardHeaderPanel header) {
+		this.header = header;
+	}
+	public DashboardSidePanel getSidebar() {
+		return sidebar;
+	}
+	public void setSidebar(DashboardSidePanel sidebar) {
+		this.sidebar = sidebar;
+	}
+	public DashboardBodyPanel getBodyContent() {
+		return bodyContent;
+	}
+	public void setBodyContent(DashboardBodyPanel bodyContent) {
+		this.bodyContent = bodyContent;
+	}
+	public static int getPanelWidth() {
+		return PANEL_WIDTH;
+	}
+	public static int getPanelHeight() {
+		return PANEL_HEIGHT;
+	}
 }
